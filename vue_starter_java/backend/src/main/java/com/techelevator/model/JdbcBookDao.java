@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class JdbcBookdao implements BookDao{
+public class JdbcBookDao implements BookDao{
 
     private JdbcTemplate jdbcTemplate;
 	
     @Autowired
-    public JdbcBookdao(DataSource dataSource) {
+    public JdbcBookDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
       
     }
