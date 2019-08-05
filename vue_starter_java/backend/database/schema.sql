@@ -1,7 +1,10 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS books_character;
 DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS character;
+
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -13,7 +16,7 @@ CREATE TABLE users (
 
 CREATE TABLE books (
 
-  id SERIAL PRIMARY KEY,
+  book_id SERIAL PRIMARY KEY,
   title VARCHAR NOT NULL,
   author VARCHAR NOT NULL,
   genre VARCHAR NOT NULL,
@@ -21,6 +24,20 @@ CREATE TABLE books (
   publishdate DATE NOT NULL
 
 );
+
+CREATE TABLE character (
+
+  character_id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL
+
+);
+
+CREATE TABLE books_character (
+    character_id integer REFERENCES character(character_id) NOT NULL,
+    book_id integer REFERENCES books (book_id) NOT NULL,
+    PRIMARY KEY (character_id, book_id)
+);
+
 
 INSERT INTO books (title, author, genre, description, publishdate)
 VALUES
@@ -35,6 +52,65 @@ VALUES
 ('Steve Jobs', 'Walter Isaacson', 'Biography', 'Based on more than forty interviews with Jobs conducted over two years—as well as interviews with more than a hundred family members, friends, adversaries, competitors, and colleagues—Walter Isaacson has written a riveting story of the roller-coaster life and searingly intense personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.', '2011-10-24'),
 ('It', 'Stephen King', 'Horror', 'Welcome to Derry, Maine ...It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real … They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But none of them can withstand the force that has drawn them back to Derry to face the nightmare without an end, and the evil without a name.', '1987-10-01');
 
+INSERT INTO character (name)
+VALUES
+('Captain Ahab'),
+('Moby Dick'),
+('Ishmael'),
+('Sherlock Holmes'),
+('Inspector Lestrade'),
+('John H. Watson'),
+('Harry Potter'),
+('Hermione Granger'),
+('Lord Voldemort'),
+('Bilbo Baggins'),
+('Gandalf'),
+('Smaug'),
+('Alex Cross'),
+('John Sampson'),
+('Marcus Sunday'),
+('The Cat in the Hat'),
+('Thing One'),
+('Thing Two'),
+('Steve Jobs'), 
+('Steve Wozniak'),
+('Lisa Brennan-Jobs'),
+('Beverly Marsh'), 
+('Richie Tozier'), 
+('Eddie Kaspbrak');
+
+INSERT INTO books_character (character_id, book_id)
+VALUES
+(1,1),
+(2,1),
+(3,1),
+(4,2),
+(5,2),
+(6,2),
+(7,3),
+(7,5),
+(8,3),
+(8,5),
+(9,3),
+(9,5),
+(10,4),
+(11,4),
+(12,4),
+(13,6),
+(13,7),
+(14,6),
+(14,7),
+(15,6),
+(15,7),
+(16,8),
+(17,8),
+(18,8),
+(19,9),
+(20,9),
+(21,9),
+(22,10),
+(23,10),
+(24,10);
 
 
 COMMIT TRANSACTION;
