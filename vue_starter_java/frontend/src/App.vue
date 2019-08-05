@@ -1,20 +1,19 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<nav-bar />
+
+		<router-view />
+	</div>
 </template>
 
 <script>
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "@/components/NavBar";
 export default {
-
-}
+	components: {
+		NavBar
+	}
+};
 </script>
 
 <style>
-
 </style>
