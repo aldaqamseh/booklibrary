@@ -46,7 +46,7 @@ export default {
 	align-items: center;
 	justify-content: center;
 	background-color: #85c1e9;
-	height: 100px;
+	padding: 2% 0;
 }
 .nav-item {
 	text-transform: capitalize;
