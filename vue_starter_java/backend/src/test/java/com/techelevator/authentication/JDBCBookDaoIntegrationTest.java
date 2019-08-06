@@ -19,7 +19,7 @@ public class JDBCBookDaoIntegrationTest extends DAOIntegrationTest{
 	
 
 	
-	 private BookDao dao = new JdbcBookDao(dataSource);
+	private BookDao dao = new JdbcBookDao(getDataSource());
 	private JdbcTemplate template;
 	
 	
