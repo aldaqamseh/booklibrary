@@ -49,6 +49,7 @@ package com.techelevator.model;
 			Book theBook; 
 			
 			theBook = new Book();
+			theBook.setId(results.getLong("book_id"));
 			theBook.setAuthor(results.getString("author"));
 			theBook.setDescription(results.getString("description"));
 			theBook.setGenre(results.getString("genre"));
