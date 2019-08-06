@@ -1,6 +1,6 @@
 <template>
 	<div class="nav-bar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light">
 			<router-link :to="{ name: 'home' }">bkwrm</router-link>
 			<button
 				class="navbar-toggler"
@@ -41,6 +41,13 @@ export default {
 </script>
 
 <style scoped>
+.nav-bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #85c1e9;
+	height: 100px;
+}
 .nav-item {
 	text-transform: capitalize;
 }
