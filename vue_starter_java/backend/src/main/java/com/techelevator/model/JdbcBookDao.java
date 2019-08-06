@@ -80,8 +80,8 @@ package com.techelevator.model;
 			
 		}
 
-		@Override
-		public Long getNextId() {
+		
+		private Long getNextId() {
 			
 			String sqlSelectNextId = "SELECT nextval('books_book_id_seq')";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);

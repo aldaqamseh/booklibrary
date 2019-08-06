@@ -11,5 +11,5 @@ public interface BookDao {
 	 
 	 void save(Book saveBook);
 
-	 Long getNextId();
+	
 }
