@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ApiController {
 
     @Autowired
-    private AuthProvider authProvider;
+//    private AuthProvider authProvider;
     private BookDao bookDao;
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)

@@ -29,7 +29,7 @@ package com.techelevator.model;
 			
 			List<Book> book = new ArrayList<Book>();
 			
-			String sqlGetAllBooks = "SELECT * FROM  book ";
+			String sqlGetAllBooks = "SELECT * FROM  books ";
 			
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllBooks);
 
@@ -52,7 +52,6 @@ package com.techelevator.model;
 			theBook.setAuthor(results.getString("author"));
 			theBook.setDescription(results.getString("description"));
 			theBook.setGenre(results.getString("genre"));
-			theBook.setPublishDate(results.getDate("publishDate"));
 			theBook.setTitle(results.getString("title"));
 			theBook.setPublishDate(results.getDate("publish_date"));
 			theBook.setDateAdded(results.getDate("date_added"));

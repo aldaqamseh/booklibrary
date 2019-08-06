@@ -29,6 +29,7 @@
 						<!-- Every url in the app must be authenticated except /login -->
 						<value>/login</value>
 						<value>/register</value>
+						<value>/api/books</value>
 					</list>
 				</property>
 			</bean>
@@ -51,13 +52,13 @@
 	<!--  DATA ACCESS CONFIGURATION -->
 	<!-- ************************* -->
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/library" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres1" />
 	</bean>
-	
+	 -->
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="txManager" />
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
@@ -65,5 +66,5 @@
 		<property name="url" value="jdbc:postgresql://localhost:5432/library" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres1" />
-	  </bean>
+	  </bean> 
 </beans>

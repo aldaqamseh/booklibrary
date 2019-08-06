@@ -21,7 +21,7 @@ export default {
 	},
 	data() {
 		return {
-			API_URL: "https://5d4878d22d59e50014f20bf1.mockapi.io/library",
+			API_URL: "http://localhost:8080/AuthenticationApplication/api/books",
 			books: [],
 			query: ""
 		};
