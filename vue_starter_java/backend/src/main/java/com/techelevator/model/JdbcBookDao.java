@@ -55,6 +55,11 @@ package com.techelevator.model;
 			theBook.setPublishDate(results.getDate("publishDate"));
 			theBook.setTitle(results.getString("title"));
 			theBook.setCharacters(getCharacters(results.getInt("id")));
+			theBook.setPublishDate(results.getDate("publish_date"));
+			theBook.setDateAdded(results.getDate("date_added"));
+			theBook.setImgUrl(results.getString("img_url"));
+			theBook.setIsbn(results.getString("isbn"));
+			
 			
 			return theBook;
 		}
@@ -74,7 +79,7 @@ package com.techelevator.model;
 					"VALUES (?,?,?,?,?,?,?,?)";
 			
 			jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(),book.getGenre(),book.getDescription(),book.getPublishDate(),
-					book.getCharacters());
+					book.getDateAdded(),book.getImgUrl(), book.getIsbn());
 			book.setId(id);
 			
 			
