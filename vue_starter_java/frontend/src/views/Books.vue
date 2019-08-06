@@ -2,7 +2,7 @@
 	<div class="books">
 		<h1>books page</h1>
 		<search-books v-on:search="handleFilter" />
-		<div v-for="book in filteredBooks" :key="book.id">
+		<div v-for="book in filteredBooks.slice().reverse()" :key="book.id">
 			<book-row v-bind:book="book" />
 		</div>
 	</div>
@@ -21,7 +21,8 @@ export default {
 	},
 	data() {
 		return {
-			API_URL: "http://localhost:8080/AuthenticationApplication/api/books",
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/books",
 			books: [],
 			query: ""
 		};
