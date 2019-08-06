@@ -1,5 +1,4 @@
 package com.techelevator.model;
-
 import java.sql.Date;
 
 public class Book {
@@ -7,7 +6,6 @@ public class Book {
 	private Long id;
 	private String title;
 	private String author;
-	private String[] characters;
 	private String genre;
 	private String description;
 	private Date publishDate;
@@ -33,12 +31,7 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String[] getCharacters() {
-		return characters;
-	}
-	public void setCharacters(String[] characters) {
-		this.characters = characters;
-	}
+
 	public String getDescription() {
 		return description;
 	}
