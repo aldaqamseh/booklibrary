@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 public interface BookDao {
 	
-	 public List<Book> getAllBooks();
+	 List<Book> getAllBooks();
+	 
+	 void save(Book saveBook);
 
+	 Long getNextId();
 }

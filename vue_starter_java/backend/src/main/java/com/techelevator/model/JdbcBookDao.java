@@ -64,6 +64,18 @@ package com.techelevator.model;
 			return null;
 		}
 
+		@Override
+		public void save(Book saveBook) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public Long getNextId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 	}
 		
 		
