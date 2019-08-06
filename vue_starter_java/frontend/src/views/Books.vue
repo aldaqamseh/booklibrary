@@ -1,7 +1,8 @@
 <template>
 	<div class="books">
 		<h1>books page</h1>
-		<div v-for="book in books" :key="book.id">
+		<search-books v-on:search="handleFilter" />
+		<div v-for="book in filteredBooks" :key="book.id">
 			<book-row v-bind:book="book" />
 		</div>
 	</div>
@@ -10,27 +11,22 @@
 <script>
 import axios from "axios";
 import BookRow from "@/components/BookRow.vue";
+import SearchBooks from "@/components/SearchBooks.vue";
 
 export default {
 	name: "books",
 	components: {
-		BookRow
+		BookRow,
+		SearchBooks
 	},
 	data() {
 		return {
 			API_URL: "https://5d4878d22d59e50014f20bf1.mockapi.io/library",
-			books: []
+			books: [],
+			query: ""
 		};
 	},
 	methods: {
-		getAllBooks() {
-			axios.get(this.API_URL)
-				.then(response => {
-					this.books = response.data;
-					console.log(this.books);
-				})
-				.catch(err => console.error(err));
-		},
 		fetchAllBooks() {
 			fetch(this.API_URL)
 				.then(response => {
@@ -40,6 +36,20 @@ export default {
 					this.books = books;
 					console.log(this.books);
 				});
+		},
+		handleFilter(filterText) {
+			this.query = filterText;
+		}
+	},
+	computed: {
+		filteredBooks() {
+			let filter = new RegExp(this.query, "i");
+			return this.books.filter(
+				book =>
+					book.title.match(filter) ||
+					book.author.match(filter) ||
+					book.description.match(filter)
+			);
 		}
 	},
 	created() {
