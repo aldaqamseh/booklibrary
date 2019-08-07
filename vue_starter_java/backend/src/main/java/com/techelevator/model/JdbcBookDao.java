@@ -74,8 +74,8 @@ package com.techelevator.model;
 			
 			
 			Long id = getNextId();
-			String sqlSave = "INSERT INTO book (title,author,genere,description,publish_date,date_added,img_url,isbn ) " + 
-					"VALUES (?,?,?,?,?,?,?,?)";
+			String sqlSave = "INSERT INTO books (book_id,title,author,genre,description,publish_date,date_added,img_url,isbn ) " + 
+					"VALUES (?,?,?,?,?,?,?,?,?)";
 			
 			jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(),book.getGenre(),book.getDescription(),book.getPublishDate(),
 					book.getDateAdded(),book.getImgUrl(), book.getIsbn());
