@@ -1,21 +1,22 @@
 package com.techelevator.model;
-
 import java.sql.Date;
 
 public class Book {
 	
-	private int id;
+	private Long id;
 	private String title;
 	private String author;
-	private String[] characters;
 	private String genre;
 	private String description;
 	private Date publishDate;
+	private Date dateAdded;
+	private String imgUrl;
+	private String isbn;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTitle() {
@@ -30,12 +31,7 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String[] getCharacters() {
-		return characters;
-	}
-	public void setCharacters(String[] characters) {
-		this.characters = characters;
-	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -53,6 +49,24 @@ public class Book {
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	
 	

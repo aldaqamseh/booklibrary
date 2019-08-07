@@ -4,6 +4,8 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
+import Books from './views/Books.vue'
+import Admin from './views/Admin.vue'
 
 Vue.use(Router)
 
@@ -15,6 +17,7 @@ Vue.use(Router)
  * If the user has not yet authenticated (and needs to) they are redirected to /login
  * If they have (or don't need to) they're allowed to go about their way.
  */
+
 
 const router = new Router({
   mode: 'history',
@@ -44,6 +47,22 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/books",
+      name: "books",
+      component: Books,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: Admin,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 })
 
