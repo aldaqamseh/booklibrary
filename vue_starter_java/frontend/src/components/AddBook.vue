@@ -1,13 +1,14 @@
 <template>
 	<div class="add-book">
 		<h1>Save A New Book to bkwrm&#8482;</h1>
-		<form>
+		<form v-on:submit.prevent>
 			<div class="form-group">
 				<label for="title">Book Title</label>
 				<input
 					type="text"
 					class="form-control"
 					id="title"
+					v-model="newBook.title"
 					placeholder="Enter a title"
 				/>
 			</div>
@@ -18,6 +19,7 @@
 					type="text"
 					class="form-control"
 					id="author"
+					v-model="newBook.author"
 					placeholder="Enter the author name"
 				/>
 			</div>
@@ -28,6 +30,7 @@
 					type="text"
 					class="form-control"
 					id="genre"
+					v-model="newBook.genre"
 					placeholder="Enter the genre"
 				/>
 			</div>
@@ -38,6 +41,7 @@
 					type="date"
 					class="form-control"
 					id="publishDate"
+					v-model="newBook.publishDate"
 					placeholder="10/17/1989"
 				/>
 			</div>
@@ -47,6 +51,7 @@
 					type="url"
 					class="form-control"
 					id="imgUrl"
+					v-model="newBook.imgUrl"
 					placeholder="www.example.com"
 				/>
 			</div>
@@ -57,6 +62,7 @@
 					type="text"
 					class="form-control"
 					id="isbn"
+					v-model="newBook.isbn"
 					placeholder="Enter the ISBN"
 				/>
 			</div>
@@ -69,8 +75,17 @@
 					placeholder="Enter a description"
 				/>
 			</div>
+			<button
+			type="submit"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target="#confirmModal"
+		>
+			Submit
+		</button>
 		</form>
-		<confirm-modal />
+		<confirm-modal :newBook="newBook"> </confirm-modal>
+
 	</div>
 </template>
 
@@ -78,6 +93,19 @@
 import ConfirmModal from "@/components/ConfirmModal.vue";
 
 export default {
+	data(){
+		return{
+			newBook:{
+				title: " ",
+				author: " ",
+				genre: " ",
+				description: " ",
+				publishDate: " ",
+				imgUrl: " ",
+				isbn: " "
+			}
+		}
+	},
 	components: {
 		ConfirmModal
 	}
