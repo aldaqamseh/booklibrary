@@ -1,9 +1,14 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books_character;
-DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS forum_comments;
+DROP TABLE IF EXISTS forum_posts;
 DROP TABLE IF EXISTS character;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS users;
+
+
+
 
 
 CREATE TABLE users (
@@ -39,6 +44,22 @@ CREATE TABLE books_character (
     character_id integer REFERENCES character(character_id) NOT NULL,
     book_id integer REFERENCES books (book_id) NOT NULL,
     PRIMARY KEY (character_id, book_id)
+);
+
+CREATE TABLE forum_posts (
+
+     id SERIAL PRIMARY KEY,
+     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     title VARCHAR NOT NULL,
+     body VARCHAR NOT NULL
+     
+);
+
+CREATE TABLE forum_comments (
+     
+     post_id INTEGER REFERENCES forum_posts (id) NOT NULL PRIMARY KEY,
+     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     body VARCHAR NOT NULL
 );
 
 
