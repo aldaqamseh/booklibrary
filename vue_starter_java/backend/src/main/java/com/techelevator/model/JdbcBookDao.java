@@ -32,9 +32,11 @@ public class JdbcBookDao implements BookDao {
 
 		Book theBooks;
 
+
 		while (results.next()) {
 			theBooks = mapRowToBook(results);
 			book.add(theBooks);
+
 		}
 		return book;
 
@@ -62,20 +64,34 @@ public class JdbcBookDao implements BookDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public void save(Book book) {
 		// TODO Auto-generated method stub
-
+		
+		
 		Long id = getNextId();
-		String sqlSave = "INSERT INTO book (title,author,genre,description,publish_date,date_added,img_url,isbn ) "
-				+ "VALUES (?,?,?,?,?,?,?,?)";
-
-		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(), book.getGenre(), book.getDescription(),
-				book.getPublishDate(), book.getDateAdded(), book.getImgUrl(), book.getIsbn());
+		String sqlSave = "INSERT INTO books (book_id,title,author,genre,description,publish_date,date_added,img_url,isbn ) " + 
+				"VALUES (?,?,?,?,?,?,?,?,?)";
+		
+		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(),book.getGenre(),book.getDescription(),book.getPublishDate(),
+				book.getDateAdded(),book.getImgUrl(), book.getIsbn());
 		book.setId(id);
-
 	}
+
+//	@Override
+//	public void save(Book book) {
+//		// TODO Auto-generated method stub
+//
+//		Long id = getNextId();
+//		String sqlSave = "INSERT INTO book (title,author,genre,description,publish_date,date_added,img_url,isbn ) "
+//				+ "VALUES (?,?,?,?,?,?,?,?)";
+//
+//		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(), book.getGenre(), book.getDescription(),
+//				book.getPublishDate(), book.getDateAdded(), book.getImgUrl(), book.getIsbn());
+//		book.setId(id);
+//
+//	}
 
 	private Long getNextId() {
 
