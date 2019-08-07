@@ -36,7 +36,7 @@ public class JDBCBookDaoIntegrationTest extends DAOIntegrationTest{
 	dao = new JdbcBookDao(getDataSource());
 	template = new JdbcTemplate(getDataSource());
 	
-	List<Book> getList = new ArrayList<>();
+	
 	
 	
 	testBook3 = new Book();
@@ -64,21 +64,26 @@ public class JDBCBookDaoIntegrationTest extends DAOIntegrationTest{
 	
 	
 
-	dao.save(testBook2);
-	dao.save(testBook1);
-	getList.addAll(dao.getAllBooks());
-
-	testBook3 = getList.get(getList.size()-1);
+	
 
 	}
 	
 	
 	@Test
 	public void assertBooksAreEqual() {
+		List<Book> getList1 = new ArrayList<>();
+		List<Book> getList2 = new ArrayList<>();
+		
+		getList2.addAll(dao.getAllBooks());
+		
+		
+		dao.save(testBook2);
+		dao.save(testBook1);
+		getList1.addAll(dao.getAllBooks());
 
-	
+		testBook3 = getList1.get(getList1.size()-1);
 		
-		
+		assertEquals(getList1.size(), getList2.size()+2);
 		assertEquals(testBook3.getAuthor(), testBook1.getAuthor());
 		assertEquals(testBook3.getTitle(), testBook1.getTitle());
 		assertEquals(testBook3.getGenre(), testBook1.getGenre());
