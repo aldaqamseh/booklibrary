@@ -12,7 +12,8 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="confirm-modal-label">
-							Please confirm the below is correct and Save Changes:					
+							Please confirm the below is correct and Save
+							Changes:
 						</h5>
 						<button
 							type="button"
@@ -24,15 +25,16 @@
 						</button>
 					</div>
 					<div class="modal-body">
-					<p>	Title: {{newBook.title}}</p>
-					<p>	Author: {{newBook.author}}</p>
-					<p>	Genre: {{newBook.genre}}</p>
-					<p>	Description: {{newBook.description}}</p>
-					<p>	publishDate: {{newBook.publishDate}}</p>
-					<p> Image Url: {{newBook.imgUrl}}</p>
-					<p> ISBN: {{newBook.isbn}}</p>
-
-
+						<p>Title: {{ book.title }}</p>
+						<p>Author: {{ book.author }}</p>
+						<p>Genre: {{ book.genre }}</p>
+						<p>Description: {{ book.description }}</p>
+						<p>
+							Publish Date:
+							{{ book.publishDate }}
+						</p>
+						<p>Image Url: {{ book.imgUrl }}</p>
+						<p>ISBN: {{ book.isbn }}</p>
 					</div>
 					<div class="modal-footer">
 						<button
@@ -42,7 +44,12 @@
 						>
 							Close
 						</button>
-						<button type="button" class="btn btn-primary" @click="submitBook">
+						<button
+							type="button"
+							class="btn btn-primary"
+							@click="submitBook"
+							data-dismiss="modal"
+						>
 							Save changes
 						</button>
 					</div>
@@ -54,37 +61,35 @@
 
 <script>
 export default {
-	data(){
-		return{
-			postUrl: "http://localhost:8080/AuthenticationApplication/api/books",
-			book:{
-				title: this.newBook.title,
-				author: this.newBook.author,
-				genre: this.newBook.genre,
-				description: this.newBook.description,
-				publishDate: this.newBook.publishDate,
-				imgUrl: this.newBook.imgUrl,
-				isbn: this.newBook.isbn,
-				dateAdded: "10/17/1989",
-		}
-		}
-	},
-	props:{
+	props: {
 		newBook: Object
 	},
-	methods:{
-		submitBook: function(){
-			 this.$http.post(this.postUrl, this.book).then((response) => {
-                        console.log("Form posted!")
-                    }, (response) => {
-                        console.log("I screwed up!")
-                    });
+	data() {
+		return {
+			postUrl:
+				"http://localhost:8080/AuthenticationApplication/api/books",
+			book: this.newBook
+		};
+	},
 
+	methods: {
+		submitBook() {
+			console.log(JSON.stringify(this.book));
+			fetch(this.postUrl, {
+				method: "POST",
+				mode: "cors",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(this.book)
+			})
+				.then(res => res.json())
+				.then(res => console.log(res));
 		}
 	}
 };
 </script>
 
 <style>
-
 </style>
