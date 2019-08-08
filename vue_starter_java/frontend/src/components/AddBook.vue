@@ -1,6 +1,6 @@
 <template>
 	<div class="add-book">
-		<h1>Save A New Book to bkwrm&#8482;</h1>
+		<h1>Add a new book to bkwrm&#8482;</h1>
 		<form v-on:submit.prevent>
 			<div class="form-group">
 				<label for="title">Book Title</label>

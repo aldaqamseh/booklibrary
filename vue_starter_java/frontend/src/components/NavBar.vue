@@ -22,7 +22,14 @@
 						tag="li"
 						class="nav-item nav-link"
 					>
-						{{ route.name }}
+						<div
+							v-if="
+								route.name != 'post' &&
+									route.name != 'home'
+							"
+						>
+							{{ route.name }}
+						</div>
 					</router-link>
 				</ul>
 			</div>

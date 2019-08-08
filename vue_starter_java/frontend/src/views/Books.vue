@@ -1,6 +1,6 @@
 <template>
 	<div class="books">
-		<h1>books page</h1>
+		<h1>Current books in stock at bkwrm</h1>
 		<search-books v-on:search="handleFilter" />
 		<div v-for="book in filteredBooks.slice().reverse()" :key="book.id">
 			<book-row v-bind:book="book" />
