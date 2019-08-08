@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class Comments extends Post {
+public class Comments extends ForumEntry{
 
 	
 public String toString() {
