@@ -30,6 +30,8 @@
 						<value>/login</value>
 						<value>/register</value>
 						<value>/api/books</value>
+						<value>/api</value>
+						
 					</list>
 				</property>
 			</bean>
