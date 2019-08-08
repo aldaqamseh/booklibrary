@@ -1,15 +1,12 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS books_character;
+DROP TABLE IF EXISTS user_books;
 DROP TABLE IF EXISTS forum_comments;
 DROP TABLE IF EXISTS forum_posts;
 DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS users;
-
-
-
-
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -29,7 +26,7 @@ CREATE TABLE books (
   publish_date DATE NOT NULL,
   date_added DATE NOT NULL DEFAULT CURRENT_DATE,
   img_url VARCHAR,
-  isbn VARCHAR NOT NULL
+  isbn VARCHAR UNIQUE NOT NULL
 
 );
 
@@ -49,17 +46,27 @@ CREATE TABLE books_character (
 CREATE TABLE forum_posts (
 
      id SERIAL PRIMARY KEY,
-     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
      title VARCHAR NOT NULL,
-     body VARCHAR NOT NULL
+     body VARCHAR NOT NULL,
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
      
 );
 
 CREATE TABLE forum_comments (
      
-     post_id INTEGER REFERENCES forum_posts (id) NOT NULL PRIMARY KEY,
-     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
-     body VARCHAR NOT NULL
+     id SERIAL PRIMARY KEY,
+     post_id INTEGER REFERENCES forum_posts (id) NOT NULL,
+     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     body VARCHAR NOT NULL,
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+
+CREATE TABLE user_books (
+    user_id integer REFERENCES users(id) NOT NULL,
+    book_id integer REFERENCES books (book_id) NOT NULL,
+    PRIMARY KEY (user_id, book_id)
 );
 
 
@@ -135,6 +142,13 @@ VALUES
 (22,10),
 (23,10),
 (24,10);
+
+/*
+SELECT books.title, character.name
+FROM books_character
+JOIN books ON books_character.book_id = books.book_id
+JOIN character ON books_character.character_id = character.character_id
+WHERE books.title LIKE 'Harry Potter%'*/
 
 
 COMMIT TRANSACTION;
