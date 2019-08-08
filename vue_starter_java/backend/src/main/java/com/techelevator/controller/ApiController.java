@@ -1,28 +1,29 @@
 package com.techelevator.controller;
-import com.techelevator.authentication.AuthProvider;
-import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.model.Book;
-import com.techelevator.model.BookDao;
+
 import java.util.List;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponents;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
+import com.techelevator.model.Book;
+import com.techelevator.model.BookDao;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
-    @Autowired
+	@Autowired
 //    private AuthProvider authProvider;
-    private BookDao bookDao;
+	private BookDao bookDao;
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)
 //    public String authorizedOnly() throws UnauthorizedException {
@@ -38,18 +39,18 @@ public class ApiController {
 //        }
 //        return "Success";
 //    }
-    
-    @GetMapping("/books")
-    public List<Book> getBooks(){
-     return bookDao.getAllBooks();
-    }
-    
-    @PostMapping
+
+	@GetMapping("/books")
+	public List<Book> getBooks() {
+		return bookDao.getAllBooks();
+	}
+
+	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
 		bookDao.save(book);
 		UriComponents uriComponent = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/" + Long.toString(book.getId())).build();
 		return ResponseEntity.created(uriComponent.toUri()).body(book);
 	}
-   
+
 }

@@ -52,7 +52,7 @@
 					class="form-control"
 					id="imgUrl"
 					v-model="newBook.imgUrl"
-					placeholder="www.example.com"
+					placeholder="http://www.example.com"
 				/>
 			</div>
 
@@ -72,39 +72,41 @@
 				<textarea
 					class="form-control"
 					id="description"
+					v-model="newBook.description"
 					placeholder="Enter a description"
 				/>
 			</div>
 			<button
-			type="submit"
-			class="btn btn-primary"
-			data-toggle="modal"
-			data-target="#confirmModal"
-		>
-			Submit
-		</button>
+				type="submit"
+				class="btn btn-primary"
+				data-toggle="modal"
+				data-target="#confirmModal"
+			>
+				Submit
+			</button>
 		</form>
 		<confirm-modal :newBook="newBook"> </confirm-modal>
-
 	</div>
 </template>
 
 <script>
 import ConfirmModal from "@/components/ConfirmModal.vue";
+import moment from "moment";
 
 export default {
-	data(){
-		return{
-			newBook:{
+	data() {
+		return {
+			newBook: {
 				title: " ",
 				author: " ",
 				genre: " ",
 				description: " ",
 				publishDate: " ",
 				imgUrl: " ",
-				isbn: " "
+				isbn: " ",
+				dateAdded: moment().format("YYYY-MM-DD")
 			}
-		}
+		};
 	},
 	components: {
 		ConfirmModal
