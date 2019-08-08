@@ -26,7 +26,7 @@ CREATE TABLE books (
   publish_date DATE NOT NULL,
   date_added DATE NOT NULL DEFAULT CURRENT_DATE,
   img_url VARCHAR,
-  isbn VARCHAR NOT NULL
+  isbn VARCHAR UNIQUE NOT NULL
 
 );
 
@@ -46,17 +46,20 @@ CREATE TABLE books_character (
 CREATE TABLE forum_posts (
 
      id SERIAL PRIMARY KEY,
-     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
      title VARCHAR NOT NULL,
-     body VARCHAR NOT NULL
+     body VARCHAR NOT NULL,
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
      
 );
 
 CREATE TABLE forum_comments (
      
-     post_id INTEGER REFERENCES forum_posts (id) NOT NULL PRIMARY KEY,
-     username INTEGER REFERENCES users (id) NOT NULL UNIQUE,
-     body VARCHAR NOT NULL
+     id SERIAL PRIMARY KEY,
+     post_id INTEGER REFERENCES forum_posts (id) NOT NULL,
+     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     body VARCHAR NOT NULL,
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 
