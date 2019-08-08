@@ -8,6 +8,9 @@ public class ForumEntry {
 	private String title ;
 	private String body;
 	private Date datePosted;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

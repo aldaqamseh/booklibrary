@@ -46,6 +46,8 @@ public class JdbcCommentsDao implements CommentsDao{
 		Comments theComment;
 		theComment = new Comments();
 		theComment.setBody(results.getString("body"));
+		theComment.setPostId(results.getLong("post_id"));
+		theComment.setId(results.getLong("id"));
 		
 		
 		return theComment;
