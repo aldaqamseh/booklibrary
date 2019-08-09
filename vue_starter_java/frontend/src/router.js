@@ -8,6 +8,7 @@ import Books from './views/Books.vue'
 import Admin from './views/Admin.vue'
 import Forum from './views/Forum.vue'
 import Post from './views/Post.vue'
+import Book from  './views/Book.vue'
 
 Vue.use(Router)
 
@@ -81,6 +82,15 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+      {
+        path: "/books/:bookId",
+        name: "book",
+        component: Book,
+        props: true,
+        meta: {
+          requiresAuth: false
+        }
     }
   ]
 })

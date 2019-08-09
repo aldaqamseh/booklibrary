@@ -2,8 +2,10 @@
 	<div class="books">
 		<h1>Current books in stock at bkwrm</h1>
 		<search-books v-on:search="handleFilter" />
+		<div class="row justify-content-around align-items-stretch">
 		<div v-for="book in filteredBooks.slice().reverse()" :key="book.id">
-			<book-row v-bind:book="book" />
+		<book-row v-bind:book="book" />
+		</div>
 		</div>
 	</div>
 </template>

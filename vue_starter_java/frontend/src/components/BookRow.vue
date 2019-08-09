@@ -1,5 +1,26 @@
 <template>
-	<div class="book-row">
+  <div>
+    <div class="col col-auto card-col pb-4">
+      <router-link
+				:to="{
+					
+					path: book.id
+				}"
+				append
+				>test </router-link>
+        <div class="card text-center pt-2">
+          <img v-if="book.imgURL" :src="book.imgURL" class="book-img" />
+          <img v-else src="https://place-hold.it/163x218" class="book-img" />
+          <div class="card-body">
+            <h5>{{ book.title }}</h5>
+            <p>{{ book.author }}</p>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+  <!-- <div class="book-row">
 		<div class="row justify-content-center align-items-center mb-4">
 			<div class="col col-3">
 				<p class="text-center">
@@ -18,17 +39,25 @@
 				<p class="description">{{ book.description }}</p>
 			</div>
 		</div>
-	</div>
+  </div>-->
 </template>
 
 <script>
 export default {
-	name: "book-row",
-	props: {
-		book: Object
-	}
+  name: "book-row",
+  props: {
+    book: Object
+  }
 };
 </script>
 
 <style>
+.book-img {
+  width: 50%;
+  margin: auto;
+}
+
+.card-body h5 {
+  max-width: 150px;
+}
 </style>
