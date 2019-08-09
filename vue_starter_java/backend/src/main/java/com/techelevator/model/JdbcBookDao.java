@@ -13,13 +13,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JdbcBookDao implements BookDao {
-
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public JdbcBookDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-
 	}
 
 	@Override
@@ -38,7 +36,7 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public List<Book> getAllBooksFromReadingList(int userId) {
 		List<Book> books = new ArrayList<Book>();
-		String result = "SELECT books.book_id, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
+		String result = "SELECT books.book_id, books.title, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
 		Book theBooks;
 		while (results.next()) {
