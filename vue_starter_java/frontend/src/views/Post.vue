@@ -1,13 +1,7 @@
 <template>
-	<div class="forum-post">
+	<div class="forum-post container mt-5">
 		<div class="card mb-4 px-3 pt-3">
-			<div
-				class="card-title m-0 post-title"
-				data-toggle="collapse"
-				:href="'#card-body-' + post.id"
-				aria-expanded="false"
-				:aria-controls="'card-body-' + post.id"
-			>
+			<div>
 				<h5>{{ post.title }}</h5>
 				<p>
 					<i class="fas fa-user mr-1"></i>{{ post.username }}
@@ -17,13 +11,15 @@
 					>
 				</p>
 			</div>
-			<div class="collapse" :id="'card-body-' + post.id">
+			<div>
 				<div class="card-body p-1">
 					<hr />
 					<p class="mb-0">{{ post.body }}</p>
 				</div>
 				<div class="card-body pt-0">
-					<comments-section :postId="post.id" />
+					<div class="list-group">
+						<responses-section :postId="post.id" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -31,11 +27,11 @@
 </template>
 
 <script>
-import CommentsSection from "@/components/CommentsSection.vue";
+import ResponsesSection from "@/components/ResponsesSection.vue";
 export default {
 	name: "forum-post",
 	components: {
-		CommentsSection
+		ResponsesSection
 	},
 	data() {
 		return {
