@@ -1,6 +1,6 @@
 <template>
-	<div class="nav-bar">
-		<nav class="navbar navbar-expand-lg navbar-light">
+	<div class="nav-bar sticky-top">
+		<nav class="navbar navbar-expand-md navbar-light ">
 			<router-link :to="{ name: 'home' }">bkwrm</router-link>
 			<button
 				class="navbar-toggler"
@@ -14,7 +14,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
+				<ul class="navbar-nav ml-auto text-center">
 					<router-link
 						v-for="route in routes"
 						:key="route.path"
