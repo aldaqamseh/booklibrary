@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
-
+import com.techelevator.exceptions.BookNotFoundException;
+import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDao;
 
@@ -44,7 +46,13 @@ public class ApiController {
 	public List<Book> getBooks() {
 		return bookDao.getAllBooks();
 	}
+	
+//	@GetMapping("/forums")
+//	public List<Book> getAllForumPosts() {
+//		return bookDao.getAllForumPosts();
+//	}
 
+	
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
 		bookDao.save(book);
@@ -52,5 +60,26 @@ public class ApiController {
 				.path("/" + Long.toString(book.getId())).build();
 		return ResponseEntity.created(uriComponent.toUri()).body(book);
 	}
+	
+	@GetMapping("/books/{bookId}")
+	public Book getBookById(@PathVariable int id) {
+		Book book = bookDao.getBookById(id);
+
+		if (book != null) {
+			return book;
+		}
+		throw new BookNotFoundException(id, "Book could not be found.");
+	}
+
+//	@GetMapping("/forums/{postId}")
+//	public Book getPostById(@PathVariable int id) {
+//		Book book = forumDao.getPostById(id);
+//
+//		if (book != null) {
+//			return book;
+//		}
+//
+//		throw new PostNotFoundException(id, "Post could not be found.");
+//	}
 
 }

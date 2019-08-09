@@ -41,6 +41,15 @@ public class JdbcBookDao implements BookDao {
 		return book;
 
 	}
+	
+	@Override
+	public Book getBookById(int bookId) {
+		String getBook = "SELECT * FROM  books WHERE book_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(getBook, bookId);
+		
+		Book book = mapRowToBook(result);
+		return book;	
+	}
 
 	private Book mapRowToBook(SqlRowSet results) {
 
@@ -79,19 +88,6 @@ public class JdbcBookDao implements BookDao {
 		book.setId(id);
 	}
 
-//	@Override
-//	public void save(Book book) {
-//		// TODO Auto-generated method stub
-//
-//		Long id = getNextId();
-//		String sqlSave = "INSERT INTO book (title,author,genre,description,publish_date,date_added,img_url,isbn ) "
-//				+ "VALUES (?,?,?,?,?,?,?,?)";
-//
-//		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(), book.getGenre(), book.getDescription(),
-//				book.getPublishDate(), book.getDateAdded(), book.getImgUrl(), book.getIsbn());
-//		book.setId(id);
-//
-//	}
 
 	private Long getNextId() {
 
@@ -105,5 +101,7 @@ public class JdbcBookDao implements BookDao {
 		}
 		return id;
 	}
+
+	
 
 }
