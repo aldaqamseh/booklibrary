@@ -34,7 +34,10 @@ export default {
 					console.log(this.books);
                 });
         }
-		},
+        },
+        created(){
+            this.fetchAllBooks();
+        }
     }
 
 </script>
