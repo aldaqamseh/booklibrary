@@ -59,7 +59,7 @@ CREATE TABLE forum_comments (
      post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
      user_id INTEGER REFERENCES users (user_id) NOT NULL,
      body VARCHAR NOT NULL,
-     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
+     date_posted DATE DEFAULT CURRENT_DATE
 );
 
 
