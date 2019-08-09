@@ -1,21 +1,22 @@
 <template>
-<div>
-{{book.author}}
-  </div>  
+	<div>
+		{{ book.author }}
+	</div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            book: {},
-            API_URL: "https://5d4c29ab00dbb1001487a5c8.mockapi.io/api/books/"
-        }
-    },
-    props:{
-        bookId: String,
-    },
-    methods: {
+	data() {
+		return {
+			book: {},
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/books/"
+		};
+	},
+	props: {
+		bookId: String
+	},
+	methods: {
 		fetchBookById() {
 			fetch(this.API_URL + this.$route.params.bookId)
 				.then(response => {
@@ -29,9 +30,8 @@ export default {
 	created() {
 		this.fetchBookById();
 	}
-}
+};
 </script>
 
 <style>
-
 </style>

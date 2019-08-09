@@ -25,7 +25,8 @@
 						<div
 							v-if="
 								route.name != 'post' &&
-									route.name != 'home'
+									route.name != 'home' &&
+									route.name != 'book'
 							"
 						>
 							{{ route.name }}
