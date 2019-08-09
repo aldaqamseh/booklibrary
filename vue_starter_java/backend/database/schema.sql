@@ -57,7 +57,7 @@ CREATE TABLE forum_comments (
      
      comment_id SERIAL PRIMARY KEY,
      post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
-     user_id INTEGER REFERENCES users (user_id) NOT NULL UNIQUE,
+     user_id INTEGER REFERENCES users (user_id) NOT NULL,
      body VARCHAR NOT NULL,
      date_posted DATE NOT NULL DEFAULT CURRENT_DATE
 );
@@ -149,7 +149,7 @@ JOIN books ON books_character.book_id = books.book_id
 JOIN character ON books_character.character_id = character.character_id
 WHERE books.title LIKE 'Harry Potter%'*/
 
-/*INSERT INTO users (username, password, salt)
+INSERT INTO users (username, password, salt)
 VALUES
 ('admin', 'password', '123')
 
@@ -158,6 +158,9 @@ VALUES
 (1,2),
 (1,3),
 (1,2)
-*/
+
 
 COMMIT TRANSACTION;
+
+
+

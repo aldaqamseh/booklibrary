@@ -38,7 +38,7 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public List<Book> getAllBooksFromReadingList(int userId) {
 		List<Book> books = new ArrayList<Book>();
-		String result = "SELECT * FROM  books ";
+		String result = "SELECT books.book_id, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
 		Book theBooks;
 		while (results.next()) {
@@ -46,8 +46,17 @@ public class JdbcBookDao implements BookDao {
 			books.add(theBooks);
 		}
 		return books;
-
 	}
+	
+	@Override
+	public void saveBookToReadingList(Book book, User user) {
+		Long id = getNextId();
+		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
+		jdbcTemplate.update(sqlSave, book.getId(), user.getId());
+		book.setId(id);
+	}
+	
+	
 	@Override
 	public Book getBookById(int bookId) {
 		Book book = new Book();
@@ -78,20 +87,12 @@ public class JdbcBookDao implements BookDao {
 		return theBook;
 	}
 
-	private String[] getCharacters(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
-	public void save(Book book) {
-		// TODO Auto-generated method stub
-		
-		
+	public void save(Book book) {		
 		Long id = getNextId();
 		String sqlSave = "INSERT INTO books (book_id,title,author,genre,description,publish_date,date_added,img_url,isbn ) " + 
 				"VALUES (?,?,?,?,?,?,?,?,?)";
-		
 		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(),book.getGenre(),book.getDescription(),book.getPublishDate(),
 				book.getDateAdded(),book.getImgUrl(), book.getIsbn());
 		book.setId(id);
