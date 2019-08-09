@@ -3,7 +3,7 @@ import java.sql.Date;
 
 public class Book {
 	
-	private Long id;
+	private int id;
 	private String title;
 	private String author;
 	private String genre;
@@ -13,10 +13,10 @@ public class Book {
 	private String imgUrl;
 	private String isbn;
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTitle() {
