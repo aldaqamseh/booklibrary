@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .book-img {
 	width: 50%;
 	margin: auto;

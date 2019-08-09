@@ -1,5 +1,5 @@
 <template>
-	<div class="books">
+	<div class="books container">
 		<h1>Current books in stock at bkwrm</h1>
 		<search-books v-on:search="handleFilter" />
 		<div class="row justify-content-around align-items-stretch">
