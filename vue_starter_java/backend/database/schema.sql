@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  id serial PRIMARY KEY,
+  user_id serial PRIMARY KEY,
   username varchar(255) NOT NULL UNIQUE,     -- Username
   password varchar(32) NOT NULL,      -- Password
   salt varchar(256) NOT NULL,          -- Password Salt
@@ -45,8 +45,8 @@ CREATE TABLE books_character (
 
 CREATE TABLE forum_posts (
 
-     id SERIAL PRIMARY KEY,
-     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     post_id SERIAL PRIMARY KEY,
+     user_id INTEGER REFERENCES users (user_id) NOT NULL,
      title VARCHAR NOT NULL,
      body VARCHAR NOT NULL,
      date_posted DATE NOT NULL DEFAULT CURRENT_DATE
@@ -55,18 +55,17 @@ CREATE TABLE forum_posts (
 
 CREATE TABLE forum_comments (
      
-     id SERIAL PRIMARY KEY,
-     post_id INTEGER REFERENCES forum_posts (id) NOT NULL,
-     user_id INTEGER REFERENCES users (id) NOT NULL UNIQUE,
+     comment_id SERIAL PRIMARY KEY,
+     post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
+     user_id INTEGER REFERENCES users (user_id) NOT NULL UNIQUE,
      body VARCHAR NOT NULL,
      date_posted DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 
 CREATE TABLE user_books (
-    user_id integer REFERENCES users(id) NOT NULL,
-    book_id integer REFERENCES books (book_id) NOT NULL,
-    PRIMARY KEY (user_id, book_id)
+    user_id integer REFERENCES users (user_id) NOT NULL,
+    book_id integer REFERENCES books (book_id) NOT NULL UNIQUE
 );
 
 
@@ -150,5 +149,15 @@ JOIN books ON books_character.book_id = books.book_id
 JOIN character ON books_character.character_id = character.character_id
 WHERE books.title LIKE 'Harry Potter%'*/
 
+/*INSERT INTO users (username, password, salt)
+VALUES
+('admin', 'password', '123')
+
+INSERT INTO user_books (user_id, book_id)
+VALUES
+(1,2),
+(1,3),
+(1,2)
+*/
 
 COMMIT TRANSACTION;
