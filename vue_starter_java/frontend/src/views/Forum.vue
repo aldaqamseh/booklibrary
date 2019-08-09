@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import ForumPost from "@/components/ForumPost.vue";
 export default {
 	data() {
 		return {
@@ -48,9 +47,7 @@ export default {
 			posts: []
 		};
 	},
-	components: {
-		ForumPost
-	},
+	components: {},
 	methods: {
 		fetchAllPosts() {
 			fetch(this.API_URL)
@@ -71,7 +68,7 @@ export default {
 </script>
 
 <style>
-.card:hover {
+.forum .card:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
