@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,31 +24,39 @@ public class JdbcBookDao implements BookDao {
 
 	@Override
 	public List<Book> getAllBooks() {
-
 		List<Book> book = new ArrayList<Book>();
-
 		String sqlGetAllBooks = "SELECT * FROM  books ";
-
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllBooks);
-
 		Book theBooks;
-
-
 		while (results.next()) {
 			theBooks = mapRowToBook(results);
 			book.add(theBooks);
-
 		}
 		return book;
-
 	}
 	
 	@Override
+	public List<Book> getAllBooksFromReadingList(int userId) {
+		List<Book> books = new ArrayList<Book>();
+		String result = "SELECT * FROM  books ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
+		Book theBooks;
+		while (results.next()) {
+			theBooks = mapRowToBook(results);
+			books.add(theBooks);
+		}
+		return books;
+
+	}
+	@Override
 	public Book getBookById(int bookId) {
-		String getBook = "SELECT * FROM  books WHERE book_id = ?";
+		Book book = new Book();
+		String getBook = "SELECT * FROM books WHERE book_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(getBook, bookId);
 		
-		Book book = mapRowToBook(result);
+		if(result.next()) {
+		book = mapRowToBook(result);
+		}
 		return book;	
 	}
 

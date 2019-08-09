@@ -1,6 +1,21 @@
 <template>
-	<div>
-		{{ book.author }}
+	<div class="text-center">
+		<h1>{{book.title}}</h1>
+		<h3>{{ book.author }}</h3>
+		<img
+					v-if="book.imgURL"
+					:src="book.imgURL"
+					class="book-img"
+				/>
+		<img
+					v-else
+					src="https://place-hold.it/163x218"
+					class="book-img"
+				/>
+
+				<h3>{{book.genre}}</h3>
+				<h3>{{book.publishDate}}</h3>
+				<p>{{book.description}}</p>
 	</div>
 </template>
 

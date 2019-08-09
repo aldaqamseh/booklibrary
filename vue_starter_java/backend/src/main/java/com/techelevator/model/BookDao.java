@@ -12,5 +12,7 @@ public interface BookDao {
 	 
 	 Book getBookById(int bookId);
 
+	List<Book> getAllBooksFromReadingList(int userId);
+
 	
 }

@@ -42,7 +42,9 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws IOException, ServletException {
 
-        if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), ""))
+    	String destinationUrl = request.getRequestURI().replaceFirst(request.getContextPath(), "");
+    	
+        if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), "")) || (destinationUrl.contains("books"))
                 || request.getMethod().equals("OPTIONS")) {
             return true;
         }

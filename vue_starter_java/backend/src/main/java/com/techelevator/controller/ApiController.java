@@ -62,13 +62,13 @@ public class ApiController {
 	}
 	
 	@GetMapping("/books/{bookId}")
-	public Book getBookById(@PathVariable int id) {
-		Book book = bookDao.getBookById(id);
+	public Book getBookById(@PathVariable int bookId) {
+		Book book = bookDao.getBookById(bookId);
 
 		if (book != null) {
 			return book;
 		}
-		throw new BookNotFoundException(id, "Book could not be found.");
+		throw new BookNotFoundException(bookId, "Book could not be found.");
 	}
 
 //	@GetMapping("/forums/{postId}")
