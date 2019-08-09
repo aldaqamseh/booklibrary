@@ -9,6 +9,8 @@ public interface BookDao {
 	 List<Book> getAllBooks();
 	 
 	 void save(Book saveBook);
+	 
+	 Book getBookById(int bookId);
 
 	
 }
