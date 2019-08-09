@@ -56,8 +56,31 @@ public class JdbcCommentsDao implements CommentsDao{
 
 	@Override
 	public void save(Comments saveComment) {
-		// TODO Auto-generated method stub
+	
 		
+		
+		Long id = getNextId();
+		
+		String sqlSave = "INSERT INTO forum_comments (id,post_id,user_id,body,date_psted ) " +
+						"values (?,?,?,?,?)";
+		
+		jdbcTemplate.update(sqlSave, id,saveComment.getPostId(),saveComment.getBody(),saveComment.getDatePosted());
+		saveComment.setId(id);
+		
+		
+	}
+	
+	private Long getNextId() {
+
+		String sqlSelectNextId = "SELECT nextval('forum_comments_id_seq')";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
+		Long id = null;
+		if (results.next()) {
+			id = results.getLong(1);
+		} else {
+			throw new RuntimeException("Something strange happened, unable to select next forum post id from sequence");
+		}
+		return id;
 	}
 	
 	
