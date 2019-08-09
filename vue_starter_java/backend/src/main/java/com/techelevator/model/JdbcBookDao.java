@@ -41,6 +41,15 @@ public class JdbcBookDao implements BookDao {
 		return book;
 
 	}
+	
+	@Override
+	public Book getBookById(int bookId) {
+		String getBook = "SELECT * FROM  books WHERE book_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(getBook, bookId);
+		
+		Book book = mapRowToBook(result);
+		return book;	
+	}
 
 	private Book mapRowToBook(SqlRowSet results) {
 
@@ -92,5 +101,7 @@ public class JdbcBookDao implements BookDao {
 		}
 		return id;
 	}
+
+	
 
 }

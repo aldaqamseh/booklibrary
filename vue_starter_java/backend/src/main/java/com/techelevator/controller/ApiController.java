@@ -47,10 +47,10 @@ public class ApiController {
 		return bookDao.getAllBooks();
 	}
 	
-	@GetMapping("/forums")
-	public List<Book> getAllForumPosts() {
-		return bookDao.getAllForumPosts();
-	}
+//	@GetMapping("/forums")
+//	public List<Book> getAllForumPosts() {
+//		return bookDao.getAllForumPosts();
+//	}
 
 	
 	@PostMapping("/books")
@@ -70,16 +70,16 @@ public class ApiController {
 		}
 		throw new BookNotFoundException(id, "Book could not be found.");
 	}
-	
-	@GetMapping("/forums/{postId}")
-	public Book getPostById(@PathVariable int id) {
-		Book book = forumDao.getPostById(id);
 
-		if (book != null) {
-			return book;
-		}
-
-		throw new PostNotFoundException(id, "Post could not be found.");
-	}
+//	@GetMapping("/forums/{postId}")
+//	public Book getPostById(@PathVariable int id) {
+//		Book book = forumDao.getPostById(id);
+//
+//		if (book != null) {
+//			return book;
+//		}
+//
+//		throw new PostNotFoundException(id, "Post could not be found.");
+//	}
 
 }
