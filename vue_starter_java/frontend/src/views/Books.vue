@@ -3,22 +3,25 @@
 		<h1>Current books in stock at bkwrm</h1>
 		<search-books v-on:search="handleFilter" />
 		<div class="row justify-content-around align-items-stretch">
-		<div v-for="book in filteredBooks.slice().reverse()" :key="book.id">
-		<book-row v-bind:book="book" />
-		</div>
+			<div
+				v-for="book in filteredBooks.slice().reverse()"
+				:key="book.id"
+			>
+				<book-card v-bind:book="book" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import axios from "axios";
-import BookRow from "@/components/BookRow.vue";
+import BookCard from "@/components/BookCard.vue";
 import SearchBooks from "@/components/SearchBooks.vue";
 
 export default {
 	name: "books",
 	components: {
-		BookRow,
+		BookCard,
 		SearchBooks
 	},
 	data() {
