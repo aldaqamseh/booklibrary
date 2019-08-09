@@ -17,6 +17,8 @@ import com.techelevator.exceptions.BookNotFoundException;
 import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDao;
+import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
 
 @CrossOrigin
 @RestController
@@ -25,7 +27,9 @@ public class ApiController {
 
 	@Autowired
 //    private AuthProvider authProvider;
-	private BookDao bookDao;
+		private BookDao bookDao;
+	
+	
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)
 //    public String authorizedOnly() throws UnauthorizedException {
@@ -71,6 +75,16 @@ public class ApiController {
 		throw new BookNotFoundException(bookId, "Book could not be found.");
 	}
 
+	
+	@GetMapping("/reading-list")
+	public List<Book> getReadingList(){
+		
+		return bookDao.getAllBooksFromReadingList(1);
+		
+//		(int) user.getId()
+	}
+	
+	
 //	@GetMapping("/forums/{postId}")
 //	public Book getPostById(@PathVariable int id) {
 //		Book book = forumDao.getPostById(id);

@@ -13,13 +13,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JdbcBookDao implements BookDao {
-
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public JdbcBookDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-
 	}
 
 	@Override
@@ -38,7 +36,7 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public List<Book> getAllBooksFromReadingList(int userId) {
 		List<Book> books = new ArrayList<Book>();
-		String result = "SELECT books.book_id, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
+		String result = "SELECT books.book_id, books.title, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
 		Book theBooks;
 		while (results.next()) {
@@ -50,7 +48,7 @@ public class JdbcBookDao implements BookDao {
 	
 	@Override
 	public void saveBookToReadingList(Book book, User user) {
-		Long id = getNextId();
+		int id = getNextId();
 		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
 		jdbcTemplate.update(sqlSave, book.getId(), user.getId());
 		book.setId(id);
@@ -74,7 +72,7 @@ public class JdbcBookDao implements BookDao {
 		Book theBook;
 
 		theBook = new Book();
-		theBook.setId(results.getLong("book_id"));
+		theBook.setId(results.getInt("book_id"));
 		theBook.setAuthor(results.getString("author"));
 		theBook.setDescription(results.getString("description"));
 		theBook.setGenre(results.getString("genre"));
@@ -90,7 +88,7 @@ public class JdbcBookDao implements BookDao {
 	
 	@Override
 	public void save(Book book) {		
-		Long id = getNextId();
+		int id = getNextId();
 		String sqlSave = "INSERT INTO books (book_id,title,author,genre,description,publish_date,date_added,img_url,isbn ) " + 
 				"VALUES (?,?,?,?,?,?,?,?,?)";
 		jdbcTemplate.update(sqlSave, id, book.getTitle(), book.getAuthor(),book.getGenre(),book.getDescription(),book.getPublishDate(),
@@ -99,13 +97,13 @@ public class JdbcBookDao implements BookDao {
 	}
 
 
-	private Long getNextId() {
+	private int getNextId() {
 
 		String sqlSelectNextId = "SELECT nextval('books_book_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
-		Long id = null;
+		int id = 0;
 		if (results.next()) {
-			id = results.getLong(1);
+			id = results.getInt(1);
 		} else {
 			throw new RuntimeException("Something strange happened, unable to select next forum post id from sequence");
 		}
