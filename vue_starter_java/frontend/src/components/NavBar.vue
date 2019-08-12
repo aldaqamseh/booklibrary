@@ -54,12 +54,18 @@ export default {
 	align-items: center;
 	justify-content: center;
 	background-color: #85c1e9;
-	padding: 2% 0;
+	padding: 0.2% 0;
+	
 }
 .nav-item {
 	text-transform: capitalize;
+	
+	
 }
 .nav-item:hover {
 	cursor: pointer;
+
 }
+
+
 </style>
