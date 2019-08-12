@@ -8,15 +8,20 @@ DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
+CREATE TABLE users
+(
   user_id serial PRIMARY KEY,
-  username varchar(255) NOT NULL UNIQUE,     -- Username
-  password varchar(32) NOT NULL,      -- Password
-  salt varchar(256) NOT NULL,          -- Password Salt
+  username varchar(255) NOT NULL UNIQUE,
+  -- Username
+  password varchar(32) NOT NULL,
+  -- Password
+  salt varchar(256) NOT NULL,
+  -- Password Salt
   role varchar(255) NOT NULL default('user')
 );
 
-CREATE TABLE books (
+CREATE TABLE books
+(
 
   book_id SERIAL PRIMARY KEY,
   title VARCHAR NOT NULL,
@@ -30,137 +35,124 @@ CREATE TABLE books (
 
 );
 
-CREATE TABLE character (
+CREATE TABLE character
+(
 
   character_id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL
 
 );
 
-CREATE TABLE books_character (
-    character_id integer REFERENCES character(character_id) NOT NULL,
-    book_id integer REFERENCES books (book_id) NOT NULL,
-    PRIMARY KEY (character_id, book_id)
+CREATE TABLE books_character
+(
+  character_id integer REFERENCES character(character_id) NOT NULL,
+  book_id integer REFERENCES books (book_id) NOT NULL,
+  PRIMARY KEY (character_id, book_id)
 );
 
-CREATE TABLE forum_posts (
+CREATE TABLE forum_posts
+(
 
-     post_id SERIAL PRIMARY KEY,
-     user_id INTEGER REFERENCES users (user_id) NOT NULL,
-     title VARCHAR NOT NULL,
-     body VARCHAR NOT NULL,
-     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
-     
+  post_id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (user_id) NOT NULL,
+  title VARCHAR NOT NULL,
+  body VARCHAR NOT NULL,
+  date_posted DATE DEFAULT CURRENT_DATE
+
 );
 
-CREATE TABLE forum_comments (
-     
-     comment_id SERIAL PRIMARY KEY,
-     post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
-     user_id INTEGER REFERENCES users (user_id) NOT NULL,
-     body VARCHAR NOT NULL,
-     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
-);
+CREATE TABLE forum_comments
+(
 
-
-CREATE TABLE user_books (
-    user_id integer REFERENCES users (user_id) NOT NULL,
-    book_id integer REFERENCES books (book_id) NOT NULL UNIQUE
+  comment_id SERIAL PRIMARY KEY,
+  post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
+  user_id INTEGER REFERENCES users (user_id) NOT NULL,
+  body VARCHAR NOT NULL,
+  date_posted DATE DEFAULT CURRENT_DATE
 );
 
 
-INSERT INTO books (title, author, genre, description, publish_date, img_url, isbn)
+CREATE TABLE user_books
+(
+  user_id integer REFERENCES users (user_id) NOT NULL,
+  book_id integer REFERENCES books (book_id) NOT NULL UNIQUE
+);
+
+
+INSERT INTO books
+  (title, author, genre, description, publish_date, img_url, isbn)
 VALUES
-('Moby Dick', 'Herman Melville', 'Novel', 'A classic piece of American literature, Moby Dick is the 1851 novel by American writer Herman Melville. It''s sailor Ishmael''s narrative of the obsessive quest of Ahab, captain of the whaling ship Pequod, for revenge on Moby Dick, the white whale that bit off Ahab''s leg at the knee.', '1851-10-18', null, '9781974305032'),
-('A Study in Scarlet', 'Sir Aurthur Conan Doyle', 'Mystery', 'In A Study in Scarlet, Holmes and Watson''s first mystery, the pair are summoned to a south London house where they find a dead man whose contorted face is a twisted mask of horror. The body is unmarked by violence but on the wall a mysterious word has been written in blood.', '1887-11-01', null, '9781514698853'),
-('Harry Potter and the Goblet of Fire', 'J.K. Rowling', 'Fantasy', 'Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that''s supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn''t happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he''s not normal - even by wizarding standards. And in his case, different can be deadly.', '2000-07-08', null, '9780439139601'),
-('The Hobbit', 'J.R.R Tolkien', 'Fantasy', 'In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.', '1937-09-21', null, '9780547928227'),
-('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 'Fantasy', 'The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he''s packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.', '1998-07-02', null, '9780439064866'),
-('Cross My Heart', 'James Patterson', 'Thriller', 'James Patterson raises the stakes to their highest level, ever-when Alex Cross becomes the obsession of a genius of menace set on proving that he is the greatest mind in the history of crime. Detective Alex Cross is a family man at heart--nothing matters more to him than his children, his grandmother, and his wife Bree. His love of his family is his anchor, and gives him the strength to confront evil in his work. One man knows this deeply, and uses Alex''s strength as a weapon against him in the most unsettling and unexpected novel of James Patterson''s career.', '2013-11-25', null, '9781455515813'),
-('Cross the Line', 'James Patterson', 'Thriller', 'Under pressure from the mayor, Alex Cross steps into the leadership vacuum to investigate the case. But before Cross can make any headway, a brutal crime wave sweeps across the region. The deadly scenes share only one common thread – the victims are all criminals. And the only thing more dangerous than a murderer without a conscience, is a killer who thinks he has justice on his side.', '2016-11-03', null, '9781455585328'),
-('The Cat in the Hat', 'Dr. Seuss', 'Children', 'Poor Sally and her brother. It''s cold and wet and they''re stuck in the house with nothing to do . . . until a giant cat in a hat shows up, transforming the dull day into a madcap adventure and almost wrecking the place in the process!', '1957-03-12', null, '9780394800011'),
-('Steve Jobs', 'Walter Isaacson', 'Biography', 'Based on more than forty interviews with Jobs conducted over two years—as well as interviews with more than a hundred family members, friends, adversaries, competitors, and colleagues—Walter Isaacson has written a riveting story of the roller-coaster life and searingly intense personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.', '2011-10-24', null, '9781451648539'),
-('It', 'Stephen King', 'Horror', 'Welcome to Derry, Maine ...It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real … They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But none of them can withstand the force that has drawn them back to Derry to face the nightmare without an end, and the evil without a name.', '1987-10-01', null, '9781982127794');
+  ('Moby Dick', 'Herman Melville', 'Novel', 'A classic piece of American literature, Moby Dick is the 1851 novel by American writer Herman Melville. It''s sailor Ishmael''s narrative of the obsessive quest of Ahab, captain of the whaling ship Pequod, for revenge on Moby Dick, the white whale that bit off Ahab''s leg at the knee.', '1851-10-18', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781974305032'),
+  ('A Study in Scarlet', 'Sir Aurthur Conan Doyle', 'Mystery', 'In A Study in Scarlet, Holmes and Watson''s first mystery, the pair are summoned to a south London house where they find a dead man whose contorted face is a twisted mask of horror. The body is unmarked by violence but on the wall a mysterious word has been written in blood.', '1887-11-01', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781514698853'),
+  ('Harry Potter and the Goblet of Fire', 'J.K. Rowling', 'Fantasy', 'Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that''s supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn''t happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he''s not normal - even by wizarding standards. And in his case, different can be deadly.', '2000-07-08', null, '9780439139601'),
+  ('The Hobbit', 'J.R.R Tolkien', 'Fantasy', 'In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.', '1937-09-21', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9780547928227'),
+  ('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 'Fantasy', 'The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he''s packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.', '1998-07-02', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9780439064866'),
+  ('Cross My Heart', 'James Patterson', 'Thriller', 'James Patterson raises the stakes to their highest level, ever-when Alex Cross becomes the obsession of a genius of menace set on proving that he is the greatest mind in the history of crime. Detective Alex Cross is a family man at heart--nothing matters more to him than his children, his grandmother, and his wife Bree. His love of his family is his anchor, and gives him the strength to confront evil in his work. One man knows this deeply, and uses Alex''s strength as a weapon against him in the most unsettling and unexpected novel of James Patterson''s career.', '2013-11-25', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781455515813'),
+  ('Cross the Line', 'James Patterson', 'Thriller', 'Under pressure from the mayor, Alex Cross steps into the leadership vacuum to investigate the case. But before Cross can make any headway, a brutal crime wave sweeps across the region. The deadly scenes share only one common thread – the victims are all criminals. And the only thing more dangerous than a murderer without a conscience, is a killer who thinks he has justice on his side.', '2016-11-03', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781455585328'),
+  ('The Cat in the Hat', 'Dr. Seuss', 'Children', 'Poor Sally and her brother. It''s cold and wet and they''re stuck in the house with nothing to do . . . until a giant cat in a hat shows up, transforming the dull day into a madcap adventure and almost wrecking the place in the process!', '1957-03-12', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9780394800011'),
+  ('Steve Jobs', 'Walter Isaacson', 'Biography', 'Based on more than forty interviews with Jobs conducted over two years—as well as interviews with more than a hundred family members, friends, adversaries, competitors, and colleagues—Walter Isaacson has written a riveting story of the roller-coaster life and searingly intense personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.', '2011-10-24', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781451648539'),
+  ('It', 'Stephen King', 'Horror', 'Welcome to Derry, Maine ...It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real … They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But none of them can withstand the force that has drawn them back to Derry to face the nightmare without an end, and the evil without a name.', '1987-10-01', 'https://universe.byu.edu/wp-content/uploads/2015/01/HP4cover.jpg', '9781982127794');
 
-INSERT INTO character (name)
+INSERT INTO character
+  (name)
 VALUES
-('Captain Ahab'),
-('Moby Dick'),
-('Ishmael'),
-('Sherlock Holmes'),
-('Inspector Lestrade'),
-('John H. Watson'),
-('Harry Potter'),
-('Hermione Granger'),
-('Lord Voldemort'),
-('Bilbo Baggins'),
-('Gandalf'),
-('Smaug'),
-('Alex Cross'),
-('John Sampson'),
-('Marcus Sunday'),
-('The Cat in the Hat'),
-('Thing One'),
-('Thing Two'),
-('Steve Jobs'), 
-('Steve Wozniak'),
-('Lisa Brennan-Jobs'),
-('Beverly Marsh'), 
-('Richie Tozier'), 
-('Eddie Kaspbrak');
+  ('Captain Ahab'),
+  ('Moby Dick'),
+  ('Ishmael'),
+  ('Sherlock Holmes'),
+  ('Inspector Lestrade'),
+  ('John H. Watson'),
+  ('Harry Potter'),
+  ('Hermione Granger'),
+  ('Lord Voldemort'),
+  ('Bilbo Baggins'),
+  ('Gandalf'),
+  ('Smaug'),
+  ('Alex Cross'),
+  ('John Sampson'),
+  ('Marcus Sunday'),
+  ('The Cat in the Hat'),
+  ('Thing One'),
+  ('Thing Two'),
+  ('Steve Jobs'),
+  ('Steve Wozniak'),
+  ('Lisa Brennan-Jobs'),
+  ('Beverly Marsh'),
+  ('Richie Tozier'),
+  ('Eddie Kaspbrak');
 
-INSERT INTO books_character (character_id, book_id)
+INSERT INTO books_character
+  (character_id, book_id)
 VALUES
-(1,1),
-(2,1),
-(3,1),
-(4,2),
-(5,2),
-(6,2),
-(7,3),
-(7,5),
-(8,3),
-(8,5),
-(9,3),
-(9,5),
-(10,4),
-(11,4),
-(12,4),
-(13,6),
-(13,7),
-(14,6),
-(14,7),
-(15,6),
-(15,7),
-(16,8),
-(17,8),
-(18,8),
-(19,9),
-(20,9),
-(21,9),
-(22,10),
-(23,10),
-(24,10);
-
-/*
-SELECT books.title, character.name
-FROM books_character
-JOIN books ON books_character.book_id = books.book_id
-JOIN character ON books_character.character_id = character.character_id
-WHERE books.title LIKE 'Harry Potter%'*/
-
-INSERT INTO users (username, password, salt)
-VALUES
-('admin', 'password', '123')
-
-INSERT INTO user_books (user_id, book_id)
-VALUES
-(1,2),
-(1,3),
-(1,2)
-
+  (1, 1),
+  (2, 1),
+  (3, 1),
+  (4, 2),
+  (5, 2),
+  (6, 2),
+  (7, 3),
+  (7, 5),
+  (8, 3),
+  (8, 5),
+  (9, 3),
+  (9, 5),
+  (10, 4),
+  (11, 4),
+  (12, 4),
+  (13, 6),
+  (13, 7),
+  (14, 6),
+  (14, 7),
+  (15, 6),
+  (15, 7),
+  (16, 8),
+  (17, 8),
+  (18, 8),
+  (19, 9),
+  (20, 9),
+  (21, 9),
+  (22, 10),
+  (23, 10),
+  (24, 10);
 
 COMMIT TRANSACTION;
-
-
-

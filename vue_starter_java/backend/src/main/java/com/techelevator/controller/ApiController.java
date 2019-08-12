@@ -27,7 +27,7 @@ public class ApiController {
 
 	@Autowired
 //    private AuthProvider authProvider;
-	private BookDao bookDao;
+		private BookDao bookDao;
 	
 	
 //
@@ -77,7 +77,7 @@ public class ApiController {
 
 	
 	@GetMapping("/reading-list")
-	public List<Book> getReadingList(User user){
+	public List<Book> getReadingList(){
 		
 		return bookDao.getAllBooksFromReadingList(1);
 		

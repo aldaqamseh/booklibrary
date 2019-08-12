@@ -8,7 +8,8 @@ import Books from './views/Books.vue'
 import Admin from './views/Admin.vue'
 import Forum from './views/Forum.vue'
 import Post from './views/Post.vue'
-import Book from  './views/Book.vue'
+import Book from './views/Book.vue'
+import List from './views/List.vue'
 
 Vue.use(Router)
 
@@ -31,7 +32,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -75,6 +76,14 @@ const router = new Router({
       }
     },
     {
+      path: "/list",
+      name: "list",
+      component: List,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
       path: "/forum/:postId",
       name: "post",
       component: Post,
@@ -83,14 +92,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
-      {
-        path: "/books/:bookId",
-        name: "book",
-        component: Book,
-        props: true,
-        meta: {
-          requiresAuth: false
-        }
+    {
+      path: "/books/:bookId",
+      name: "book",
+      component: Book,
+      props: true,
+      meta: {
+        requiresAuth: false
+      }
     }
   ]
 })
