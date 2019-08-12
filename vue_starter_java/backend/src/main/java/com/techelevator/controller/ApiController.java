@@ -1,11 +1,13 @@
 package com.techelevator.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.postgresql.util.LruCache.CreateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,16 +63,16 @@ public class ApiController {
 //		return bookDao.getAllForumPosts();
 //	}
 
-	@PostMapping("/register")
-	public ResponseEntity<User> registerUser(@RequestBody User user){
-		authProvider.register(user.getUsername(), user.getPassword(), user.getRole());
-
-		
-		UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + user.getUsername()).build();
-		
-		return ResponseEntity.created(uriComponents.toUri()).body(user);
-		
-	}
+//	@PostMapping("/register")
+//	public ResponseEntity<User> registerUser(@RequestBody User user){
+//		authProvider.register(user.getUsername(), user.getPassword(), user.getRole());
+//
+//		
+//		UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + user.getUsername()).build();
+//		
+//		return ResponseEntity.created(uriComponents.toUri()).body(user);
+//		
+//	}
 	
 	
 	@PostMapping("/books")
@@ -93,11 +95,25 @@ public class ApiController {
 
 	
 	@GetMapping("/reading-list")
-	public List<Book> getReadingList(){
+	public List<Book> getReadingList(ModelMap map){
+	
+		User currentUser = authProvider.getCurrentUser();
+		int userId =  (int) currentUser.getId();
+		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
 		
-		return bookDao.getAllBooksFromReadingList(1);
-		
-//		(int) user.getId()
+		if(readingList == null) {
+			List <Book> emptyList = new ArrayList<Book>();
+			return emptyList;
+		}
+			return readingList;
+			}
+	
+	@PostMapping("/reading-list")
+	public void addToReadingList(Book book, ModelMap map){
+	
+		User currentUser = authProvider.getCurrentUser();
+		int userId =  (int) currentUser.getId();
+		bookDao.saveBookToReadingList(book, userId);
 	}
 	
 	

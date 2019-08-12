@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     register() {
-      fetch("http://localhost:8080/AuthenticationApplication/api/register", {
+      fetch("http://localhost:8080/AuthenticationApplication/register", {
         method: 'POST',
         mode: "cors",
         headers: {
