@@ -1,13 +1,13 @@
 <template>
 
 	<div class="register-box">
-	<h2>Find your next great read with bkwrm.</h2>
+	<h2>Find your next great read with <strong>bkwrm.</strong></h2>
 	<h3> See what others are raving about, even curate your own personal reading list!</h3>
 
 
 
 	<div class="register-now-button">
-	<h2><a href=register> Register now for free. </a></h2>
+	<h2><a href=register> Register now for free! </a></h2>
 	</div>
 
 	</div>
@@ -51,7 +51,7 @@ export default {};
 	text-align: center;
 	vertical-align: center;
 	color: white;
-	box-shadow: -1px 5px 5px black;
+	/* box-shadow: -1px 5px 5px black; */
 
 }
 
