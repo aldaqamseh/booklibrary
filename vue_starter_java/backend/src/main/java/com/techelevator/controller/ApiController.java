@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.postgresql.util.LruCache.CreateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
+
+import com.techelevator.authentication.AuthProvider;
 import com.techelevator.exceptions.BookNotFoundException;
 import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
@@ -26,8 +30,9 @@ import com.techelevator.model.UserDao;
 public class ApiController {
 
 	@Autowired
-//    private AuthProvider authProvider;
+		private AuthProvider authProvider;
 		private BookDao bookDao;
+		private UserDao userDao;
 	
 	
 //
@@ -56,6 +61,17 @@ public class ApiController {
 //		return bookDao.getAllForumPosts();
 //	}
 
+	@PostMapping("/register")
+	public ResponseEntity<User> registerUser(@RequestBody User user){
+		authProvider.register(user.getUsername(), user.getPassword(), user.getRole());
+
+		
+		UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + user.getUsername()).build();
+		
+		return ResponseEntity.created(uriComponents.toUri()).body(user);
+		
+	}
+	
 	
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {

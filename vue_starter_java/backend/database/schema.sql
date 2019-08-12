@@ -49,7 +49,7 @@ CREATE TABLE forum_posts (
      user_id INTEGER REFERENCES users (user_id) NOT NULL,
      title VARCHAR NOT NULL,
      body VARCHAR NOT NULL,
-     date_posted DATE DEFAULT CURRENT_DATE
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
      
 );
 
@@ -57,9 +57,9 @@ CREATE TABLE forum_comments (
      
      comment_id SERIAL PRIMARY KEY,
      post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
-     user_id INTEGER REFERENCES users (user_id) NOT NULL,
+     user_id INTEGER REFERENCES users (user_id) NOT NULL UNIQUE,
      body VARCHAR NOT NULL,
-     date_posted DATE DEFAULT CURRENT_DATE
+     date_posted DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 
@@ -142,4 +142,19 @@ VALUES
 (23,10),
 (24,10);
 
+
+
+--INSERT INTO users (username, password, salt)
+--VALUES
+--('admin', 'password', '123')
+
+--INSERT INTO user_books (user_id, book_id)
+--VALUES
+--SELECT * FROM users;
+--(1,2)
+
+
 COMMIT TRANSACTION;
+
+
+

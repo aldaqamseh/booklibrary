@@ -35,7 +35,7 @@
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" >
         Create Account
       </button>
     </form>
@@ -58,8 +58,9 @@ export default {
   },
   methods: {
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
+      fetch("http://localhost:8080/AuthenticationApplication/api/register", {
         method: 'POST',
+        mode: "cors",
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
