@@ -17,25 +17,32 @@
 		<div class="row justify-content-start">
 			
 		<h1> HERE'S WHAT PEOPLE ARE SAYING ABOUT BKWRM. MORE TEXT TO BUMP DOWN </h1>
-		<p> <strong>bkwrm</strong> is an exclusive online community where book lovers come to discuss the hottest trends in literature, discuss new releases, upcoming authors, and anything else in the literary world.
-		bkwrm also has a local lending library located in Columbus, OH where you can rent a book donated by one of our users, as long as you bring your own to add to the collection!</p>
+		
 
 		<div class="col col-4">
 		<img id="info" src = "~@/assets/img/info.svg">
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		<p> <strong>bkwrm</strong> is an exclusive online community where book lovers come to discuss the hottest trends in literature, discuss new releases, upcoming authors, and anything else in the literary world.
+		bkwrm also has a local lending library located in Columbus, OH where you can rent a book donated by one of our users, as long as you bring your own to add to the collection!</p>
+
 		</div>
 
 		<div class="col col-4">
 		<img id="heart" src = "~@/assets/img/heart.svg">
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		
+		<p> <em>"Bkwrm has litterally changed my life, it's so refreshing to connect with other bkwrms like myself."</em> - Frank </p>
+		<p> <em>"I love the ability to add books to my reading list, my reading binge never has to end!"</em> - Katie </p>
+		<p> <em>"The forums are a great place to discuss upcoming books, my favorite authors, and get into heated discussions about Tolkiens meaning behind Gandalf."</em> - Luke </p>
+
 		</div>
+
 
 		<div class="col col-4">
 		<img id="forum" src = "~@/assets/img/forum.svg">
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		<p> The bkwrm forums are a great place for open minded book lovers to share their thoughts!
+			Discuss your favorite authors, books, upcoming releases, and more!
+			We'd love to have you be a part of our community, so what are you waiting for? 
+			Join today! 
+		</p>
 		</div>
 
 		</div>
