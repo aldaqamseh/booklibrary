@@ -46,8 +46,10 @@ public class JdbcCommentsDao implements CommentsDao{
 		Comments theComment;
 		theComment = new Comments();
 		theComment.setBody(results.getString("body"));
-		theComment.setPostId(results.getLong("post_id"));
-		theComment.setId(results.getLong("id"));
+		theComment.setPostId(results.getInt("post_id"));
+		theComment.setId(results.getInt("id"));
+		theComment.setDatePosted(results.getDate("date_posted"));
+		theComment.setUserId(results.getInt("user_id"));
 		
 		
 		return theComment;
@@ -59,7 +61,7 @@ public class JdbcCommentsDao implements CommentsDao{
 	
 		
 		
-		Long id = getNextId();
+		int id = getNextId();
 		
 		String sqlSave = "INSERT INTO forum_comments (id,post_id,user_id,body,date_posted ) " +
 						"values (?,?,?,?,?)";
@@ -70,17 +72,34 @@ public class JdbcCommentsDao implements CommentsDao{
 		
 	}
 	
-	private Long getNextId() {
+	private int getNextId() {
 
 		String sqlSelectNextId = "SELECT nextval('forum_comments_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
-		Long id = null;
+		int id = 0;
 		if (results.next()) {
-			id = results.getLong(1);
+			id = results.getInt(1);
 		} else {
 			throw new RuntimeException("Something strange happened, unable to select next forum post id from sequence");
 		}
 		return id;
+	}
+
+
+	@Override
+	public List<Comments> getAllComments() {
+List<Comments> comments = new ArrayList<Comments>();
+		
+		String sqlGetAllCommentsByPostId = "SELECT * FROM forum_comments";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllCommentsByPostId);
+		
+		Comments theComment;
+		while(results.next()) {
+			theComment = mapRowToComments(results);
+			comments.add(theComment);
+		}
+		
+		return comments;
 	}
 	
 	

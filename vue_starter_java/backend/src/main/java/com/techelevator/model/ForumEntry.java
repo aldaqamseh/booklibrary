@@ -3,24 +3,25 @@ package com.techelevator.model;
 import java.sql.Date;
 
 public class ForumEntry {
-	private Long id;
-	private Long userId ;
+	private int id;
+	private int userId ;
 	private String title ;
 	private String body;
 	private Date datePosted;
 	
 	
 	
-	public Long getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public Long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getTitle() {
