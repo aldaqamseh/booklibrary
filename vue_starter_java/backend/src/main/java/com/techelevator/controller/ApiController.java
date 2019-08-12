@@ -33,6 +33,7 @@ public class ApiController {
 
 	@Autowired
 		private AuthProvider authProvider;
+	@Autowired
 		private BookDao bookDao;
 		private UserDao userDao;
 	
@@ -73,8 +74,6 @@ public class ApiController {
 //		return ResponseEntity.created(uriComponents.toUri()).body(user);
 //		
 //	}
-	
-	
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
 		bookDao.save(book);
@@ -101,10 +100,7 @@ public class ApiController {
 		int userId =  (int) currentUser.getId();
 		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
 		
-		if(readingList.size()==0) {
-			List <Book> emptyList = new ArrayList<Book>();
-			return emptyList;
-		}
+
 			return readingList;
 			}
 	
