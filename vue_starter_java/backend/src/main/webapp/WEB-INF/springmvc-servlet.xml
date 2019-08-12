@@ -32,7 +32,7 @@
 						<value>/api/books</value>
 						<value>/api</value>
 						<value>/api/books/**</value>
-						<value>/api/reading-list</value>
+<!-- 						<value>/api/reading-list</value> -->
 						<value>/api/register</value>
 						
 					</list>

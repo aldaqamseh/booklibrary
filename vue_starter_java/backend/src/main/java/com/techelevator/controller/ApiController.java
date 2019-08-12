@@ -35,6 +35,7 @@ public class ApiController {
 		private AuthProvider authProvider;
 	@Autowired
 		private BookDao bookDao;
+	@Autowired
 		private UserDao userDao;
 	
 	
@@ -94,23 +95,23 @@ public class ApiController {
 
 	
 	@GetMapping("/reading-list")
-	public List<Book> getReadingList(ModelMap map){
+	public List<Book> getReadingList(){
 	
 		User currentUser = authProvider.getCurrentUser();
-		int userId =  (int) currentUser.getId();
+		int userId =  (int)currentUser.getId();
 		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
 		
 
 			return readingList;
 			}
 	
-	@PostMapping("/reading-list")
-	public void addToReadingList(Book book, ModelMap map){
-	
-		User currentUser = authProvider.getCurrentUser();
-		int userId =  (int) currentUser.getId();
-		bookDao.saveBookToReadingList(book, userId);
-	}
+//	@PostMapping("/reading-list")
+//	public void addToReadingList(Book book, ModelMap map){
+//	
+//		User currentUser = authProvider.getCurrentUser();
+//		int userId =  (int) currentUser.getId();
+//		bookDao.saveBookToReadingList(book, userId);
+//	}
 	
 	
 //	@GetMapping("/forums/{postId}")
