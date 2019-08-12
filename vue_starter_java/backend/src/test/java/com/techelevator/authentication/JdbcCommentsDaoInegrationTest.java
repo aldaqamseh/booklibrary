@@ -64,7 +64,7 @@ public class JdbcCommentsDaoInegrationTest extends DAOIntegrationTest {
 	public void assertCommentsAreEqual() {
 		List<Comments> getList1 = new ArrayList<>();
 		List<Comments> getList2 = new ArrayList<>();
-	
+	getList1.addAll(doaComment)
 		daoComment.save(testComment1);
 	}
 }
