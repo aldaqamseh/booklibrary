@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class Comments extends ForumEntry{
 
-	private Long postId;
+	private int postId;
 	
 	
 public String toString() {
@@ -13,14 +13,16 @@ public String toString() {
 }
 
 
-public Long getPostId() {
+public int getPostId() {
 	return postId;
 }
 
 
-public void setPostId(Long postId) {
+public void setPostId(int postId) {
 	this.postId = postId;
 }
+
+
 
 
 }

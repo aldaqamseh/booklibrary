@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     login() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/login`, {
+      fetch(`http://localhost:8080/AuthenticationApplication/login`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -72,6 +72,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
+            console.log(token);
             this.$router.push('/');
           }
         })

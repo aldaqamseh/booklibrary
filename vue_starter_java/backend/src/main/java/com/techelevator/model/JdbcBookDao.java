@@ -47,10 +47,10 @@ public class JdbcBookDao implements BookDao {
 	}
 	
 	@Override
-	public void saveBookToReadingList(Book book, User user) {
+	public void saveBookToReadingList(Book book, int userId) {
 		int id = getNextId();
 		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
-		jdbcTemplate.update(sqlSave, book.getId(), user.getId());
+		jdbcTemplate.update(sqlSave, book.getId(), userId);
 		book.setId(id);
 	}
 	

@@ -45,8 +45,8 @@ public class JdbcPostDao implements PostDao {
 	
 		Post thePost;
 		thePost = new Post();
-		thePost.setId(results.getLong("id"));
-		thePost.setUserId(results.getLong("user_id"));
+		thePost.setId(results.getInt("id"));
+		thePost.setUserId(results.getInt("user_id"));
 		thePost.setTitle(results.getString("title"));
 		thePost.setBody(results.getString("body"));
 		thePost.setDatePosted(results.getDate("date_posted"));
@@ -58,8 +58,8 @@ public class JdbcPostDao implements PostDao {
 	@Override
 	public void save(Post savePost) {
 	
-		Long id = getNextId();
-		String sqlSave = "INSERT INTO forum_posts (id,user_id,title,body,date_psted ) " +
+		int id = getNextId();
+		String sqlSave = "INSERT INTO forum_posts (id,user_id,title,body,date_posted ) " +
 				"values (?,?,?,?,?)";
 
 		jdbcTemplate.update(sqlSave, id, savePost.getUserId(),savePost.getTitle(),savePost.getBody(),savePost.getDatePosted());
@@ -68,16 +68,32 @@ public class JdbcPostDao implements PostDao {
 	}
 
 
-	private Long getNextId() {
+	private int getNextId() {
 		String sqlSelectNextId = "SELECT nextval('forum_posts_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
-		Long id = null;
+		int id = 0;
 		if (results.next()) {
-			id = results.getLong(1);
+			id = results.getInt(1);
 		} else {
 			throw new RuntimeException("Something strange happened, unable to select next forum post id from sequence");
 		}
 		return id;
+	}
+
+
+	@Override
+	public List<Post> getAllPosts() {
+		List<Post> posts = new ArrayList<Post>();
+		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId);
+		
+		Post thePost;
+		while(results.next()) {
+			thePost = mapRowToPosts(results);
+			posts.add(thePost);
+		}
+		
+		return posts;
 	}
 	}
 
