@@ -1,8 +1,8 @@
 <template>
-	<div class="books container">
-		<h1>Current books in stock at bkwrm</h1>
+	<div class="books container-fluid">
+		<h1 class="text-center">Book List</h1>
 		<search-books v-on:search="handleFilter" />
-		<div class="row justify-content-around align-items-stretch">
+		<div class="row justify-content-center align-items-start mt-4">
 			<div
 				v-for="book in filteredBooks.slice().reverse()"
 				:key="book.id"
