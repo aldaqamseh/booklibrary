@@ -1,21 +1,48 @@
 <template>
-	<div class="text-center">
-		<h1>{{book.title}}</h1>
-		<h3>{{ book.author }}</h3>
-		<img
-					v-if="book.imgURL"
-					:src="book.imgURL"
-					class="book-img"
-				/>
-		<img
-					v-else
-					src="https://place-hold.it/163x218"
-					class="book-img"
-				/>
-
-				<h3>{{book.genre}}</h3>
-				<h3>{{book.publishDate}}</h3>
-				<p>{{book.description}}</p>
+	<div class="book-details">
+		<div class="container">
+			<div class="details-wrapper p-3 mt-5">
+				<div class="row">
+					<div
+						class="col col-11 col-md-6 d-flex justify-content-center"
+					>
+						<img
+							v-if="book.imgUrl"
+							:src="book.imgUrl"
+							class="book-image"
+						/>
+						<img
+							v-else
+							src="https://place-hold.it/163x218"
+							class="book-image"
+						/>
+					</div>
+					<div
+						class="col col-11 col-md-6 d-flex flex-column justify-content-center"
+					>
+						<h1 class="text-center text-md-left">
+							{{ book.title }}
+						</h1>
+						<h5 class="text-center text-md-left">
+							By: {{ book.author }}
+						</h5>
+						<div class="book-description mt-3">
+							<p>
+								{{ book.description }}
+							</p>
+							<p class="publish-date text-right">
+								Date Published: {{ book.publishDate }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="text-center my-5">
+					<router-link to="/books"
+						>Back to Book List</router-link
+					>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -39,6 +66,7 @@ export default {
 				})
 				.then(book => {
 					this.book = book;
+					console.log(book);
 				});
 		}
 	},
@@ -49,4 +77,11 @@ export default {
 </script>
 
 <style>
+.details-wrapper {
+	/* border: 1px solid black; */
+}
+.book-image {
+	width: 70%;
+	margin: auto;
+}
 </style>
