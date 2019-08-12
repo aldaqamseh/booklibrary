@@ -101,7 +101,7 @@ public class ApiController {
 		int userId =  (int) currentUser.getId();
 		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
 		
-		if(readingList == null) {
+		if(readingList.size()==0) {
 			List <Book> emptyList = new ArrayList<Book>();
 			return emptyList;
 		}
