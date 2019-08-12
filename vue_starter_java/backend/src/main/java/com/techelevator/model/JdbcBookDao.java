@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.io.Console;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,13 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public List<Book> getAllBooks() {
 		List<Book> book = new ArrayList<Book>();
-		String sqlGetAllBooks = "SELECT * FROM  books ";
+		String sqlGetAllBooks = "SELECT * FROM books";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllBooks);
-		Book theBooks;
+		Book theBook;
 		while (results.next()) {
-			theBooks = mapRowToBook(results);
-			book.add(theBooks);
+			theBook = mapRowToBook(results);
+			System.out.println(theBook);
+			book.add(theBook);
 		}
 		return book;
 	}
@@ -38,19 +40,19 @@ public class JdbcBookDao implements BookDao {
 		List<Book> books = new ArrayList<Book>();
 		String result = "SELECT books.book_id, books.title, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
-		Book theBooks;
+		Book theBook;
 		while (results.next()) {
-			theBooks = mapRowToBook(results);
-			books.add(theBooks);
+			theBook = mapRowToBook(results);
+			books.add(theBook);
 		}
 		return books;
 	}
 	
 	@Override
-	public void saveBookToReadingList(Book book, User user) {
+	public void saveBookToReadingList(Book book, int userId) {
 		int id = getNextId();
 		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
-		jdbcTemplate.update(sqlSave, book.getId(), user.getId());
+		jdbcTemplate.update(sqlSave, book.getId(), userId);
 		book.setId(id);
 	}
 	

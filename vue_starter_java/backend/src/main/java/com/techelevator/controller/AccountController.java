@@ -8,6 +8,7 @@ import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.User;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -29,6 +30,7 @@ public class AccountController {
     public String login(@RequestBody User user, RedirectAttributes flash) throws UnauthorizedException {
         if (auth.signIn(user.getUsername(), user.getPassword())) {
             User currentUser = auth.getCurrentUser();
+
             return tokenHandler.createToken(user.getUsername(), currentUser.getRole());
         } else {
             throw new UnauthorizedException();

@@ -2,6 +2,7 @@
 	<div id="app">
 		<nav-bar />
 		<div class="container-fluid">
+			
 			<router-view />
 		</div>
 	</div>
@@ -23,4 +24,7 @@ export default {
 </script>
 
 <style>
+.container-fluid {
+	/* border: solid blue 1px; */
+}
 </style>
