@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
 	data() {
 		return {
@@ -30,7 +32,14 @@ export default {
 	},
 	methods: {
 		fetchAllBooks() {
-			fetch(this.API_URL)
+			fetch(this.API_URL, {
+				method: "GET",
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					Authorization: "Bearer " + auth.getToken()
+				}
+			})
 				.then(response => {
 					return response.json();
 				})
