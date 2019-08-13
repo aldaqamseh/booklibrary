@@ -41,6 +41,11 @@
 						>Back to Book List</router-link
 					>
 				</div>
+					<div class="text-center my-5">
+					<button @click='addBookToReadingList'>
+						Add Book To Reading List
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -68,6 +73,21 @@ export default {
 					this.book = book;
 					console.log(book);
 				});
+		},
+		addBookToReadingList: function(){
+			fetch("http://localhost:8080/AuthenticationApplication/api/reading-list", {
+				method: "POST",
+				mode: "cors",
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					Authorization: "Bearer " + auth.getToken()
+				},
+					body: JSON.stringify(this.book)
+
+			})
+				.then(res => res.json())
+				.then(res => console.log(res));
 		}
 	},
 	created() {
