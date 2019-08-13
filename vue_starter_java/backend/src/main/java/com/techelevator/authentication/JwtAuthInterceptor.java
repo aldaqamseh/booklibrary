@@ -44,7 +44,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
 
     	String destinationUrl = request.getRequestURI().replaceFirst(request.getContextPath(), "");
     	
-        if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), "")) || (destinationUrl.contains("books"))
+        if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), "")) || (destinationUrl.contains("forum"))
                 || request.getMethod().equals("OPTIONS")) {
             return true;
         }

@@ -116,5 +116,11 @@ public class ApiController {
 		}
 		throw new PostNotFoundException(postId, "Book could not be found.");
 	}
+	
+	@PostMapping("/forum")
+	public void addToReadingList(@RequestBody Post post){
+	
+		postDao.save(post);
+	}
 
 }
