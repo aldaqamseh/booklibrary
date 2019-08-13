@@ -1,7 +1,9 @@
 <template>
 	<div class="nav-bar sticky-top">
 		<nav class="navbar navbar-expand-md navbar-light ">
-			<router-link :to="{ name: 'home' }">bkwrm</router-link>
+			<router-link class="nav-left" :to="{ name: 'home' }"
+				>bkwrm</router-link
+			>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -16,21 +18,41 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto text-center">
 					<router-link
-						v-for="route in routes"
-						:key="route.path"
-						:to="{ name: route.name }"
+						:to="{ name: 'books' }"
 						tag="li"
 						class="nav-item nav-link"
 					>
-						<div
-							v-if="
-								route.name != 'post' &&
-									route.name != 'home' &&
-									route.name != 'book'
-							"
-						>
-							{{ route.name }}
-						</div>
+						Search
+					</router-link>
+					<router-link
+						:to="{ name: 'list' }"
+						tag="li"
+						class="nav-item nav-link"
+					>
+						myList
+					</router-link>
+					<router-link
+						:to="{ name: 'forum' }"
+						tag="li"
+						class="nav-item nav-link"
+					>
+						Forums
+					</router-link>
+					<router-link
+						v-if="this.getUserName"
+						:to="{ name: 'home' }"
+						tag="li"
+						class="nav-item nav-link nav-right"
+					>
+						Welcome back, {{ this.getUserName() }}!
+					</router-link>
+					<router-link
+						v-else
+						:to="{ name: 'login' }"
+						tag="li"
+						class="nav-item nav-link nav-right"
+					>
+						Login
 					</router-link>
 				</ul>
 			</div>
@@ -39,11 +61,18 @@
 </template>
 
 <script>
+import auth from "../auth";
 export default {
 	data() {
 		return {
-			routes: this.$router.options.routes
+			routes: this.$router.options.routes,
+			user: {}
 		};
+	},
+	methods: {
+		getUserName() {
+			return auth.getUser().sub;
+		}
 	}
 };
 </script>
@@ -53,19 +82,30 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #85c1e9;
+	background-color: white;
 	padding: 0.2% 0;
-	
+	/* box-shadow: 5px 1px 5px; */
 }
-.nav-item {
-	text-transform: capitalize;
-	
-	
-}
+
 .nav-item:hover {
 	cursor: pointer;
-
 }
-
-
+.nav-item > div:hover {
+	color: cornflowerblue;
+	text-decoration: underline;
+}
+.nav-left {
+	position: fixed;
+	left: 0;
+	margin-left: 10px;
+}
+.nav-right {
+	position: fixed;
+	right: 0;
+	margin-right: 10px;
+	text-transform: capitalize;
+}
+li.nav-item.nav-link {
+	color: black;
+}
 </style>
