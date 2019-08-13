@@ -40,11 +40,18 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
 	data() {
 		return {
-			API_URL: "https://5d4c29ab00dbb1001487a5c8.mockapi.io/api/posts",
-			posts: []
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/forum",
+			posts: [],
+			newPost: {
+				body: "",
+				username: "",
+				datePosted: moment().format("YYYY-MM-DD")
+			}
 		};
 	},
 	components: {},
