@@ -12,7 +12,7 @@
 			<div class="col col-12">
 			<h1>
 				Welcome to <strong>bkwrm</strong>, your new place for all things literature.<br>
-				Take a look at the few things that make it a great place to be.
+				Take a look at a few things that make it a great place to be.
 			</h1>
 			</div>
 
@@ -38,23 +38,21 @@
 						refreshing to connect with other bkwrms like
 						myself."</em
 					>
-					- Frank
+					- Steve C.
 				</p>
 				<p>
 					<em
 						>"I love the ability to add books to my reading
-						list, my reading binge never has to end!"</em
-					>
-					- Katie
+						list, my reading binge never has to end!"</em>
+					- Andrew F.
 				</p>
 				<p>
 					<em
 						>"The forums are a great place to discuss upcoming
 						books, my favorite authors, and get into heated
 						discussions about Tolkiens meaning behind
-						Gandalf."</em
-					>
-					- Luke
+						Gandalf."</em><br>
+					- Katie D.
 				</p>
 			</div>
 
@@ -65,7 +63,7 @@
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
 					to have you be a part of our community, so what are you
-					waiting for? <a href=register>Join today!</a>
+					waiting for? <br><a href=register>Join today!</a>
 				</p>
 			</div>
 		</div>
@@ -88,6 +86,8 @@ export default {
 };
 </script>
 <style scoped>
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 .hero {
 	background-image: url("~@/assets/img/homepage-2.jpg");
 	background-repeat: no-repeat;
@@ -146,5 +146,14 @@ export default {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+p {
+	font-family: "Open Sans";
 }
 </style>
