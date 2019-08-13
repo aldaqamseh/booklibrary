@@ -45,7 +45,7 @@ public class JdbcPostDao implements PostDao {
 	
 		Post thePost;
 		thePost = new Post();
-		thePost.setId(results.getInt("id"));
+		thePost.setId(results.getInt("post_id"));
 		thePost.setUserId(results.getInt("user_id"));
 		thePost.setTitle(results.getString("title"));
 		thePost.setBody(results.getString("body"));
@@ -84,8 +84,8 @@ public class JdbcPostDao implements PostDao {
 	@Override
 	public List<Post> getAllPosts() {
 		List<Post> posts = new ArrayList<Post>();
-		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts ";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId);
+		String sqlGetAllPosts = "SELECT * FROM forum_posts";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPosts);
 		
 		Post thePost;
 		while(results.next()) {
