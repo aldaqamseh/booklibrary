@@ -154,16 +154,17 @@ VALUES
   (22, 10),
   (23, 10),
   (24, 10);
-  
+
 INSERT INTO users
-(username, password, salt, role)
+  (username, password, salt, role)
 VALUES
-('joe123', 'kfKzfkfNYLVHGifwiWIxHg==','2M+EYZILBznO5Z/hydTbYra4huWJ/5jgl3tq+B0td4VthG6K9L11o+a+kVunB9FZt6U6xOGe4OVJw+iU+/pIWBUwJNW94ZgZn8zIgM3zQL8r6PtUFYWW7UGfLbN7HYtfrr26cFECAA8XKzoCJousXyy5j55YdDvXvKUEtqomZ1o=', 'user'),
-('luke123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
-('moh123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
-('kt123', 'cke7ZHiOikYXrAa/TOz6zg==', 'Y/Vrvivba8tRgnOFxNJs0gpDxdyFENK0aikSdyM3PvETLkFU9Kz2YuBLKHG/65pS2gIB3JU40ftfrXKBELQE99gy4M8O1s4YgvyF8E3ipjixt9GjtaNjjTlPhrs4O6bXchDfd1x0csx1ufSk7ULWYhkhAWppJf2peHpMaCBGdcQ=', 'user');
+  ('joe123', 'kfKzfkfNYLVHGifwiWIxHg==', '2M+EYZILBznO5Z/hydTbYra4huWJ/5jgl3tq+B0td4VthG6K9L11o+a+kVunB9FZt6U6xOGe4OVJw+iU+/pIWBUwJNW94ZgZn8zIgM3zQL8r6PtUFYWW7UGfLbN7HYtfrr26cFECAA8XKzoCJousXyy5j55YdDvXvKUEtqomZ1o=', 'user'),
+  ('luke123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
+  ('moh123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
+  ('kt123', 'cke7ZHiOikYXrAa/TOz6zg==', 'Y/Vrvivba8tRgnOFxNJs0gpDxdyFENK0aikSdyM3PvETLkFU9Kz2YuBLKHG/65pS2gIB3JU40ftfrXKBELQE99gy4M8O1s4YgvyF8E3ipjixt9GjtaNjjTlPhrs4O6bXchDfd1x0csx1ufSk7ULWYhkhAWppJf2peHpMaCBGdcQ=', 'user');
 
 
 COMMIT TRANSACTION;
 
-SELECT * from users
+SELECT *
+from users
