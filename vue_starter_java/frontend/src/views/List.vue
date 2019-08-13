@@ -1,6 +1,6 @@
 <template>
 	<div class="reading-list text-center">
-		<h1 class="text-center">Your Reading List</h1>
+		<h1 class="text-center">Your Reading List </h1>
 		<div v-for="book in books" :key="book.id">
 			<h3 class="text-center">{{ book.title }}</h3>
 			<h3 class="text-center">{{ book.author }}</h3>
@@ -34,6 +34,7 @@ export default {
 		fetchAllBooks() {
 			fetch(this.API_URL, {
 				method: "GET",
+				mode: "cors",
 				headers: {
 					Accept: 'application/json',
 					'Content-Type': 'application/json',

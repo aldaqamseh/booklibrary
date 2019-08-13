@@ -25,7 +25,7 @@
 						Search
 					</router-link>
 					<router-link
-						:to="{ name: 'list' }"
+						:to="{ name: 'myList' }"
 						tag="li"
 						class="nav-item nav-link"
 					>
