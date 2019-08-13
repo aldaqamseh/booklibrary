@@ -52,7 +52,10 @@
 </template>
 
 <script>
+import auth from "../auth";
+
 export default {
+
 	data() {
 		return {
 			book: {},
@@ -86,7 +89,6 @@ export default {
 					body: JSON.stringify(this.book)
 
 			})
-				.then(res => res.json())
 				.then(res => console.log(res));
 		}
 	},
