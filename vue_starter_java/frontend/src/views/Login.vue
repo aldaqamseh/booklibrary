@@ -91,6 +91,7 @@ export default {
 						auth.saveToken(token);
 						console.log(token);
 						this.$router.push("/");
+						this.$emit("login");
 					}
 				})
 				.catch(err => console.error(err));

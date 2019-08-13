@@ -38,22 +38,25 @@
 					>
 						Forums
 					</router-link>
-					<router-link
-						v-if="this.getUserName != null"
-						:to="{ name: 'home' }"
-						tag="li"
-						class="nav-item nav-link nav-right"
-					>
-						Welcome back, {{ this.getUserName() }}!
-					</router-link>
-					<router-link
-						v-else
-						:to="{ name: 'login' }"
-						tag="li"
-						class="nav-item nav-link nav-right"
-					>
-						Login
-					</router-link>
+					<div v-if="userName" class="nav-right">
+						<router-link
+							:to="{ name: 'home' }"
+							tag="li"
+							class="nav-item nav-link"
+						>
+							Welcome back, {{ userName }}!
+						</router-link>
+						<h1 @click="logout">Logout</h1>
+					</div>
+					<div v-else>
+						<router-link
+							:to="{ name: 'login' }"
+							tag="li"
+							class="nav-item nav-link nav-right"
+						>
+							Login
+						</router-link>
+					</div>
 				</ul>
 			</div>
 		</nav>
@@ -65,17 +68,27 @@ import auth from "../auth";
 export default {
 	data() {
 		return {
-			routes: this.$router.options.routes,
-			user: {}
+			routes: this.$router.options.routes
 		};
 	},
-	methods: {
-		getUserName() {
-			if (auth.getUser()) {
-				return auth.getUser().sub;
+	props: {
+		user: Object
+	},
+	computed: {
+		userName() {
+			if (this.user) {
+				return this.user.sub;
 			} else {
 				return null;
 			}
+		}
+	},
+	methods: {
+		getUserName() {
+			return auth.getUser().sub;
+		},
+		logout() {
+			this.$emit("logout");
 		}
 	}
 };
