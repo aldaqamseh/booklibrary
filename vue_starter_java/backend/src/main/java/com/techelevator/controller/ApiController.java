@@ -23,6 +23,8 @@ import com.techelevator.exceptions.BookNotFoundException;
 import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDao;
+import com.techelevator.model.Post;
+import com.techelevator.model.PostDao;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDao;
 
@@ -37,7 +39,8 @@ public class ApiController {
 		private BookDao bookDao;
 	@Autowired
 		private UserDao userDao;
-	
+	@Autowired
+		private PostDao postDao;
 	
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -106,7 +109,7 @@ public class ApiController {
 			}
 	
 	@PostMapping("/reading-list")
-	public void addToReadingList(Book book){
+	public void addToReadingList(@RequestBody Book book){
 	
 		User currentUser = authProvider.getCurrentUser();
 		int userId =  (int) currentUser.getId();
@@ -114,15 +117,9 @@ public class ApiController {
 	}
 	
 	
-//	@GetMapping("/forums/{postId}")
-//	public Book getPostById(@PathVariable int id) {
-//		Book book = forumDao.getPostById(id);
-//
-//		if (book != null) {
-//			return book;
-//		}
-//
-//		throw new PostNotFoundException(id, "Post could not be found.");
-//	}
+	@GetMapping("/forums")
+		public <List> Post getAllPosts() {
+		return (Post) postDao.getAllPosts();
+	}
 
 }

@@ -52,7 +52,7 @@ public class JdbcBookDao implements BookDao {
 	public void saveBookToReadingList(Book book, int userId) {
 		int id = getNextId();
 		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
-		jdbcTemplate.update(sqlSave, book.getId(), userId);
+		jdbcTemplate.update(sqlSave, userId, book.getId());
 		book.setId(id);
 	}
 	
