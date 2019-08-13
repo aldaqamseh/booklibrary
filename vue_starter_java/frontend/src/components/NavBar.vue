@@ -2,7 +2,7 @@
 	<div class="nav-bar sticky-top">
 		<nav class="navbar navbar-expand-md navbar-light ">
 			<router-link class="nav-left" :to="{ name: 'home' }"
-				>bkwrm</router-link
+				><img src="~@/assets/img/bkwrm.png"></router-link
 			>
 			<button
 				class="navbar-toggler"
@@ -101,7 +101,7 @@ export default {
 .nav-left {
 	position: fixed;
 	left: 0;
-	margin-left: 10px;
+	margin-left: -5px;
 }
 .nav-right {
 	position: fixed;
@@ -111,5 +111,10 @@ export default {
 }
 li.nav-item.nav-link {
 	color: black;
+}
+
+img {
+	width: 200px;
+	height: 200px;
 }
 </style>
