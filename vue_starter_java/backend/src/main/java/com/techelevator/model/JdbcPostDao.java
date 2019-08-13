@@ -24,19 +24,17 @@ public class JdbcPostDao implements PostDao {
 	
 
 	@Override
-	public List<Post> getAllPostsByPostId(int postId) {
+	public Post getAllPostsByPostId(int postId) {
 		
-		List<Post> posts = new ArrayList<Post>();
-		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE post_id ILIKE ?";
+		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE post_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId, postId);
 		
-		Post thePost;
+		Post thePost = new Post();
 		while(results.next()) {
 			thePost = mapRowToPosts(results);
-			posts.add(thePost);
 		}
 		
-		return posts;
+		return thePost;
 	}
 
 	private Post mapRowToPosts(SqlRowSet results) {
