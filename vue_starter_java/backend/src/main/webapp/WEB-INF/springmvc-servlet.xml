@@ -34,6 +34,7 @@
 						<value>/api/books/**</value>
 <!-- 						<value>/api/reading-list</value> -->
 						<value>/api/register</value>
+						<value>/api/forum</value>
 						
 					</list>
 				</property>
