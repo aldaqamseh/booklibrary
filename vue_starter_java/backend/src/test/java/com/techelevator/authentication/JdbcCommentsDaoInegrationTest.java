@@ -60,13 +60,13 @@ public class JdbcCommentsDaoInegrationTest extends DAOIntegrationTest {
 		testComment2.setDatePosted(new Date(1989-8-06));
 		testComment2.setUserId(1);
 	}
-	@Test
-	public void assertCommentsAreEqual() {
-		List<Comments> getList1 = new ArrayList<>();
-		List<Comments> getList2 = new ArrayList<>();
-	getList1.addAll(doaComment)
-		daoComment.save(testComment1);
-	}
+//	@Test
+//	public void assertCommentsAreEqual() {
+//		List<Comments> getList1 = new ArrayList<>();
+//		List<Comments> getList2 = new ArrayList<>();
+//	getList1.addAll(doaComment)
+//		daoComment.save(testComment1);
+//	}
 }
 
 
