@@ -2,12 +2,12 @@
 	<div class="comments-section mt-4">
 		<h5 class="text-center">Responses</h5>
 
-		<div id="comments">
+		<div class="comments">
 			<div v-for="comment in comments" :key="comment.id">
 				<div class="list-group-item">
 					<p class="user-name mb-0">
 						<i class="fas fa-user mr-1"></i
-						>{{ comment.username }}
+						>{{ comment.userId }}
 						<span class="date ml-4">{{
 							comment.datePosted.substring(0, 10)
 						}}</span>
@@ -48,13 +48,13 @@
 import moment from "moment";
 export default {
 	props: {
-		postId: String
+		postId: Number
 	},
 	data() {
 		return {
 			comments: [],
 			API_URL:
-				"http://localhost:8080/AuthenticationApplication/api/forum",
+				"http://localhost:8080/AuthenticationApplication/api/forum/",
 			newComment: {
 				body: "",
 				username: "",
