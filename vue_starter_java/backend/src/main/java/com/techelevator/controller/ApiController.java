@@ -23,6 +23,8 @@ import com.techelevator.exceptions.BookNotFoundException;
 import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDao;
+import com.techelevator.model.Comments;
+import com.techelevator.model.CommentsDao;
 import com.techelevator.model.Post;
 import com.techelevator.model.PostDao;
 import com.techelevator.model.User;
@@ -41,6 +43,8 @@ public class ApiController {
 		private UserDao userDao;
 	@Autowired
 		private PostDao postDao;
+	@Autowired
+		private CommentsDao commentsDao;
 	
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -121,6 +125,13 @@ public class ApiController {
 	public void addToReadingList(@RequestBody Post post){
 	
 		postDao.save(post);
+	}
+	
+	@GetMapping("/forum/{postId}/comments")
+	public List <Comments> getCommentsByPost(@PathVariable int postId) {
+		return commentsDao.getAllCommentsByPostId(postId);
+
+		
 	}
 
 }

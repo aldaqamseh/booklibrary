@@ -23,7 +23,7 @@ public class JdbcCommentsDao implements CommentsDao{
 	
 	
 	@Override
-	public List<Comments> getAllCommentsByPostId(Long postId) {
+	public List<Comments> getAllCommentsByPostId(int postId) {
 	
 		
 

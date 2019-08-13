@@ -55,7 +55,8 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
 	}
 
 	/**
-	 * @param excludedUrls the excluded urls to set
+	 * @param excludedUrls
+	 *            the excluded urls to set
 	 */
 	public void setExcludedUrls(List<String> excludedUrls) {
 		this.excludedUrls = excludedUrls;
