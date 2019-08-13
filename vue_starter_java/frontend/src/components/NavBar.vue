@@ -2,8 +2,9 @@
 	<div class="nav-bar sticky-top">
 		<nav class="navbar navbar-expand-md navbar-light ">
 			<router-link class="nav-left" :to="{ name: 'home' }"
-				><img src="~@/assets/img/bkwrm.png"></router-link
-			>
+				><img src="~@/assets/img/bkwrm.png"
+			/></router-link>
+
 			<button
 				class="navbar-toggler"
 				type="button"

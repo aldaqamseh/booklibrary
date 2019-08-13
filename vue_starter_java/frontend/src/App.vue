@@ -25,6 +25,7 @@ export default {
 	methods: {
 		handleLogout() {
 			auth.logout();
+			alert("You Have Successfully Logged Out");
 			this.user = auth.getUser();
 		},
 		handleLogin() {
