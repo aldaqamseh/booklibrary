@@ -106,5 +106,15 @@ public class ApiController {
 	public List<Post> getPosts() {
 		return postDao.getAllPosts();
 	}
+	
+	@GetMapping("/forum/{postId}")
+	public Post getPostById(@PathVariable int postId) {
+		Post post = (Post) postDao.getAllPostsByPostId(postId);
+
+		if (post != null) {
+			return post;
+		}
+		throw new PostNotFoundException(postId, "Book could not be found.");
+	}
 
 }
