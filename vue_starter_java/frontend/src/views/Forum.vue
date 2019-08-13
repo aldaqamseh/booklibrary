@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import moment from "moment";
 export default {
 	data() {
 		return {
@@ -50,7 +49,7 @@ export default {
 			newPost: {
 				body: "",
 				username: "",
-				datePosted: moment().format("YYYY-MM-DD")
+				datePosted: ""
 			}
 		};
 	},
