@@ -24,28 +24,24 @@ public class JdbcPostDao implements PostDao {
 	
 
 	@Override
-	public List<Post> getAllPostsByPostId(Long postId) {
+	public Post getAllPostsByPostId(int postId) {
 		
-	
-		// TODO Auto-generated method stub
-		List<Post> posts = new ArrayList<Post>();
-		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE id ILIKE ?";
+		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE post_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId, postId);
 		
-		Post thePost;
+		Post thePost = new Post();
 		while(results.next()) {
 			thePost = mapRowToPosts(results);
-			posts.add(thePost);
 		}
 		
-		return posts;
+		return thePost;
 	}
 
 	private Post mapRowToPosts(SqlRowSet results) {
 	
 		Post thePost;
 		thePost = new Post();
-		thePost.setId(results.getInt("id"));
+		thePost.setId(results.getInt("post_id"));
 		thePost.setUserId(results.getInt("user_id"));
 		thePost.setTitle(results.getString("title"));
 		thePost.setBody(results.getString("body"));
@@ -84,8 +80,8 @@ public class JdbcPostDao implements PostDao {
 	@Override
 	public List<Post> getAllPosts() {
 		List<Post> posts = new ArrayList<Post>();
-		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts ";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId);
+		String sqlGetAllPosts = "SELECT * FROM forum_posts";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPosts);
 		
 		Post thePost;
 		while(results.next()) {

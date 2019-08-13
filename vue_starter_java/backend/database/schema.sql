@@ -164,6 +164,10 @@ VALUES
   ('kt123', 'cke7ZHiOikYXrAa/TOz6zg==', 'Y/Vrvivba8tRgnOFxNJs0gpDxdyFENK0aikSdyM3PvETLkFU9Kz2YuBLKHG/65pS2gIB3JU40ftfrXKBELQE99gy4M8O1s4YgvyF8E3ipjixt9GjtaNjjTlPhrs4O6bXchDfd1x0csx1ufSk7ULWYhkhAWppJf2peHpMaCBGdcQ=', 'user'),
   ('admin124', 'sJAZKd0P3Qwdl7gNxIm5pw==', 'dHj2Bp60feGi2YSm2L3kqllVpIRpEQSDqVoJgCr/eSyPW8Q3cJyKNlk8j9kUZbt5EGvBMz8fSSYDcLma3rMovFQVjx5yz1XDkQStYvz5XODDxB4rnhKMjwYmPfbJmSIaxCQOeo50bhDJXD/stM8GNOnVT5V7XnKZB6/gTZiDfDo=', 'admin');
 
+INSERT INTO forum_posts
+  (user_id, title, body)
+VALUES
+  (1, 'Loved "It"', 'The book IT, by Stephen King was a great coming of age tale about a lonely clown searcing for love in all the wrong places.');
 
 COMMIT TRANSACTION;
 

@@ -4,10 +4,10 @@
 			<div>
 				<h5>{{ post.title }}</h5>
 				<p>
-					<i class="fas fa-user mr-1"></i>{{ post.username }}
+					<i class="fas fa-user mr-1"></i>{{ post.userId }}
 					<span class="ml-5"
 						>Date Posted:
-						{{ post.date_posted.substring(0, 10) }}</span
+						{{ post.datePosted.substring(0, 10) }}</span
 					>
 				</p>
 			</div>
@@ -36,7 +36,8 @@ export default {
 	data() {
 		return {
 			post: {},
-			API_URL: "https://5d4c29ab00dbb1001487a5c8.mockapi.io/api/posts/"
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/forum"
 		};
 	},
 	props: {
@@ -44,13 +45,13 @@ export default {
 	},
 	methods: {
 		fetchPostById() {
-			fetch(this.API_URL + this.$route.params.postId)
+			fetch(this.API_URL + "/" + this.$route.params.postId)
 				.then(response => {
 					return response.json();
 				})
 				.then(post => {
 					this.post = post;
-					console.log(this.posts);
+					console.log(this.post);
 				});
 		}
 	},

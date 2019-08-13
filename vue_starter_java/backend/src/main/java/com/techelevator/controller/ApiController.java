@@ -23,6 +23,8 @@ import com.techelevator.exceptions.BookNotFoundException;
 import com.techelevator.exceptions.PostNotFoundException;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDao;
+import com.techelevator.model.Comments;
+import com.techelevator.model.CommentsDao;
 import com.techelevator.model.Post;
 import com.techelevator.model.PostDao;
 import com.techelevator.model.User;
@@ -41,6 +43,8 @@ public class ApiController {
 		private UserDao userDao;
 	@Autowired
 		private PostDao postDao;
+	@Autowired
+		private CommentsDao commentsDao;
 	
 //
 //    @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -63,21 +67,7 @@ public class ApiController {
 		return bookDao.getAllBooks();
 	}
 	
-//	@GetMapping("/forums")
-//	public List<Book> getAllForumPosts() {
-//		return bookDao.getAllForumPosts();
-//	}
 
-//	@PostMapping("/register")
-//	public ResponseEntity<User> registerUser(@RequestBody User user){
-//		authProvider.register(user.getUsername(), user.getPassword(), user.getRole());
-//
-//		
-//		UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + user.getUsername()).build();
-//		
-//		return ResponseEntity.created(uriComponents.toUri()).body(user);
-//		
-//	}
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
 		bookDao.save(book);
@@ -115,11 +105,33 @@ public class ApiController {
 		int userId =  (int) currentUser.getId();
 		bookDao.saveBookToReadingList(book, userId);
 	}
+
+	@GetMapping("/forum")
+	public List<Post> getPosts() {
+		return postDao.getAllPosts();
+	}
 	
+	@GetMapping("/forum/{postId}")
+	public Post getPostById(@PathVariable int postId) {
+		Post post = (Post) postDao.getAllPostsByPostId(postId);
+
+		if (post != null) {
+			return post;
+		}
+		throw new PostNotFoundException(postId, "Book could not be found.");
+	}
 	
-	@GetMapping("/forums")
-		public <List> Post getAllPosts() {
-		return (Post) postDao.getAllPosts();
+	@PostMapping("/forum")
+	public void addToReadingList(@RequestBody Post post){
+	
+		postDao.save(post);
+	}
+	
+	@GetMapping("/forum/{postId}/comments")
+	public List <Comments> getCommentsByPost(@PathVariable int postId) {
+		return commentsDao.getAllCommentsByPostId(postId);
+
+		
 	}
 
 }
