@@ -99,7 +99,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 a {
 	color: #92badd;
 	display: inline-block;

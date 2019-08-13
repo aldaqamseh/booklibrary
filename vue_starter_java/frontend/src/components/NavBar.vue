@@ -39,7 +39,7 @@
 						Forums
 					</router-link>
 					<router-link
-						v-if="this.getUserName"
+						v-if="this.getUserName != null"
 						:to="{ name: 'home' }"
 						tag="li"
 						class="nav-item nav-link nav-right"
@@ -71,7 +71,11 @@ export default {
 	},
 	methods: {
 		getUserName() {
-			return auth.getUser().sub;
+			if (auth.getUser()) {
+				return auth.getUser().sub;
+			} else {
+				return null;
+			}
 		}
 	}
 };
