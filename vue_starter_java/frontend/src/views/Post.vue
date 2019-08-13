@@ -36,7 +36,8 @@ export default {
 	data() {
 		return {
 			post: {},
-			API_URL: "https://5d4c29ab00dbb1001487a5c8.mockapi.io/api/posts/"
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/forum"
 		};
 	},
 	props: {

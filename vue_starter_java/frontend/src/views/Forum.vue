@@ -7,7 +7,7 @@
 				<router-link
 					:to="{
 						params: { postId: post.id },
-						path: post.id
+						path: '/forum/' + post.id
 					}"
 					tag="div"
 					class="card mb-4 px-4 py-2"
@@ -16,13 +16,11 @@
 					<div class="card-title m-0 post-title">
 						<h5 class="mt-1 d-md-inline">{{ post.title }}</h5>
 						<p class="m-0 d-md-inline float-md-right">
-							<i class="fas fa-user mr-1"></i
-							>{{ post.username }}
+							<i class="fas fa-user mr-1"></i>Username:
+							{{ post.userId }}
 							<span class="ml-5"
 								>Date Posted:
-								{{
-									post.date_posted.substring(0, 10)
-								}}</span
+								{{ post.datePosted }}</span
 							>
 						</p>
 					</div>
