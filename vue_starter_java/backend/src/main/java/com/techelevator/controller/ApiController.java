@@ -63,21 +63,7 @@ public class ApiController {
 		return bookDao.getAllBooks();
 	}
 	
-//	@GetMapping("/forums")
-//	public List<Book> getAllForumPosts() {
-//		return bookDao.getAllForumPosts();
-//	}
 
-//	@PostMapping("/register")
-//	public ResponseEntity<User> registerUser(@RequestBody User user){
-//		authProvider.register(user.getUsername(), user.getPassword(), user.getRole());
-//
-//		
-//		UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + user.getUsername()).build();
-//		
-//		return ResponseEntity.created(uriComponents.toUri()).body(user);
-//		
-//	}
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
 		bookDao.save(book);
@@ -115,11 +101,10 @@ public class ApiController {
 		int userId =  (int) currentUser.getId();
 		bookDao.saveBookToReadingList(book, userId);
 	}
-	
-	
-	@GetMapping("/forums")
-		public <List> Post getAllPosts() {
-		return (Post) postDao.getAllPosts();
+
+	@GetMapping("/forum")
+	public List<Post> getPosts() {
+		return postDao.getAllPosts();
 	}
 
 }
