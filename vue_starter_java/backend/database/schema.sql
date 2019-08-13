@@ -161,10 +161,9 @@ VALUES
   ('joe123', 'kfKzfkfNYLVHGifwiWIxHg==', '2M+EYZILBznO5Z/hydTbYra4huWJ/5jgl3tq+B0td4VthG6K9L11o+a+kVunB9FZt6U6xOGe4OVJw+iU+/pIWBUwJNW94ZgZn8zIgM3zQL8r6PtUFYWW7UGfLbN7HYtfrr26cFECAA8XKzoCJousXyy5j55YdDvXvKUEtqomZ1o=', 'user'),
   ('luke123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
   ('moh123', '7Fk21PHEBkle2hBXOh5xCw==', 'e0rpDnBUBIwHeLaFhDD83VerZDN15j0UPQ+2d5qzVxVbxXFRc8o+YnuXuFUOUBx6tP4skuK1OZ9Sx67h5VeA57tuFR1lZw/wfG6FvHawev+sGbzZ2682tKTMc1XWgGiDnvhXUB+NAA4EZwgLsxB+e3TWrbOTE5BGQe+W3MBbylM=', 'user'),
-  ('kt123', 'cke7ZHiOikYXrAa/TOz6zg==', 'Y/Vrvivba8tRgnOFxNJs0gpDxdyFENK0aikSdyM3PvETLkFU9Kz2YuBLKHG/65pS2gIB3JU40ftfrXKBELQE99gy4M8O1s4YgvyF8E3ipjixt9GjtaNjjTlPhrs4O6bXchDfd1x0csx1ufSk7ULWYhkhAWppJf2peHpMaCBGdcQ=', 'user');
+  ('kt123', 'cke7ZHiOikYXrAa/TOz6zg==', 'Y/Vrvivba8tRgnOFxNJs0gpDxdyFENK0aikSdyM3PvETLkFU9Kz2YuBLKHG/65pS2gIB3JU40ftfrXKBELQE99gy4M8O1s4YgvyF8E3ipjixt9GjtaNjjTlPhrs4O6bXchDfd1x0csx1ufSk7ULWYhkhAWppJf2peHpMaCBGdcQ=', 'user'),
+  ('admin124', 'sJAZKd0P3Qwdl7gNxIm5pw==', 'dHj2Bp60feGi2YSm2L3kqllVpIRpEQSDqVoJgCr/eSyPW8Q3cJyKNlk8j9kUZbt5EGvBMz8fSSYDcLma3rMovFQVjx5yz1XDkQStYvz5XODDxB4rnhKMjwYmPfbJmSIaxCQOeo50bhDJXD/stM8GNOnVT5V7XnKZB6/gTZiDfDo=', 'admin');
 
 
 COMMIT TRANSACTION;
 
-SELECT *
-from users

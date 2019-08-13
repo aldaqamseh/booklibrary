@@ -106,7 +106,7 @@ public class ApiController {
 			}
 	
 	@PostMapping("/reading-list")
-	public void addToReadingList(Book book){
+	public void addToReadingList(@RequestBody Book book){
 	
 		User currentUser = authProvider.getCurrentUser();
 		int userId =  (int) currentUser.getId();
