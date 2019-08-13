@@ -9,10 +9,12 @@
 		</div>
 
 		<div class="row justify-content-start">
+			<div class="col col-12">
 			<h1>
-				HERE'S WHAT PEOPLE ARE SAYING ABOUT BKWRM. MORE TEXT TO BUMP
-				DOWN
+				Welcome to <strong>bkwrm</strong>, your new place for all things literature.<br>
+				Take a look at the few things that make it a great place to be.
 			</h1>
+			</div>
 
 			<div class="col col-4">
 				<img id="info" src="~@/assets/img/info.svg" />
@@ -63,7 +65,7 @@
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
 					to have you be a part of our community, so what are you
-					waiting for? Join today!
+					waiting for? <a href=register>Join today!</a>
 				</p>
 			</div>
 		</div>
@@ -97,11 +99,24 @@ export default {
 
 .container-fluid {
 	/* border: solid green 1px; */
+	
 }
 
 .justify-content-start {
-	/* border: solid orange 3px; */
-	justify-content: center;
+	/* border: solid green 2px; */
+	text-align: center;
+}
+
+.justify-content-start h1 {
+	/* border: solid blue 3px; */
+	text-align: center;
+
+}
+
+.col-12 {
+	margin-bottom: 25px;
+	margin-top: 15px;
+	color: cornflowerblue;
 }
 
 .col-6 {
@@ -111,21 +126,25 @@ export default {
 
 .col-4 {
 	/* border: solid coral 5px; */
+	text-align: center;
+	
 }
 
 #info {
 	height: 50px;
 	width: 50px;
-	color: cornflowerblue;
+	margin: 10px;
 }
 
 #heart {
 	height: 50px;
 	width: 50px;
+	margin: 10px;
 }
 
 #forum {
 	height: 50px;
 	width: 50px;
+	margin: 10px;
 }
 </style>

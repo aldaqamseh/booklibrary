@@ -105,13 +105,13 @@ public class ApiController {
 			return readingList;
 			}
 	
-//	@PostMapping("/reading-list")
-//	public void addToReadingList(Book book, ModelMap map){
-//	
-//		User currentUser = authProvider.getCurrentUser();
-//		int userId =  (int) currentUser.getId();
-//		bookDao.saveBookToReadingList(book, userId);
-//	}
+	@PostMapping("/reading-list")
+	public void addToReadingList(Book book){
+	
+		User currentUser = authProvider.getCurrentUser();
+		int userId =  (int) currentUser.getId();
+		bookDao.saveBookToReadingList(book, userId);
+	}
 	
 	
 //	@GetMapping("/forums/{postId}")
