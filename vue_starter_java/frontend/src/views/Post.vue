@@ -45,7 +45,7 @@ export default {
 	},
 	methods: {
 		fetchPostById() {
-			fetch(this.API_URL + this.$route.params.postId)
+			fetch(this.API_URL + "/" + this.$route.params.postId)
 				.then(response => {
 					return response.json();
 				})
