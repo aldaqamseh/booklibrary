@@ -7,7 +7,7 @@
 					<i class="fas fa-user mr-1"></i>{{ post.username }}
 					<span class="ml-5"
 						>Date Posted:
-						{{ post.date_posted.substring(0, 10) }}</span
+						{{ post.datePosted.substring(0, 10) }}</span
 					>
 				</p>
 			</div>
