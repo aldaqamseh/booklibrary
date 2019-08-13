@@ -24,58 +24,60 @@ import io.jsonwebtoken.Jwts;
  */
 public class JwtAuthInterceptor implements HandlerInterceptor {
 
-    private static final String AUTHORIZATION_HEADER = "Authorization";
+	private static final String AUTHORIZATION_HEADER = "Authorization";
 
-    private List<String> excludedUrls;
+	private List<String> excludedUrls;
 
-    @Autowired
-    private JwtTokenHandler tokenHandler;
+	@Autowired
+	private JwtTokenHandler tokenHandler;
 
-    public JwtAuthInterceptor() {
-    }
+	public JwtAuthInterceptor() {
+	}
 
-    public JwtAuthInterceptor(List<String> excludedUrls) {
-        this.excludedUrls = excludedUrls;
-    }
+	public JwtAuthInterceptor(List<String> excludedUrls) {
+		this.excludedUrls = excludedUrls;
+	}
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws IOException, ServletException {
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws IOException, ServletException {
 
-    	String destinationUrl = request.getRequestURI().replaceFirst(request.getContextPath(), "");
-    	
-        if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), "")) || (destinationUrl.contains("forum")) ||(destinationUrl.contains("books"))
-                || request.getMethod().equals("OPTIONS")) {
-            return true;
-        }
+		String destinationUrl = request.getRequestURI().replaceFirst(request.getContextPath(), "");
 
-        User authedUser = tokenHandler.getUser(request.getHeader(AUTHORIZATION_HEADER));
-        if (authedUser == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing or invalid Authorization header.");
-            return false;
-        } else {
-            request.setAttribute(RequestAuthProvider.USER_KEY, authedUser);
-            return true;
-        }
-    }
+		if (excludedUrls.contains(request.getRequestURI().replaceFirst(request.getContextPath(), ""))
+				|| (destinationUrl.contains("forum")) || (destinationUrl.contains("books"))
+				|| request.getMethod().equals("OPTIONS")) {
+			return true;
+		}
 
-    /**
-     * @param excludedUrls the excluded urls to set
-     */
-    public void setExcludedUrls(List<String> excludedUrls) {
-        this.excludedUrls = excludedUrls;
-    }
+		User authedUser = tokenHandler.getUser(request.getHeader(AUTHORIZATION_HEADER));
+		if (authedUser == null) {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing or invalid Authorization header.");
+			return false;
+		} else {
+			request.setAttribute(RequestAuthProvider.USER_KEY, authedUser);
+			return true;
+		}
+	}
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) throws Exception {
+	/**
+	 * @param excludedUrls
+	 *            the excluded urls to set
+	 */
+	public void setExcludedUrls(List<String> excludedUrls) {
+		this.excludedUrls = excludedUrls;
+	}
 
-    }
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
 
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
+	}
 
-    }
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+
+	}
 
 }
