@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid p-0">
 		<div class="hero">
 			<div class="row justify-content-start">
 				<div class="col col-6">
@@ -10,10 +10,12 @@
 
 		<div class="row justify-content-start">
 			<div class="col col-12">
-			<h1>
-				Welcome to <strong>bkwrm</strong>, your new place for all things literature.<br>
-				Take a look at a few things that make it a great place to be.
-			</h1>
+				<h1>
+					Welcome to <strong>bkwrm</strong>, your new place for
+					all things literature.<br />
+					Take a look at a few things that make it a great place
+					to be.
+				</h1>
 			</div>
 
 			<div class="col col-4">
@@ -43,7 +45,8 @@
 				<p>
 					<em
 						>"I love the ability to add books to my reading
-						list, my reading binge never has to end!"</em>
+						list, my reading binge never has to end!"</em
+					>
 					- Andrew F.
 				</p>
 				<p>
@@ -51,7 +54,8 @@
 						>"The forums are a great place to discuss upcoming
 						books, my favorite authors, and get into heated
 						discussions about Tolkiens meaning behind
-						Gandalf."</em><br>
+						Gandalf."</em
+					><br />
 					- Katie D.
 				</p>
 			</div>
@@ -63,7 +67,7 @@
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
 					to have you be a part of our community, so what are you
-					waiting for? <br><a href=register>Join today!</a>
+					waiting for? <br /><a href="register">Join today!</a>
 				</p>
 			</div>
 		</div>
@@ -86,10 +90,10 @@ export default {
 };
 </script>
 <style scoped>
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 .hero {
 	background-image: url("~@/assets/img/homepage-2.jpg");
+	/* background-attachment: fixed; */
 	background-repeat: no-repeat;
 	background-size: 110%;
 	/* border: solid red 1px; */
@@ -99,7 +103,6 @@ export default {
 
 .container-fluid {
 	/* border: solid green 1px; */
-	
 }
 
 .justify-content-start {
@@ -110,7 +113,6 @@ export default {
 .justify-content-start h1 {
 	/* border: solid blue 3px; */
 	text-align: center;
-
 }
 
 .col-12 {
@@ -127,7 +129,6 @@ export default {
 .col-4 {
 	/* border: solid coral 5px; */
 	text-align: center;
-	
 }
 
 #info {
@@ -149,8 +150,7 @@ export default {
 }
 
 h1 {
-	font-family: 'Open Sans', sans-serif;
-
+	font-family: "Open Sans", sans-serif;
 }
 
 p {
