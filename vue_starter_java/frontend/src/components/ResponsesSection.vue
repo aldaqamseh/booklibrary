@@ -54,7 +54,7 @@ export default {
 		return {
 			comments: [],
 			API_URL:
-				"https://5d4c29ab00dbb1001487a5c8.mockapi.io/api/posts/",
+				"http://localhost:8080/AuthenticationApplication/api/forum",
 			newComment: {
 				body: "",
 				username: "",
