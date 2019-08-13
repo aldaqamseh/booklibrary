@@ -27,7 +27,7 @@ public class JdbcPostDao implements PostDao {
 	public List<Post> getAllPostsByPostId(int postId) {
 		
 		List<Post> posts = new ArrayList<Post>();
-		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE id ILIKE ?";
+		String sqlGetAllPostsByPostId = "SELECT * FROM forum_posts WHERE post_id ILIKE ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllPostsByPostId, postId);
 		
 		Post thePost;
