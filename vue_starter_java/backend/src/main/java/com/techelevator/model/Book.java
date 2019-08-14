@@ -12,6 +12,7 @@ public class Book {
 	private Date dateAdded;
 	private String imgUrl;
 	private String isbn;
+	private boolean completed;
 	
 	public int getId() {
 		return id;
@@ -67,6 +68,12 @@ public class Book {
 	}
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+	public boolean isCompleted() {
+		return completed;
+	}
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 	
 	

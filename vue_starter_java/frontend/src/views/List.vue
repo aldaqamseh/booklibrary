@@ -2,7 +2,7 @@
 	<div class="reading-list text-center container">
 		<h1 class="text-center">Your Reading List</h1>
 		<div v-for="book in books" :key="book.id">
-			<list-row :book="book" @remove="fetchAllBooks"/>
+			<list-row :book="book" :completed="book.completed" @remove="fetchAllBooks" @markCompleted="completedBook"/>
 		</div>
 	</div>
 </template>
@@ -16,7 +16,7 @@ export default {
 		return {
 			API_URL:
 				"http://localhost:8080/AuthenticationApplication/api/reading-list",
-			books: []
+			books: [],
 		};
 	},
 	components: {
