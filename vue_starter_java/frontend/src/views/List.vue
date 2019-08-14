@@ -2,7 +2,7 @@
 	<div class="reading-list text-center container">
 		<h1 class="text-center">Your Reading List</h1>
 		<div v-for="book in books" :key="book.id">
-			<list-row :book="book" />
+			<list-row :book="book" @remove="fetchAllBooks"/>
 		</div>
 	</div>
 </template>

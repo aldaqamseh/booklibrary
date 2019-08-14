@@ -28,7 +28,7 @@
 						Mark as Read
 					</label>
 				</div>
-				<button class="btn btn-primary remove-button mt-1" @click="removeFromList">
+				<button class="btn btn-primary remove-button mt-1" @click="remove">
 					Remove From List
 				</button>
 			</div>
@@ -67,8 +67,15 @@ export default {
 				},
 				body: JSON.stringify(this.book)
 			})
-				.then(res => res.json())
-				.then(res => console.log(res))
+				// .then(res => {
+				// 	console.log(res);
+				// 	this.$emit('removed')
+				// })
+
+		},
+		remove(){
+			this.removeFromList();
+			this.$emit('remove');
 		}
 		}
 };
