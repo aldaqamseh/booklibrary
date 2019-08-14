@@ -18,7 +18,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto text-center">
-					<router-link
+					<router-link 
 						:to="{ name: 'books' }"
 						tag="li"
 						class="nav-item nav-link nav-link-ltr"
@@ -26,7 +26,8 @@
 						Search
 					</router-link>
 					<router-link
-						:to="{ name: 'myList' }"
+					
+						:to="{ name: 'myList' }" 
 						tag="li"
 						class="nav-item nav-link nav-link-ltr"
 					>

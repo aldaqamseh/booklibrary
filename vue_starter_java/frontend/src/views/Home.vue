@@ -3,7 +3,8 @@
 		<div class="hero">
 			<div class="row justify-content-start">
 				<div class="col col-6">
-					<register-box v-if="!this.isLoggedIn" />
+					<!-- <register-box/> -->
+					<register-box v-if="!isLoggedIn" />
 				</div>
 			</div>
 		</div>
@@ -79,10 +80,10 @@ import RegisterBox from "@/components/RegisterBox.vue";
 import auth from "../auth";
 
 export default {
-	data() {
-		return {
-			isLoggedIn: auth.getUser
-		};
+	computed: {
+		isLoggedIn(){
+			return auth.getUser()
+		}
 	},
 	components: {
 		RegisterBox

@@ -37,15 +37,17 @@
 					</div>
 				</div>
 				<div class="text-center my-5">
+
 					<router-link to="/books"
 						>Back to Book List</router-link
 					>
-				</div>
-					<div class="text-center my-5">
-					<button @click='addBookToReadingList'>
+					
+					<button class="btn btn-primary" @click='addBookToReadingList'>
 						Add Book To Reading List
 					</button>
+
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -99,11 +101,14 @@ export default {
 </script>
 
 <style>
-.details-wrapper {
-	/* border: 1px solid black; */
-}
+
 .book-image {
 	width: 70%;
 	margin: auto;
+
+}
+
+.btn {
+	border: solid red 1px;
 }
 </style>

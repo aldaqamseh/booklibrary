@@ -73,4 +73,5 @@ export default {
 .remove-button.btn {
 	font-size: 0.7rem;
 }
+
 </style>
