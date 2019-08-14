@@ -3,7 +3,46 @@
 		<div class="container">
 			<h1 class="text-center">Welcome to the bkwrm Forums!</h1>
 
-			<div v-for="post in posts" :key="post.id">
+			<div class="add-post my-5">
+				<h5 class="text-center">Make a New Forum Post</h5>
+				<form v-on:submit.prevent class="my-2 my-lg-0">
+					<div
+						class="row d-flex justify-content-center align-items-center"
+					>
+						<div class="col col-9">
+							<input
+								class="form-control mr-sm-2"
+								type="text"
+								placeholder="Add title..."
+								aria-label="Reply"
+								v-model="newPost.title"
+							/>
+						</div>
+						<div class="col col-3 text-right">
+							<button
+								class="btn btn-primary my-2 my-sm-2"
+								type="submit"
+								@click="handleNewPost"
+							>
+								Submit
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<textarea
+								rows="4"
+								class="form-control mr-sm-2"
+								placeholder="Add post..."
+								aria-label="Reply"
+								v-model="newPost.body"
+							/>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div v-for="post in posts.slice().reverse()" :key="post.id">
 				<router-link
 					:to="{
 						params: { postId: post.id },
@@ -32,33 +71,6 @@
 						</div>
 					</div>
 				</router-link>
-			</div>
-		</div>
-		<div class="container">
-			<div class="add-post">
-				<form v-on:submit.prevent class="my-2 my-lg-0">
-					<input
-						class="form-control mr-sm-2"
-						type="text"
-						placeholder="Add title..."
-						aria-label="Reply"
-						v-model="newPost.title"
-					/>
-					<input
-						class="form-control mr-sm-2"
-						type="text"
-						placeholder="Add post..."
-						aria-label="Reply"
-						v-model="newPost.body"
-					/>
-					<button
-						class="btn btn-outline-success float-right my-2 my-sm-2"
-						type="submit"
-						@click="handleNewPost"
-					>
-						Submit
-					</button>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -106,6 +118,8 @@ export default {
 			}).then(res => {
 				console.log(res);
 				this.fetchAllPosts();
+				this.newPost.body = "";
+				this.newPost.title = "";
 			});
 			// .then(res => console.log(res));
 		},
@@ -131,5 +145,9 @@ export default {
 }
 .more {
 	color: cornflowerblue;
+}
+.add-post {
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	padding: 2%;
 }
 </style>

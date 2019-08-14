@@ -1,16 +1,19 @@
 <template>
 	<div class="comments-section mt-4">
-		<h5 class="text-center">Responses</h5>
+		<h5 class="text-center">Replies</h5>
 
 		<div class="comments">
 			<div v-for="comment in comments" :key="comment.id">
 				<div class="list-group-item">
 					<p class="user-name mb-0">
-						<i class="fas fa-user mr-1"></i
-						>{{ comment.user }}
-						<span v-if="comment.datePosted" class="date ml-4">{{
-							comment.datePosted.substring(0, 10)
-						}}</span>
+						<i class="fas fa-user mr-1"></i>{{ comment.user }}
+						<span
+							v-if="comment.datePosted"
+							class="date ml-4"
+							>{{
+								comment.datePosted.substring(0, 10)
+							}}</span
+						>
 					</p>
 
 					<p class="comment-body mb-2">{{ comment.body }}</p>
@@ -27,7 +30,7 @@
 					v-model="newComment.body"
 				/>
 				<button
-					class="btn btn-outline-success float-right my-2 my-sm-2"
+					class="btn btn-primary float-right my-2 my-sm-2"
 					type="submit"
 					@click="addCommentByPostId"
 				>
@@ -44,8 +47,7 @@ import auth from "../auth";
 
 export default {
 	props: {
-		postId: Number,
-		
+		postId: Number
 	},
 	data() {
 		return {
@@ -79,13 +81,13 @@ export default {
 					Accept: "application/json",
 					"Content-Type": "application/json",
 					Authorization: "Bearer " + auth.getToken()
-
 				},
 				body: JSON.stringify(this.newComment)
-			})
-				.then(res => res.json())
-				.then(res => console.log(res))
-				.then(this.fetchCommentsByPostId());
+			}).then(res => {
+				res.json();
+				this.fetchCommentsByPostId();
+				this.newComment.body = "";
+			});
 		}
 	},
 	created() {
