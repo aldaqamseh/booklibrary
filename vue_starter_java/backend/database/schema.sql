@@ -169,5 +169,7 @@ INSERT INTO forum_posts
 VALUES
   (1, 'Loved "It"', 'The book IT, by Stephen King was a great coming of age tale about a lonely clown searcing for love in all the wrong places. Why were those children constantly running away? All he wanted was a friend. I think we''ve all been in that place friends, let''s not judge.');
 
+
+
 COMMIT TRANSACTION;
 

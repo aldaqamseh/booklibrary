@@ -18,7 +18,7 @@
 				</div>
 				<div class="card-body pt-0">
 					<div class="list-group">
-						<responses-section :postId="post.id" />
+						<responses-section :postId="post.id"/>
 					</div>
 				</div>
 			</div>
@@ -28,6 +28,8 @@
 
 <script>
 import ResponsesSection from "@/components/ResponsesSection.vue";
+import auth from "../auth";
+
 export default {
 	name: "forum-post",
 	components: {
@@ -36,6 +38,7 @@ export default {
 	data() {
 		return {
 			post: {},
+			user: auth.getToken(),
 			API_URL:
 				"http://localhost:8080/AuthenticationApplication/api/forum"
 		};
