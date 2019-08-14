@@ -10,8 +10,8 @@
 				>
 				<img
 							v-if="completed"
-							src="https://cdn.iconscout.com/icon/premium/png-256-thumb/checkbox-38-817461.png"
-							class="img-wrapper"
+							src="~@/assets/img/rodentia-icons_ok.svg"
+							class="img-checked"
 						/>
 				</div>
 			</div>
@@ -113,6 +113,15 @@ export default {
 	height: 120px;
 	background-size: contain;
 	background-position: center center;
+	background-repeat: no-repeat;
+	margin: auto;
+}
+
+.img-checked {
+	width: 90px;
+	height: 130px;
+	background-size: contain;
+	background-position: center center; 
 	background-repeat: no-repeat;
 	margin: auto;
 }
