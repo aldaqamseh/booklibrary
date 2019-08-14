@@ -43,17 +43,21 @@
 						<router-link
 							:to="{ name: 'home' }"
 							tag="li"
-							class="nav-item nav-link nav-link-ltr"
+							class="nav-item nav-link d-inline-block mb-2"
 						>
 							Welcome back, {{ userName }}!
 						</router-link>
-						<h1 @click="logout">Logout</h1>
+						<a
+							@click="logout"
+							class="d-inline-block nav-item nav-link logout mb-2"
+							>Logout</a
+						>
 					</div>
 					<div v-else>
 						<router-link
 							:to="{ name: 'login' }"
 							tag="li"
-							class="nav-item nav-link nav-right"
+							class="nav-item nav-link nav-right mb-2"
 						>
 							Login
 						</router-link>
@@ -109,15 +113,16 @@ export default {
 	font-weight: 400;
 }
 
-.nav-link:active{
+.nav-link:active {
 	color: orange;
 }
 .nav-item:hover {
 	cursor: pointer;
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: cornflowerblue;
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+	color: cornflowerblue;
 }
 
 .nav-left {
@@ -146,23 +151,29 @@ img {
 }
 
 .nav-link:hover {
-  opacity: 1;
+	opacity: 1;
 }
 
 .nav-link::before {
-  transition: 300ms;
-  height: 5px;
-  content: "";
-  position: absolute;
-  background-color:cornflowerblue;
+	transition: 300ms;
+	height: 5px;
+	content: "";
+	position: absolute;
+	background-color: cornflowerblue;
 }
 
 .nav-link-ltr::before {
-  width: 0%;
-  bottom: 5px;
+	width: 0%;
+	bottom: 5px;
 }
 
 .nav-link-ltr:hover::before {
-  width: 22%;
+	width: 22%;
+}
+a.d-inline-block.nav-item.nav-link.logout.mb-2 {
+	color: black;
+}
+a.d-inline-block.nav-item.nav-link.logout.mb-2:hover {
+	color: cornflowerblue;
 }
 </style>

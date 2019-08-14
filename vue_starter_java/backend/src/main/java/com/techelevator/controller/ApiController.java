@@ -36,37 +36,36 @@ import com.techelevator.model.UserDao;
 public class ApiController {
 
 	@Autowired
-		private AuthProvider authProvider;
+	private AuthProvider authProvider;
 	@Autowired
-		private BookDao bookDao;
+	private BookDao bookDao;
 	@Autowired
-		private UserDao userDao;
+	private UserDao userDao;
 	@Autowired
-		private PostDao postDao;
+	private PostDao postDao;
 	@Autowired
-		private CommentsDao commentsDao;
-	
-//
-//    @RequestMapping(path = "/", method = RequestMethod.GET)
-//    public String authorizedOnly() throws UnauthorizedException {
-//        /*
-//        You can lock down which roles are allowed by checking
-//        if the current user has a role.
-//        
-//        In this example, if the user does not have the admin role
-//        we send back an unauthorized error.
-//        */
-//        if (!authProvider.userHasRole(new String[] { "admin" })) {
-//            throw new UnauthorizedException();
-//        }
-//        return "Success";
-//    }
+	private CommentsDao commentsDao;
+
+	//
+	// @RequestMapping(path = "/", method = RequestMethod.GET)
+	// public String authorizedOnly() throws UnauthorizedException {
+	// /*
+	// You can lock down which roles are allowed by checking
+	// if the current user has a role.
+	//
+	// In this example, if the user does not have the admin role
+	// we send back an unauthorized error.
+	// */
+	// if (!authProvider.userHasRole(new String[] { "admin" })) {
+	// throw new UnauthorizedException();
+	// }
+	// return "Success";
+	// }
 
 	@GetMapping("/books")
 	public List<Book> getBooks() {
 		return bookDao.getAllBooks();
 	}
-	
 
 	@PostMapping("/books")
 	public ResponseEntity<Book> createProductReview(@RequestBody Book book) {
@@ -75,7 +74,7 @@ public class ApiController {
 				.path("/" + Long.toString(book.getId())).build();
 		return ResponseEntity.created(uriComponent.toUri()).body(book);
 	}
-	
+
 	@GetMapping("/books/{bookId}")
 	public Book getBookById(@PathVariable int bookId) {
 		Book book = bookDao.getBookById(bookId);
@@ -86,31 +85,36 @@ public class ApiController {
 		throw new BookNotFoundException(bookId, "Book could not be found.");
 	}
 
-	
 	@GetMapping("/reading-list")
-	public List<Book> getReadingList(){
-	
-		User currentUser = authProvider.getCurrentUser();
-		int userId =  (int)currentUser.getId();
-		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
-		
+	public List<Book> getReadingList() {
 
-			return readingList;
-			}
-	
-	@PostMapping("/reading-list")
-	public void addToReadingList(@RequestBody Book book){
-	
 		User currentUser = authProvider.getCurrentUser();
-		int userId =  (int) currentUser.getId();
-		bookDao.saveBookToReadingList(book, userId);
+		int userId = (int) currentUser.getId();
+		List<Book> readingList = bookDao.getAllBooksFromReadingList(userId);
+
+		return readingList;
+	}
+
+	@PostMapping("/reading-list")
+	public void addToReadingList(@RequestBody Book book) {
+
+		User currentUser = authProvider.getCurrentUser();
+		int userId = (int) currentUser.getId();
+		String bookToAddTitle = book.getTitle();
+		System.out.println(bookToAddTitle);
+		List<Book> allBooks = bookDao.getAllBooksFromReadingList(userId);
+
+		if (!titleList(allBooks).contains(book.getTitle())) {
+			bookDao.saveBookToReadingList(book, userId);
+		}
+
 	}
 
 	@GetMapping("/forum")
 	public List<Post> getPosts() {
 		return postDao.getAllPosts();
 	}
-	
+
 	@GetMapping("/forum/{postId}")
 	public Post getPostById(@PathVariable int postId) {
 		Post post = (Post) postDao.getAllPostsByPostId(postId);
@@ -120,21 +124,41 @@ public class ApiController {
 		}
 		throw new PostNotFoundException(postId, "Book could not be found.");
 	}
-	
+
 	@PostMapping("/forum")
-	public void addToForum(@RequestBody Post post){
+	public void addToForum(@RequestBody Post post) {
 		postDao.save(post);
 	}
-	
+
 	@GetMapping("/forum/{postId}/comments")
-	public List <Comments> getCommentsByPost(@PathVariable int postId) {
+	public List<Comments> getCommentsByPost(@PathVariable int postId) {
 		return commentsDao.getAllCommentsByPostId(postId);
-		
+
 	}
-	
+
 	@PostMapping("forum/{postId}/comments")
-	public void addToComments(@RequestBody Comments comment){
+	public void addToComments(@RequestBody Comments comment) {
 		commentsDao.save(comment);
+	}
+
+	private boolean bookTitleExists(List<Book> books, String title) {
+		boolean titlesMatch = false;
+		while (!titlesMatch) {
+			for (Book book : books) {
+				if (book.getTitle().equals(title)) {
+					titlesMatch = true;
+				}
+			}
+		}
+		return titlesMatch;
+	}
+
+	private List<String> titleList(List<Book> allBooks) {
+		List<String> newList = new ArrayList<String>();
+		for (Book book : allBooks) {
+			newList.add(book.getTitle());
+		}
+		return newList;
 	}
 
 }
