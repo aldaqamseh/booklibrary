@@ -1,8 +1,8 @@
 <template>
 	<div class="reading-list text-center container">
 		<h1 class="text-center" v-if="isLoggedIn">Your Reading List</h1>
-		<h4 class="text-center" v-if="this.books.length == 0"> Hmm.. there doesn't seem to be anything here. </h4>
-		<a href="/books"><h5 class="text-center" v-if="this.books.length == 0"> Why not add your first book?</h5></a>
+		<h4 class="text-center" v-if="this.books.length == 0 && isLoggedIn"> Hmm.. there doesn't seem to be anything here. </h4>
+		<a href="/books"><h5 class="text-center" v-if="this.books.length == 0 && isLoggedIn"> Why not add your first book?</h5></a>
 
 
 
