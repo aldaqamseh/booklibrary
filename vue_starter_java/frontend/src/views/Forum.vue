@@ -3,7 +3,7 @@
 		<div class="container">
 			<h1 class="text-center">Welcome to the bkwrm Forums!</h1>
 
-			<div class="add-post my-5">
+			<div v-if="username" class="add-post my-5">
 				<h5 class="text-center">Make a New Forum Post</h5>
 				<form v-on:submit.prevent class="my-2 my-lg-0">
 					<div
@@ -91,11 +91,15 @@ export default {
 			newPost: {
 				body: "",
 				title: "",
-				user: auth.getUser().sub
+				user: this.username
 			}
 		};
 	},
-	components: {},
+	computed: {
+		username() {
+			if (auth.getUser()) return auth.getUser().sub;
+		}
+	},
 	methods: {
 		fetchAllPosts() {
 			fetch(this.API_URL)
