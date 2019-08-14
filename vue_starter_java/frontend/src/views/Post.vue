@@ -22,6 +22,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </template>
@@ -29,6 +30,7 @@
 <script>
 import ResponsesSection from "@/components/ResponsesSection.vue";
 import auth from "../auth";
+
 
 export default {
 	name: "forum-post",
@@ -38,6 +40,7 @@ export default {
 	data() {
 		return {
 			post: {},
+			comments: [],
 			user: auth.getToken(),
 			API_URL:
 				"http://localhost:8080/AuthenticationApplication/api/forum"

@@ -46,7 +46,7 @@ public class JdbcCommentsDao implements CommentsDao {
 		theComment.setPostId(results.getInt("post_id"));
 		theComment.setId(results.getInt("comment_id"));
 		theComment.setDatePosted(results.getDate("date_posted"));
-		theComment.setUserId(results.getInt("user_id"));
+		theComment.setUser(results.getString("user_username"));
 
 		return theComment;
 	}
@@ -54,12 +54,10 @@ public class JdbcCommentsDao implements CommentsDao {
 	@Override
 	public void save(Comments saveComment) {
 
-		int id = getNextId();
-
-		String sqlSave = "INSERT INTO forum_comments (post_id, user_id, body, date_posted ) " + "values (?,?,?,?)";
-		jdbcTemplate.update(sqlSave, saveComment.getPostId(), saveComment.getUserId(), saveComment.getBody(),
+		String sqlSave = "INSERT INTO forum_comments (post_id, user_username, body, date_posted ) "
+				+ "values (?,?,?,?)";
+		jdbcTemplate.update(sqlSave, saveComment.getPostId(), saveComment.getUser(), saveComment.getBody(),
 				saveComment.getDatePosted());
-		saveComment.setId(id);
 
 	}
 

@@ -17,7 +17,7 @@
 						<h5 class="mt-1 d-md-inline">{{ post.title }}</h5>
 						<p class="m-0 d-md-inline float-md-right">
 							<i class="fas fa-user mr-1"></i>Username:
-							{{ post.userId }}
+							{{ post.user }}
 							<span class="ml-5"
 								>Date Posted:
 								{{ post.datePosted }}</span
@@ -34,10 +34,40 @@
 				</router-link>
 			</div>
 		</div>
+		<div class="container">
+			<div class="add-post">
+			<form v-on:submit.prevent class="my-2 my-lg-0">
+				<input
+					class="form-control mr-sm-2"
+					type="text"
+					placeholder="Add title..."
+					aria-label="Reply"
+					v-model="newPost.title"
+				/>
+				<input
+					class="form-control mr-sm-2"
+					type="text"
+					placeholder="Add post..."
+					aria-label="Reply"
+					v-model="newPost.body"
+				/>
+				<button
+					class="btn btn-outline-success float-right my-2 my-sm-2"
+					type="submit"
+					@click="addPost"
+				>
+					Submit
+				</button>
+			</form>
+		</div>
+		</div>
 	</div>
 </template>
 
 <script>
+import moment from "moment";
+import auth from "../auth";
+
 export default {
 	data() {
 		return {
@@ -46,8 +76,8 @@ export default {
 			posts: [],
 			newPost: {
 				body: "",
-				username: "",
-				datePosted: ""
+				title: "",
+				user: auth.getUser().sub,
 			}
 		};
 	},
@@ -62,6 +92,21 @@ export default {
 					this.posts = posts;
 					console.log(this.posts);
 				});
+		},
+		addPost() {
+			fetch(this.API_URL, {
+				method: "POST",
+				mode: "cors",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + auth.getToken()
+				},
+				body: JSON.stringify(this.newPost)
+			})
+				.then(res => res.json())
+				.then(res => console.log(res))
+				.then(this.fetchAllPosts());
 		}
 	},
 

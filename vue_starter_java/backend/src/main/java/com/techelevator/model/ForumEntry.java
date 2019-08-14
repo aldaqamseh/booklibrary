@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ForumEntry {
 	private int id;
-	private int userId ;
+	private String user;
 	private String title ;
 	private String body;
 	private Date datePosted;
@@ -18,11 +18,11 @@ public class ForumEntry {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	public String getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(String userName) {
+		this.user = userName;
 	}
 	public String getTitle() {
 		return title;

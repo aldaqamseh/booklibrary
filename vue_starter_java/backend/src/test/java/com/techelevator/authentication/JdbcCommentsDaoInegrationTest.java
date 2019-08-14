@@ -42,7 +42,7 @@ public class JdbcCommentsDaoInegrationTest extends DAOIntegrationTest {
 		testPost.setBody("test body");
 		testPost.setId(2);
 		testPost.setTitle("test title");
-		testPost.setUserId(1);
+		testPost.setUser("kt123");
 		testPost.setDatePosted(new Date(1989-8-06));
 		
 		daoPost.save(testPost);
@@ -53,12 +53,12 @@ public class JdbcCommentsDaoInegrationTest extends DAOIntegrationTest {
 		
 		testComment1.setBody("test comments1 body");
 		testComment1.setDatePosted(new Date(1989-8-06));
-		testComment1.setUserId(1);
+		testComment1.setUser("Moh123");
 		testComment1.setPostId(2);
 		
 		testComment2.setBody("test comments2 body");
 		testComment2.setDatePosted(new Date(1989-8-06));
-		testComment2.setUserId(1);
+		testComment2.setUser("Luke123");
 	}
 //	@Test
 //	public void assertCommentsAreEqual() {

@@ -122,7 +122,7 @@ public class ApiController {
 	}
 	
 	@PostMapping("/forum")
-	public void addToReadingList(@RequestBody Post post){
+	public void addToForum(@RequestBody Post post){
 		postDao.save(post);
 	}
 	

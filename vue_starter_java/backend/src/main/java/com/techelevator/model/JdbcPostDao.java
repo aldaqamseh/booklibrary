@@ -42,7 +42,7 @@ public class JdbcPostDao implements PostDao {
 		Post thePost;
 		thePost = new Post();
 		thePost.setId(results.getInt("post_id"));
-		thePost.setUserId(results.getInt("user_id"));
+		thePost.setUser(results.getString("user_username"));
 		thePost.setTitle(results.getString("title"));
 		thePost.setBody(results.getString("body"));
 		thePost.setDatePosted(results.getDate("date_posted"));
@@ -53,13 +53,10 @@ public class JdbcPostDao implements PostDao {
 
 	@Override
 	public void save(Post savePost) {
-	
-		int id = getNextId();
-		String sqlSave = "INSERT INTO forum_posts (id,user_id,title,body,date_posted ) " +
-				"values (?,?,?,?,?)";
+		String sqlSave = "INSERT INTO forum_posts (user_username, title, body) " +
+				"values (?,?,?)";
 
-		jdbcTemplate.update(sqlSave, id, savePost.getUserId(),savePost.getTitle(),savePost.getBody(),savePost.getDatePosted());
-		savePost.setId(id);
+		jdbcTemplate.update(sqlSave, savePost.getUser(), savePost.getTitle(), savePost.getBody());
 		
 	}
 

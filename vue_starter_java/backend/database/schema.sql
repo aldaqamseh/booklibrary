@@ -54,6 +54,26 @@ CREATE TABLE forum_posts
 (
 
   post_id SERIAL PRIMARY KEY,
+  user_username VARCHAR REFERENCES users (username) NOT NULL,
+  title VARCHAR NOT NULL,
+  body VARCHAR NOT NULL,
+  date_posted DATE DEFAULT CURRENT_DATE
+
+);
+
+CREATE TABLE forum_comments
+(
+
+  comment_id SERIAL PRIMARY KEY,
+  post_id INTEGER REFERENCES forum_posts (post_id) NOT NULL,
+  user_username VARCHAR REFERENCES users (username) NOT NULL,
+  body VARCHAR NOT NULL,
+  date_posted DATE DEFAULT CURRENT_DATE
+);
+/*CREATE TABLE forum_posts
+(
+
+  post_id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users (user_id) NOT NULL,
   title VARCHAR NOT NULL,
   body VARCHAR NOT NULL,
@@ -69,7 +89,7 @@ CREATE TABLE forum_comments
   user_id INTEGER REFERENCES users (user_id) NOT NULL,
   body VARCHAR NOT NULL,
   date_posted DATE DEFAULT CURRENT_DATE
-);
+);*/
 
 
 CREATE TABLE user_books
@@ -165,9 +185,9 @@ VALUES
   ('admin124', 'sJAZKd0P3Qwdl7gNxIm5pw==', 'dHj2Bp60feGi2YSm2L3kqllVpIRpEQSDqVoJgCr/eSyPW8Q3cJyKNlk8j9kUZbt5EGvBMz8fSSYDcLma3rMovFQVjx5yz1XDkQStYvz5XODDxB4rnhKMjwYmPfbJmSIaxCQOeo50bhDJXD/stM8GNOnVT5V7XnKZB6/gTZiDfDo=', 'admin');
 
 INSERT INTO forum_posts
-  (user_id, title, body)
+  (user_username, title, body)
 VALUES
-  (1, 'Loved "It"', 'The book IT, by Stephen King was a great coming of age tale about a lonely clown searcing for love in all the wrong places. Why were those children constantly running away? All he wanted was a friend. I think we''ve all been in that place friends, let''s not judge.');
+  ('joe123', 'Loved "It"', 'The book IT, by Stephen King was a great coming of age tale about a lonely clown searcing for love in all the wrong places. Why were those children constantly running away? All he wanted was a friend. I think we''ve all been in that place friends, let''s not judge.');
 
 COMMIT TRANSACTION;
 

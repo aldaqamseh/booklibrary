@@ -7,8 +7,8 @@
 				<div class="list-group-item">
 					<p class="user-name mb-0">
 						<i class="fas fa-user mr-1"></i
-						>{{ comment.userId }}
-						<span class="date ml-4">{{
+						>{{ comment.user }}
+						<span v-if="comment.datePosted" class="date ml-4">{{
 							comment.datePosted.substring(0, 10)
 						}}</span>
 					</p>
@@ -26,12 +26,6 @@
 					aria-label="Reply"
 					v-model="newComment.body"
 				/>
-				<input
-					type="hidden"
-					value="user1"
-					v-model="newComment.username"
-				/>
-
 				<button
 					class="btn btn-outline-success float-right my-2 my-sm-2"
 					type="submit"
@@ -50,7 +44,7 @@ import auth from "../auth";
 
 export default {
 	props: {
-		postId: String,
+		postId: Number,
 		
 	},
 	data() {
@@ -60,7 +54,7 @@ export default {
 				"http://localhost:8080/AuthenticationApplication/api/forum/",
 			newComment: {
 				body: "",
-				username: "",
+				user: auth.getUser().sub,
 				datePosted: moment().format("YYYY-MM-DD"),
 				postId: this.postId
 			}
@@ -78,8 +72,7 @@ export default {
 				});
 		},
 		addCommentByPostId() {
-			console.log(this.user);
-			fetch(this.API_URL + "/" + this.postId + "/comments", {
+			fetch(this.API_URL + this.postId + "/comments", {
 				method: "POST",
 				mode: "cors",
 				headers: {
