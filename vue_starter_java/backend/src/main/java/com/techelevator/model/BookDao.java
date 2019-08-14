@@ -15,6 +15,8 @@ public interface BookDao {
 	List<Book> getAllBooksFromReadingList(int userId);
 
 	void saveBookToReadingList(Book book, int userId);
+	
+	void removeBookFromReadingList(Book book, int userId);
 
 	
 }
