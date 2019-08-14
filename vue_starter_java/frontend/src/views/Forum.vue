@@ -16,6 +16,7 @@
 								placeholder="Add title..."
 								aria-label="Reply"
 								v-model="newPost.title"
+								required
 							/>
 						</div>
 						<div class="col col-3 text-right">
@@ -36,6 +37,7 @@
 								placeholder="Add post..."
 								aria-label="Reply"
 								v-model="newPost.body"
+								required
 							/>
 						</div>
 					</div>
@@ -106,22 +108,24 @@ export default {
 				});
 		},
 		addPost() {
-			fetch(this.API_URL, {
-				method: "POST",
-				mode: "cors",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + auth.getToken()
-				},
-				body: JSON.stringify(this.newPost)
-			}).then(res => {
-				console.log(res);
-				this.fetchAllPosts();
-				this.newPost.body = "";
-				this.newPost.title = "";
-			});
-			// .then(res => console.log(res));
+			if (this.newPost.title && this.newPost.body) {
+				fetch(this.API_URL, {
+					method: "POST",
+					mode: "cors",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + auth.getToken()
+					},
+					body: JSON.stringify(this.newPost)
+				}).then(res => {
+					console.log(res);
+					this.fetchAllPosts();
+					this.newPost.body = "";
+					this.newPost.title = "";
+				});
+				// .then(res => console.log(res));
+			}
 		},
 		handleNewPost() {
 			this.addPost();

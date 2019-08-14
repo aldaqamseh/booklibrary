@@ -28,6 +28,7 @@
 					placeholder="Add reply..."
 					aria-label="Reply"
 					v-model="newComment.body"
+					required
 				/>
 				<button
 					class="btn btn-primary float-right my-2 my-sm-2"
@@ -74,20 +75,22 @@ export default {
 				});
 		},
 		addCommentByPostId() {
-			fetch(this.API_URL + this.postId + "/comments", {
-				method: "POST",
-				mode: "cors",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + auth.getToken()
-				},
-				body: JSON.stringify(this.newComment)
-			}).then(res => {
-				res.json();
-				this.fetchCommentsByPostId();
-				this.newComment.body = "";
-			});
+			if (this.newComment.body) {
+				fetch(this.API_URL + this.postId + "/comments", {
+					method: "POST",
+					mode: "cors",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + auth.getToken()
+					},
+					body: JSON.stringify(this.newComment)
+				}).then(res => {
+					res.json();
+					this.fetchCommentsByPostId();
+					this.newComment.body = "";
+				});
+			}
 		}
 	},
 	created() {
