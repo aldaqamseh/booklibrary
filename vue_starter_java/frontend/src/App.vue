@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<nav-bar @logout="handleLogout" :user="user" />
-		<div class="container-fluid p-0">
+		<div class="container-fluid">
 			<router-view @login="handleLogin" />
 		</div>
 	</div>
@@ -40,6 +40,7 @@ export default {
 
 <style>
 .container-fluid {
+	/* margin: 0px; */
 	/* border: solid blue 1px; */
 }
 </style>

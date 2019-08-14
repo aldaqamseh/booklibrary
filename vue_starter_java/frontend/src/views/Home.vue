@@ -67,7 +67,7 @@
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
 					to have you be a part of our community, so what are you
-					waiting for? <br /><a href="register">Join today!</a>
+					waiting for? <a href="register">Join today!</a>
 				</p>
 			</div>
 		</div>
@@ -127,26 +127,31 @@ export default {
 }
 
 .col-4 {
-	/* border: solid coral 5px; */
-	text-align: center;
+	border: solid coral 1px;
+	text-align: left;
+	padding: 25px;
 }
 
 #info {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
+	border: solid blue 1px;
 }
 
 #heart {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
+	border: solid blue 1px;
 }
 
 #forum {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
+	border: solid blue 1px;
+	
 }
 
 h1 {
@@ -156,4 +161,8 @@ h1 {
 p {
 	font-family: "Open Sans";
 }
+
+
+
+
 </style>
