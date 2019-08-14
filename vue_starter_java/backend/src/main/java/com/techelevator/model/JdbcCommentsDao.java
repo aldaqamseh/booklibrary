@@ -57,7 +57,6 @@ public class JdbcCommentsDao implements CommentsDao {
 		int id = getNextId();
 
 		String sqlSave = "INSERT INTO forum_comments (post_id, user_id, body, date_posted ) " + "values (?,?,?,?)";
-
 		jdbcTemplate.update(sqlSave, saveComment.getPostId(), saveComment.getUserId(), saveComment.getBody(),
 				saveComment.getDatePosted());
 		saveComment.setId(id);

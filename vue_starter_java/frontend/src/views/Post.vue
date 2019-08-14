@@ -4,7 +4,7 @@
 			<div>
 				<h5>{{ post.title }}</h5>
 				<p>
-					<i class="fas fa-user mr-1"></i>{{ post.username }}
+					<i class="fas fa-user mr-1"></i>{{ post.userId }}
 					<span class="ml-5"
 						>Date Posted:
 						{{ post.datePosted.substring(0, 10) }}</span
@@ -54,7 +54,7 @@ export default {
 				})
 				.then(post => {
 					this.post = post;
-					console.log(this.posts);
+					console.log(this.post);
 				});
 		}
 	},
