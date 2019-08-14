@@ -21,21 +21,21 @@
 					<router-link
 						:to="{ name: 'books' }"
 						tag="li"
-						class="nav-item nav-link"
+						class="nav-item nav-link nav-link-ltr"
 					>
 						Search
 					</router-link>
 					<router-link
 						:to="{ name: 'myList' }"
 						tag="li"
-						class="nav-item nav-link"
+						class="nav-item nav-link nav-link-ltr"
 					>
-						myList
+						myList™
 					</router-link>
 					<router-link
 						:to="{ name: 'forum' }"
 						tag="li"
-						class="nav-item nav-link"
+						class="nav-item nav-link nav-link-ltr"
 					>
 						Forums
 					</router-link>
@@ -43,7 +43,7 @@
 						<router-link
 							:to="{ name: 'home' }"
 							tag="li"
-							class="nav-item nav-link"
+							class="nav-item nav-link nav-link-ltr"
 						>
 							Welcome back, {{ userName }}!
 						</router-link>
@@ -105,13 +105,21 @@ export default {
 	/* box-shadow: 5px 1px 5px; */
 }
 
+.nav-link {
+	font-weight: 400;
+}
+
+.nav-link:active{
+	color: orange;
+}
 .nav-item:hover {
 	cursor: pointer;
 }
-.nav-item > div:hover {
-	color: cornflowerblue;
-	text-decoration: underline;
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: cornflowerblue;
 }
+
 .nav-left {
 	position: fixed;
 	left: 0;
@@ -127,8 +135,34 @@ li.nav-item.nav-link {
 	color: black;
 }
 
+/* .nav-item nav-link nav-link-ltr router-link-exact-active router-link-active {
+	color: orange;
+	text-emphasis: underline;
+} */
+
 img {
 	width: 200px;
 	height: 200px;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link::before {
+  transition: 300ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color:cornflowerblue;
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 5px;
+}
+
+.nav-link-ltr:hover::before {
+  width: 22%;
 }
 </style>
