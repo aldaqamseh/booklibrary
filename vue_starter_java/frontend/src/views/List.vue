@@ -1,22 +1,15 @@
 <template>
-	<div class="reading-list text-center">
+	<div class="reading-list text-center container">
 		<h1 class="text-center">Your Reading List</h1>
 		<div v-for="book in books" :key="book.id">
-			<h3 class="text-center">{{ book.title }}</h3>
-			<h3 class="text-center">{{ book.author }}</h3>
-			<p class="text-center">{{ book.description }}</p>
-			<img v-if="book.imgUrl" :src="book.imgUrl" class="book-img" />
-			<img
-				v-else
-				src="https://place-hold.it/163x218"
-				class="book-img"
-			/>
+			<list-row :book="book" />
 		</div>
 	</div>
 </template>
 
 <script>
 import auth from "../auth";
+import ListRow from "@/components/ListRow.vue";
 
 export default {
 	data() {
@@ -25,6 +18,9 @@ export default {
 				"http://localhost:8080/AuthenticationApplication/api/reading-list",
 			books: []
 		};
+	},
+	components: {
+		ListRow
 	},
 	methods: {
 		fetchAllBooks() {
