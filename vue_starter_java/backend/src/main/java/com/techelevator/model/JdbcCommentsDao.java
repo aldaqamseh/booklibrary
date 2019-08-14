@@ -44,7 +44,7 @@ public class JdbcCommentsDao implements CommentsDao {
 		theComment = new Comments();
 		theComment.setBody(results.getString("body"));
 		theComment.setPostId(results.getInt("post_id"));
-		theComment.setId(results.getInt("id"));
+		theComment.setId(results.getInt("comment_id"));
 		theComment.setDatePosted(results.getDate("date_posted"));
 		theComment.setUserId(results.getInt("user_id"));
 
@@ -56,9 +56,8 @@ public class JdbcCommentsDao implements CommentsDao {
 
 		int id = getNextId();
 
-		String sqlSave = "INSERT INTO forum_comments (id,post_id,user_id,body,date_posted ) " + "values (?,?,?,?,?)";
-
-		jdbcTemplate.update(sqlSave, id, saveComment.getPostId(), saveComment.getUserId(), saveComment.getBody(),
+		String sqlSave = "INSERT INTO forum_comments (post_id, user_id, body, date_posted ) " + "values (?,?,?,?)";
+		jdbcTemplate.update(sqlSave, saveComment.getPostId(), saveComment.getUserId(), saveComment.getBody(),
 				saveComment.getDatePosted());
 		saveComment.setId(id);
 
@@ -66,7 +65,7 @@ public class JdbcCommentsDao implements CommentsDao {
 
 	private int getNextId() {
 
-		String sqlSelectNextId = "SELECT nextval('forum_comments_id_seq')";
+		String sqlSelectNextId = "SELECT nextval('forum_comments_comment_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
 		if (results.next()) {
