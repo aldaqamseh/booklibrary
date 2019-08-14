@@ -18,7 +18,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto text-center">
-					<router-link 
+					<router-link
 						:to="{ name: 'books' }"
 						tag="li"
 						class="nav-item nav-link nav-link-ltr"
@@ -26,8 +26,7 @@
 						Search
 					</router-link>
 					<router-link
-					
-						:to="{ name: 'myList' }" 
+						:to="{ name: 'myList' }"
 						tag="li"
 						class="nav-item nav-link nav-link-ltr"
 					>
@@ -39,6 +38,13 @@
 						class="nav-item nav-link nav-link-ltr"
 					>
 						Forums
+					</router-link>
+					<router-link
+						v-if="isAdmin"
+						:to="{ name: 'admin' }"
+						tag="li"
+						class="nav-item nav-link admin-tools"
+						>Admin Tools
 					</router-link>
 					<div v-if="userName" class="nav-right">
 						<router-link
@@ -87,11 +93,17 @@ export default {
 			} else {
 				return null;
 			}
+		},
+		isAdmin() {
+			if (this.user) return this.user.rol == "admin";
 		}
 	},
 	methods: {
 		getUserName() {
 			return auth.getUser().sub;
+		},
+		getUserRole() {
+			return auth.getUser().rol;
 		},
 		logout() {
 			this.$emit("logout");
@@ -169,12 +181,16 @@ img {
 }
 
 .nav-link-ltr:hover::before {
-	width: 22%;
+	width: 55px;
 }
 a.d-inline-block.nav-item.nav-link.logout.mb-2 {
 	color: black;
 }
 a.d-inline-block.nav-item.nav-link.logout.mb-2:hover {
 	color: cornflowerblue;
+}
+li.nav-item.nav-link.admin-tools {
+	color: red;
+	border-left: 1px solid black;
 }
 </style>

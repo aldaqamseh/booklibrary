@@ -20,7 +20,9 @@
 			</div>
 
 			<div class="col col-4">
-				<img id="info" src="~@/assets/img/info.svg" />
+				<p class="text-center">
+					<img id="info" src="~@/assets/img/info.svg" />
+				</p>
 				<p>
 					<strong>bkwrm</strong> is an exclusive online community
 					where book lovers come to discuss the hottest trends in
@@ -33,7 +35,9 @@
 			</div>
 
 			<div class="col col-4">
-				<img id="heart" src="~@/assets/img/heart.svg" />
+				<p class="text-center">
+					<img id="heart" src="~@/assets/img/heart.svg" />
+				</p>
 
 				<p>
 					<em
@@ -62,13 +66,20 @@
 			</div>
 
 			<div class="col col-4">
-				<img id="forum" src="~@/assets/img/forum.svg" />
+				<p class="text-center">
+					<img id="forum" src="~@/assets/img/forum.svg" />
+				</p>
 				<p>
 					The bkwrm forums are a great place for open minded book
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
 					to have you be a part of our community, so what are you
-					waiting for? <a href="register">Join today!</a>
+					waiting for?
+				</p>
+				<p class="text-center">
+					<button class="btn btn-primary">
+						<a href="register">Join today!</a>
+					</button>
 				</p>
 			</div>
 		</div>
@@ -81,8 +92,8 @@ import auth from "../auth";
 
 export default {
 	computed: {
-		isLoggedIn(){
-			return auth.getUser()
+		isLoggedIn() {
+			return auth.getUser();
 		}
 	},
 	components: {
@@ -100,10 +111,6 @@ export default {
 	/* border: solid red 1px; */
 	min-height: 70vh;
 	background-position: 0% 55%;
-}
-
-.container-fluid {
-	/* border: solid green 1px; */
 }
 
 .justify-content-start {
@@ -128,7 +135,6 @@ export default {
 }
 
 .col-4 {
-	border: solid coral 1px;
 	text-align: left;
 	padding: 25px;
 }
@@ -137,22 +143,18 @@ export default {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
-	border: solid blue 1px;
 }
 
 #heart {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
-	border: solid blue 1px;
 }
 
 #forum {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
-	border: solid blue 1px;
-	
 }
 
 h1 {
@@ -163,7 +165,7 @@ p {
 	font-family: "Open Sans";
 }
 
-
-
-
+.btn a {
+	color: white;
+}
 </style>
