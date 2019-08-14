@@ -36,30 +36,30 @@
 		</div>
 		<div class="container">
 			<div class="add-post">
-			<form v-on:submit.prevent class="my-2 my-lg-0">
-				<input
-					class="form-control mr-sm-2"
-					type="text"
-					placeholder="Add title..."
-					aria-label="Reply"
-					v-model="newPost.title"
-				/>
-				<input
-					class="form-control mr-sm-2"
-					type="text"
-					placeholder="Add post..."
-					aria-label="Reply"
-					v-model="newPost.body"
-				/>
-				<button
-					class="btn btn-outline-success float-right my-2 my-sm-2"
-					type="submit"
-					@click="addPost"
-				>
-					Submit
-				</button>
-			</form>
-		</div>
+				<form v-on:submit.prevent class="my-2 my-lg-0">
+					<input
+						class="form-control mr-sm-2"
+						type="text"
+						placeholder="Add title..."
+						aria-label="Reply"
+						v-model="newPost.title"
+					/>
+					<input
+						class="form-control mr-sm-2"
+						type="text"
+						placeholder="Add post..."
+						aria-label="Reply"
+						v-model="newPost.body"
+					/>
+					<button
+						class="btn btn-outline-success float-right my-2 my-sm-2"
+						type="submit"
+						@click="handleNewPost"
+					>
+						Submit
+					</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </template>
@@ -77,7 +77,7 @@ export default {
 			newPost: {
 				body: "",
 				title: "",
-				user: auth.getUser().sub,
+				user: auth.getUser().sub
 			}
 		};
 	},
@@ -103,10 +103,14 @@ export default {
 					Authorization: "Bearer " + auth.getToken()
 				},
 				body: JSON.stringify(this.newPost)
-			})
-				.then(res => res.json())
-				.then(res => console.log(res))
-				.then(this.fetchAllPosts());
+			}).then(res => {
+				console.log(res);
+				this.fetchAllPosts();
+			});
+			// .then(res => console.log(res));
+		},
+		handleNewPost() {
+			this.addPost();
 		}
 	},
 
