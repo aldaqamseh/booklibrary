@@ -46,9 +46,12 @@
 
 <script>
 import moment from "moment";
+import auth from "../auth";
+
 export default {
 	props: {
-		postId: String
+		postId: String,
+		
 	},
 	data() {
 		return {
@@ -75,12 +78,15 @@ export default {
 				});
 		},
 		addCommentByPostId() {
-			fetch(this.API_URL + this.postId + "/comments", {
+			console.log(this.user);
+			fetch(this.API_URL + "/" + this.postId + "/comments", {
 				method: "POST",
 				mode: "cors",
 				headers: {
 					Accept: "application/json",
-					"Content-Type": "application/json"
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + auth.getToken()
+
 				},
 				body: JSON.stringify(this.newComment)
 			})

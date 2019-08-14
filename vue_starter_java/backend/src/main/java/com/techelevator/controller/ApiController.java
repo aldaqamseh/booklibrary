@@ -123,15 +123,18 @@ public class ApiController {
 	
 	@PostMapping("/forum")
 	public void addToReadingList(@RequestBody Post post){
-	
 		postDao.save(post);
 	}
 	
 	@GetMapping("/forum/{postId}/comments")
 	public List <Comments> getCommentsByPost(@PathVariable int postId) {
 		return commentsDao.getAllCommentsByPostId(postId);
-
 		
+	}
+	
+	@PostMapping("forum/{postId}/comments")
+	public void addToComments(@RequestBody Comments comment){
+		commentsDao.save(comment);
 	}
 
 }
