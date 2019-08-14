@@ -28,7 +28,8 @@
 						Mark as Read
 					</label>
 				</div>
-				<button class="btn btn-primary remove-button mt-1">
+
+				<button class="btn btn-primary remove-button mt-1" @click="remove">
 					Remove From List
 				</button>
 			</div>
@@ -37,7 +38,15 @@
 </template>
 
 <script>
+import auth from "../auth"
+
 export default {
+	data() {
+		return {
+			API_URL:
+				"http://localhost:8080/AuthenticationApplication/api/reading-list",
+		};
+	},
 	props: {
 		book: Object
 	},
@@ -45,7 +54,26 @@ export default {
 		getImageUrl() {
 			return '"' + this.book.imgUrl + '"';
 		}
-	}
+	},
+	methods:{
+		remove(){
+		this.$emit('remove');
+		this.removeFromList();
+		},
+		removeFromList(){
+			fetch(this.API_URL, {
+				method: "DELETE",
+				mode: "cors",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + auth.getToken()
+
+				},
+				body: JSON.stringify(this.book)
+			})
+		}
+		}
 };
 </script>
 

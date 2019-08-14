@@ -56,6 +56,11 @@ public class JdbcBookDao implements BookDao {
 		book.setId(id);
 	}
 	
+	@Override
+	public void removeBookFromReadingList(Book book, int userId) {
+		String sqlRemoveFromReadingList = "DELETE FROM user_books WHERE book_id = ? AND user_id = ?";
+		jdbcTemplate.update(sqlRemoveFromReadingList, book.getId(), userId);
+	}
 	
 	@Override
 	public Book getBookById(int bookId) {
