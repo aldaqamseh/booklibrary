@@ -172,7 +172,7 @@ submit[type="button"],
 input[type="submit"],
 input[type="reset"],
 button[type="submit"] {
-	background-color: #56baed;
+	background-color:cornflowerblue;
 	border: none;
 	color: white;
 	padding: 15px 80px;

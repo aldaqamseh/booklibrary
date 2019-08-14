@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -107,7 +108,6 @@ public class ApiController {
 		if (!titleList(allBooks).contains(book.getTitle())) {
 			bookDao.saveBookToReadingList(book, userId);
 		}
-
 	}
 
 	@GetMapping("/forum")
@@ -141,6 +141,16 @@ public class ApiController {
 		commentsDao.save(comment);
 	}
 
+	@DeleteMapping("/reading-list")
+	public void deleteFromReadingList(@RequestBody Book book) {
+		User currentUser = authProvider.getCurrentUser();
+		int userId = (int) currentUser.getId();
+		List<Book> allBooks = bookDao.getAllBooksFromReadingList(userId);
+		if (titleList(allBooks).contains(book.getTitle())) {
+		bookDao.removeBookFromReadingList(book, userId);
+		}
+	}
+	
 	private boolean bookTitleExists(List<Book> books, String title) {
 		boolean titlesMatch = false;
 		while (!titlesMatch) {
