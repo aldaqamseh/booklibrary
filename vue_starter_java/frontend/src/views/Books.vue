@@ -2,7 +2,8 @@
 	<div class="books container-fluid">
 		<h1 class="text-center">Book List</h1>
 		<h5 class ="text-center"> <em>Here are the books currently in stock at the bkwrm lending library in Columbus, OH</em> </h5>
-		
+		<br>
+		<br>
 		<search-books v-on:search="handleFilter" />
 		<div class="row justify-content-center align-items-start mt-4">
 			<div
