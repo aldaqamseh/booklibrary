@@ -45,7 +45,7 @@
 						Add Book To Reading List
 					</button>
 
-					<div v-if="bookAdded" v-bind:class="{ fadeOutUp: bookAdded }">Added!</div>
+					<div v-if="bookAdded" v-bind:class="{ bookAdded: fadeOutUp }">Added!</div>
 
 
 				</div>
@@ -121,8 +121,8 @@ export default {
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -100%, 1);
+    transform: translate3d(0, -100%, 1);
   }
 }
 
@@ -133,8 +133,8 @@ export default {
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -100%, 1);
+    transform: translate3d(0, -100%, 1);
   }
 }
 

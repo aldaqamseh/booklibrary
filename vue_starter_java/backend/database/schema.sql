@@ -95,7 +95,8 @@ CREATE TABLE forum_comments
 CREATE TABLE user_books
 (
   user_id integer REFERENCES users (user_id) NOT NULL,
-  book_id integer REFERENCES books (book_id) NOT NULL
+  book_id integer REFERENCES books (book_id) NOT NULL,
+  completed BOOLEAN
 );
 
 
@@ -195,3 +196,4 @@ VALUES
 
 COMMIT TRANSACTION;
 
+SELECT * FROM user_books
