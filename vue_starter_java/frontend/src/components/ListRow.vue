@@ -8,11 +8,12 @@
 						backgroundImage: 'url(' + getImageUrl + ')'
 					}"
 				>
-				<img
+				<div
 							v-if="completed"
-							src="~@/assets/img/rodentia-icons_ok.svg"
 							class="img-checked"
-						/>
+						>
+						<img src="~@/assets/img/readcheck.png"/>
+				</div>
 				</div>
 			</div>
 			<div class="col col-7 text-left">
@@ -118,13 +119,15 @@ export default {
 }
 
 .img-checked {
-	width: 90px;
-	height: 130px;
-	background-size: contain;
-	background-position: center center; 
-	background-repeat: no-repeat;
-	margin: auto;
+	width: 80px;
+	height: 120px;
+	text-align: left;
+	background-color: hsl(220, 100%, 50%, 0.3);
 }
+
+.img-checked img{
+	width: 40px;
+} 
 .book-title {
 	font-size: 1rem;
 }

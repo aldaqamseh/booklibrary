@@ -115,10 +115,10 @@ public class ApiController {
 	public void updateReadingList(@RequestBody Book book) {
 		User currentUser = authProvider.getCurrentUser();
 		int userId = (int) currentUser.getId();
-		
+
 		bookDao.updateReadingList(book, userId);
 	}
-	
+
 	@GetMapping("/forum")
 	public List<Post> getPosts() {
 		return postDao.getAllPosts();
@@ -156,10 +156,10 @@ public class ApiController {
 		int userId = (int) currentUser.getId();
 		List<Book> allBooks = bookDao.getAllBooksFromReadingList(userId);
 		if (titleList(allBooks).contains(book.getTitle())) {
-		bookDao.removeBookFromReadingList(book, userId);
+			bookDao.removeBookFromReadingList(book, userId);
 		}
 	}
-	
+
 	private boolean bookTitleExists(List<Book> books, String title) {
 		boolean titlesMatch = false;
 		while (!titlesMatch) {

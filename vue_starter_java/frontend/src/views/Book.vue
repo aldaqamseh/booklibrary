@@ -41,10 +41,12 @@
 					<router-link to="/books"
 						>Back to Book List</router-link
 					>
-					
 					<button class="btn btn-primary" @click='addBookToReadingList'>
 						Add Book To Reading List
 					</button>
+
+					<div v-if="bookAdded" v-bind:class="{ fadeOutUp: bookAdded }">Added!</div>
+
 
 				</div>
 				
@@ -61,6 +63,7 @@ export default {
 	data() {
 		return {
 			book: {},
+			bookAdded: false,
 			API_URL:
 				"http://localhost:8080/AuthenticationApplication/api/books/"
 		};
@@ -91,7 +94,10 @@ export default {
 					body: JSON.stringify(this.book)
 
 			})
-				.then(res => console.log(res));
+				.then(res => {
+					console.log(res)
+					this.bookAdded = true;
+					});
 		}
 	},
 	created() {
@@ -106,6 +112,35 @@ export default {
 	width: 70%;
 	margin: auto;
 
+}
+
+@-webkit-keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
 }
 
 .btn {
