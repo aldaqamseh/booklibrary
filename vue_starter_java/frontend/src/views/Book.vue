@@ -36,20 +36,31 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-center my-5">
+				<div class="row mt-5 d-flex justify-content-end">
+					<div class="col col-4 text-right">
+						<router-link
+							tag="button"
+							class="btn btn-primary"
+							to="/books"
+							>Back to Book List</router-link
+						>
+					</div>
+					<div class="col col-4 text-left">
+						<button
+							class="btn btn-primary"
+							@click="addBookToReadingList"
+						>
+							Add Book To Reading List
+						</button>
 
-					<router-link to="/books"
-						>Back to Book List</router-link
-					>
-					<button class="btn btn-primary" @click='addBookToReadingList'>
-						Add Book To Reading List
-					</button>
-
-					<div v-if="bookAdded" v-bind:class="{ bookAdded: fadeOutUp }">Added!</div>
-
-
+						<div
+							v-if="bookAdded"
+							v-bind:class="{ bookAdded: fadeOutUp }"
+						>
+							Added!
+						</div>
+					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -59,7 +70,6 @@
 import auth from "../auth";
 
 export default {
-
 	data() {
 		return {
 			book: {},
@@ -82,22 +92,23 @@ export default {
 					console.log(book);
 				});
 		},
-		addBookToReadingList: function(){
-			fetch("http://localhost:8080/AuthenticationApplication/api/reading-list", {
-				method: "POST",
-				mode: "cors",
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					Authorization: "Bearer " + auth.getToken()
-				},
+		addBookToReadingList: function() {
+			fetch(
+				"http://localhost:8080/AuthenticationApplication/api/reading-list",
+				{
+					method: "POST",
+					mode: "cors",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + auth.getToken()
+					},
 					body: JSON.stringify(this.book)
-
-			})
-				.then(res => {
-					console.log(res)
-					this.bookAdded = true;
-					});
+				}
+			).then(res => {
+				console.log(res);
+				this.bookAdded = true;
+			});
 		}
 	},
 	created() {
@@ -107,40 +118,38 @@ export default {
 </script>
 
 <style>
-
 .book-image {
 	width: 70%;
 	margin: auto;
-
 }
 
 @-webkit-keyframes fadeOutUp {
-  from {
-    opacity: 1;
-  }
+	from {
+		opacity: 1;
+	}
 
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 1s);
-    transform: translate3d(0, -100%, 1s);
-  }
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 1s);
+		transform: translate3d(0, -100%, 1s);
+	}
 }
 
 @keyframes fadeOutUp {
-  from {
-    opacity: 1;
-  }
+	from {
+		opacity: 1;
+	}
 
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 1s);
-    transform: translate3d(0, -100%, 1s);
-  }
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 1s);
+		transform: translate3d(0, -100%, 1s);
+	}
 }
 
 .fadeOutUp {
-  -webkit-animation-name: fadeOutUp;
-  animation-name: fadeOutUp;
+	-webkit-animation-name: fadeOutUp;
+	animation-name: fadeOutUp;
 }
 
 .btn {
