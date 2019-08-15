@@ -75,7 +75,7 @@ export default {
 	cursor: pointer;
 }
 .book-img {
-	width: 60%;
+	max-height: 220px;
 	margin: auto;
 }
 
