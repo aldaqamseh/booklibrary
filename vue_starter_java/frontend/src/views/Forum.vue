@@ -2,8 +2,8 @@
 	<div class="forum">
 		<div class="container">
 			<h1 class="text-center">Welcome to the bkwrm Forums!</h1>
-
-			<div v-if="getUserName" class="add-post my-5">
+			<br>
+			<div v-if="username" class="add-post my-5">
 				<h5 class="text-center">Make a New Forum Post</h5>
 				<form v-on:submit.prevent class="my-2 my-lg-0">
 					<div
@@ -45,7 +45,7 @@
 				</form>
 			</div>
 
-			<div v-for="post in posts.slice().reverse()" :key="post.id">
+			<div v-for="post in posts.slice()" :key="post.id">
 				<router-link
 					:to="{
 						params: { postId: post.id },
@@ -57,7 +57,8 @@
 				>
 					<div class="card-title m-0 post-title">
 						<h5 class="mt-1 d-md-inline">{{ post.title }}</h5>
-						<p class="m-0 d-md-inline float-md-right">
+						<br>
+						<p class="m-0 d-md-inline float-md-left">
 							<i class="fas fa-user mr-1"></i>
 							{{ post.user }}
 							<span class="ml-5"
@@ -97,7 +98,12 @@ export default {
 		};
 	},
 	computed: {
-		username() {}
+		username() {
+			if (auth.getUser()) {
+				console.log(auth.getUser().sub);
+				return auth.getUser().sub;
+			} else return "";
+		}
 	},
 	methods: {
 		fetchAllPosts() {
