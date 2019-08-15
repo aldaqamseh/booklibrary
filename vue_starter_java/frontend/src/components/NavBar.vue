@@ -107,6 +107,7 @@ export default {
 		},
 		logout() {
 			this.$emit("logout");
+			this.$router.push("/");
 		}
 	}
 };

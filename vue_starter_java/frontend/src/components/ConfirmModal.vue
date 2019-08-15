@@ -85,7 +85,10 @@ export default {
 				body: JSON.stringify(this.book)
 			})
 				.then(res => res.json())
-				.then(res => console.log(res));
+				.then(res => {
+					console.log(res);
+					this.$router.push("/books");
+				});
 		}
 	}
 };
