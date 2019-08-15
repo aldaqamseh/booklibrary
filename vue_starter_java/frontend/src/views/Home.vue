@@ -1,6 +1,6 @@
 <template>
 	<div class="container-fluid p-0">
-		<div class="hero">
+		<div class="hero d-flex align-items-center">
 			<div class="row justify-content-start">
 				<div class="col col-6">
 					<!-- <register-box/> -->
@@ -12,10 +12,8 @@
 		<div class="row copy-row justify-content-start">
 			<div class="col col-12">
 				<h1>
-					Welcome to <strong>bkwrm</strong>, your new place for
-					all things literature.<br />
-					Take a look at a few things that make it a great place
-					to be.
+					Welcome to <strong>bkwrm</strong> 
+					<br> <em>Book lovers unite!</em><br />
 				</h1>
 			</div>
 		</div>
@@ -26,12 +24,10 @@
 				</p>
 				<p>
 					<strong>bkwrm</strong> is an exclusive online community
-					where book lovers come to discuss the hottest trends in
-					literature, discuss new releases, upcoming authors, and
-					anything else in the literary world. bkwrm also has a
-					local lending library located in Columbus, OH where you
-					can rent a book donated by one of our users, as long as
-					you bring your own to add to the collection!
+					where book lovers come to discuss all things literary. 
+					
+					Located in Columbus, OH? Swing by our local lending library with your pre-loved books
+					and come away with some fresh finds. What better way to breath new life into old stories?
 				</p>
 			</div>
 
@@ -74,8 +70,7 @@
 					The bkwrm forums are a great place for open minded book
 					lovers to share their thoughts! Discuss your favorite
 					authors, books, upcoming releases, and more! We'd love
-					to have you be a part of our community, so what are you
-					waiting for?
+					to have you be a part of our community. What are you waiting for? Sign-up today!
 				</p>
 				<p class="text-center mt-5">
 					<button class="btn btn-primary">
