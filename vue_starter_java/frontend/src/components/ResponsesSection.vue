@@ -1,6 +1,6 @@
 <template>
 	<div class="comments-section mt-4">
-		<h5 class="text-center">Replies</h5>
+		<!-- <h5 class="text-center">Replies</h5> -->
 
 		<div class="comments">
 			<div v-for="comment in comments" :key="comment.id">

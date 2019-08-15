@@ -1,10 +1,11 @@
 <template>
 	<div class="forum-post container mt-5">
+		<a href="/forum"> < Back </a>
 		<div class="card mb-4 px-3 pt-3">
 			<div>
-				<h5>{{ post.title }}</h5>
+				<h2>{{ post.title }}</h2>
 				<p>
-					<i class="fas fa-user mr-1"></i>{{ post.userId }}
+					<i class="fas fa-user mr-1"></i>{{ post.user }}
 					<span class="ml-5"
 						>Date Posted:
 						{{ post.datePosted.substring(0, 10) }}</span
@@ -18,6 +19,8 @@
 				</div>
 				<div class="card-body pt-0">
 					<div class="list-group">
+						<h4 class="text-center comments-heading"> Comments </h4>
+						<!-- <h4 class="text-center no-response"> No one has responded, yet... </h4> -->
 						<responses-section :postId="post.id"/>
 					</div>
 				</div>
@@ -36,6 +39,11 @@ export default {
 	name: "forum-post",
 	components: {
 		ResponsesSection
+	},
+	computed: {
+		getComments(){
+			return this.comments.length();
+		}
 	},
 	data() {
 		return {
@@ -75,4 +83,17 @@ export default {
 .post-title h5 {
 	color: cornflowerblue;
 }
+
+.no-response {
+	color: cornflowerblue;
+}
+
+.mr-1 {
+	padding-right: 5px;
+}
+
+.comments-heading {
+	color: cornflowerblue;
+}
+
 </style>
