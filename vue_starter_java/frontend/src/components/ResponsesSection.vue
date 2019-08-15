@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="add-comment">
-			<form v-on:submit.prevent class="my-2 my-lg-0">
+			<form v-if="isLoggedIn" v-on:submit.prevent class="my-2 my-lg-0">
 				<input
 					class="form-control mr-sm-2"
 					type="text"
@@ -57,13 +57,18 @@ export default {
 				"http://localhost:8080/AuthenticationApplication/api/forum/",
 			newComment: {
 				body: "",
-				user: auth.getUser().sub,
+				user: this.getUserName(),
 				datePosted: moment().format("YYYY-MM-DD"),
 				postId: this.postId
 			}
 		};
 	},
 	methods: {
+		getUserName() {
+			if (auth.getUser()) {
+				return auth.getUser().sub;
+			} else return "";
+		},
 		fetchCommentsByPostId() {
 			fetch(this.API_URL + this.postId + "/comments")
 				.then(response => {
@@ -91,6 +96,11 @@ export default {
 					this.newComment.body = "";
 				});
 			}
+		}
+	},
+	computed: {
+		isLoggedIn() {
+			return auth.getUser();
 		}
 	},
 	created() {
