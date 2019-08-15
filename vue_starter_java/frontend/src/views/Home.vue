@@ -12,10 +12,7 @@
 		<div class="row copy-row justify-content-start">
 			<div class="col col-12">
 				<h1>
-					Welcome to <strong>bkwrm</strong>, your new place for
-					all things literature.<br />
-					Take a look at a few things that make it a great place
-					to be.
+					Welcome to <strong>bkwrm.</strong> <br>Book lovers unite!<br />
 				</h1>
 			</div>
 		</div>
