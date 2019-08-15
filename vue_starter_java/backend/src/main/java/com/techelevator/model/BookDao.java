@@ -18,5 +18,7 @@ public interface BookDao {
 	
 	void removeBookFromReadingList(Book book, int userId);
 
+	void updateReadingList(Book book, int userId);
+
 	
 }

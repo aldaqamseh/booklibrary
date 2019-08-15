@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Component
 public class JdbcBookDao implements BookDao {
@@ -38,11 +39,11 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public List<Book> getAllBooksFromReadingList(int userId) {
 		List<Book> books = new ArrayList<Book>();
-		String result = "SELECT books.book_id, books.title, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
+		String result = "SELECT books.book_id, books.title, books.author, books.genre, books.description, books.publish_date, books.date_added, books.img_url, books.isbn, user_books.completed FROM books JOIN user_books ON books.book_id = user_books.book_id WHERE user_books.user_id = ?" ;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(result, userId);
 		Book theBook;
 		while (results.next()) {
-			theBook = mapRowToBook(results);
+			theBook = mapRowToReadingListBook(results);
 			books.add(theBook);
 		}
 		return books;
@@ -51,7 +52,7 @@ public class JdbcBookDao implements BookDao {
 	@Override
 	public void saveBookToReadingList(Book book, int userId) {
 		int id = getNextId();
-		String sqlSave = "INSERT INTO user_books (user_id, book_id ) VALUES (?,?)";	
+		String sqlSave = "INSERT INTO user_books (user_id, book_id) VALUES (?,?)";	
 		jdbcTemplate.update(sqlSave, userId, book.getId());
 		book.setId(id);
 	}
@@ -91,6 +92,24 @@ public class JdbcBookDao implements BookDao {
 
 		return theBook;
 	}
+	
+	private Book mapRowToReadingListBook(SqlRowSet results) {
+
+		Book theBook;
+
+		theBook = new Book();
+		theBook.setId(results.getInt("book_id"));
+		theBook.setAuthor(results.getString("author"));
+		theBook.setDescription(results.getString("description"));
+		theBook.setGenre(results.getString("genre"));
+		theBook.setTitle(results.getString("title"));
+		theBook.setPublishDate(results.getDate("publish_date"));
+		theBook.setDateAdded(results.getDate("date_added"));
+		theBook.setImgUrl(results.getString("img_url"));
+		theBook.setIsbn(results.getString("isbn"));
+		theBook.setCompleted(results.getBoolean("completed"));
+		return theBook;
+	}
 
 	
 	@Override
@@ -103,7 +122,12 @@ public class JdbcBookDao implements BookDao {
 		book.setId(id);
 	}
 
-
+	@Override
+	public void updateReadingList (Book book, int userId) {
+		String sqlCompleted = "UPDATE user_books SET completed = NOT completed WHERE book_id = ? AND user_id = ?";
+		jdbcTemplate.update(sqlCompleted, book.getId(), userId);
+	}
+	
 	private int getNextId() {
 
 		String sqlSelectNextId = "SELECT nextval('books_book_id_seq')";

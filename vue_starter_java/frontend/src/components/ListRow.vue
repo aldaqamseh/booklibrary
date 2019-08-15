@@ -7,18 +7,24 @@
 					v-bind:style="{
 						backgroundImage: 'url(' + getImageUrl + ')'
 					}"
-				></div>
+				>
+				<img
+							v-if="completed"
+							src="~@/assets/img/rodentia-icons_ok.svg"
+							class="img-checked"
+						/>
+				</div>
 			</div>
 			<div class="col col-7 text-left">
 				<h5 class="book-title">{{ book.title }}</h5>
 				<p class="book-description">{{ book.description }}</p>
 			</div>
 			<div class="col col-2 text-left">
-				<div class="form-check">
+				<div class="form-check" @click="updateReadingList">
 					<input
 						class="form-check-input"
 						type="checkbox"
-						value=""
+						v-model="completed"
 						id="defaultCheck1"
 					/>
 					<label
@@ -29,7 +35,7 @@
 					</label>
 				</div>
 
-				<button class="btn btn-primary remove-button mt-1" @click="remove">
+				<button class="btn btn-primary remove-button mt-1" @click="removeFromList">
 					Remove From List
 				</button>
 			</div>
@@ -48,7 +54,8 @@ export default {
 		};
 	},
 	props: {
-		book: Object
+		book: Object,
+		completed: Boolean
 	},
 	computed: {
 		getImageUrl() {
@@ -56,10 +63,6 @@ export default {
 		}
 	},
 	methods:{
-		remove(){
-		this.$emit('remove');
-		this.removeFromList();
-		},
 		removeFromList(){
 			fetch(this.API_URL, {
 				method: "DELETE",
@@ -68,12 +71,36 @@ export default {
 					Accept: "application/json",
 					"Content-Type": "application/json",
 					Authorization: "Bearer " + auth.getToken()
-
 				},
 				body: JSON.stringify(this.book)
+
+			})
+			.then(res=>{
+				console.log(res);
+				this.remove();
+			})
+		},
+		remove(){
+		this.$emit('remove');
+		this.removeFromList();
+		},
+		updateReadingList(){
+			fetch(this.API_URL, {
+				method: "PUT",
+				mode: "cors",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + auth.getToken()
+				},
+				body: JSON.stringify(this.book)
+
+			})
+			.then(res=>{
+				console.log(res);
 			})
 		}
-		}
+	}
 };
 </script>
 
@@ -86,6 +113,15 @@ export default {
 	height: 120px;
 	background-size: contain;
 	background-position: center center;
+	background-repeat: no-repeat;
+	margin: auto;
+}
+
+.img-checked {
+	width: 90px;
+	height: 130px;
+	background-size: contain;
+	background-position: center center; 
 	background-repeat: no-repeat;
 	margin: auto;
 }
