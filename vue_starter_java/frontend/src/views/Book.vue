@@ -121,8 +121,8 @@ export default {
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 1);
-    transform: translate3d(0, -100%, 1);
+    -webkit-transform: translate3d(0, -100%, 1s);
+    transform: translate3d(0, -100%, 1s);
   }
 }
 
@@ -133,8 +133,8 @@ export default {
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 1);
-    transform: translate3d(0, -100%, 1);
+    -webkit-transform: translate3d(0, -100%, 1s);
+    transform: translate3d(0, -100%, 1s);
   }
 }
 
