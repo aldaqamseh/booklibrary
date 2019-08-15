@@ -37,6 +37,8 @@
 					</div>
 				</div>
 				<div class="row mt-5 d-flex justify-content-end">
+
+					
 					<div class="col col-4 text-right">
 						<router-link
 							tag="button"
@@ -45,20 +47,20 @@
 							>Back to Book List</router-link
 						>
 					</div>
+
 					<div class="col col-4 text-left">
+						<div
+							v-if="bookAdded"
+							class="animated fadeOutUp text-center added mb-4"
+						>
+							<h3>Added!</h3>
+						</div>
 						<button
 							class="btn btn-primary"
 							@click="addBookToReadingList"
 						>
 							Add Book To Reading List
 						</button>
-
-						<div
-							v-if="bookAdded"
-							v-bind:class="{ bookAdded: fadeOutUp }"
-						>
-							Added!
-						</div>
 					</div>
 				</div>
 			</div>
@@ -123,7 +125,13 @@ export default {
 	margin: auto;
 }
 
-@-webkit-keyframes fadeOutUp {
+.added{
+	position: absolute;
+	bottom: 5px;
+	color: cornflowerblue;
+}
+
+/* @-webkit-keyframes fadeOutUp {
 	from {
 		opacity: 1;
 	}
@@ -150,7 +158,7 @@ export default {
 .fadeOutUp {
 	-webkit-animation-name: fadeOutUp;
 	animation-name: fadeOutUp;
-}
+} */
 
 .btn {
 	border: solid red 1px;
