@@ -39,7 +39,7 @@ export default {
 
 <style>
 .container-fluid {
-	/* margin: 0px; */
+	padding: 0px !important;
 	/* border: solid blue 1px; */
 }
 </style>

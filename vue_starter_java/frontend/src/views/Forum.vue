@@ -3,7 +3,7 @@
 		<div class="container">
 			<h1 class="text-center">Welcome to the bkwrm Forums!</h1>
 
-			<div v-if="username" class="add-post my-5">
+			<div v-if="getUserName" class="add-post my-5">
 				<h5 class="text-center">Make a New Forum Post</h5>
 				<form v-on:submit.prevent class="my-2 my-lg-0">
 					<div
@@ -19,6 +19,7 @@
 								required
 							/>
 						</div>
+						<input type="hidden" v-model="newPost.user" />
 						<div class="col col-3 text-right">
 							<button
 								class="btn btn-primary my-2 my-sm-2"
@@ -91,14 +92,12 @@ export default {
 			newPost: {
 				body: "",
 				title: "",
-				user: this.username
+				user: this.getUserName()
 			}
 		};
 	},
 	computed: {
-		username() {
-			if (auth.getUser()) return auth.getUser().sub;
-		}
+		username() {}
 	},
 	methods: {
 		fetchAllPosts() {
@@ -124,12 +123,19 @@ export default {
 					body: JSON.stringify(this.newPost)
 				}).then(res => {
 					console.log(res);
+					console.log(JSON.stringify(this.newPost));
 					this.fetchAllPosts();
 					this.newPost.body = "";
 					this.newPost.title = "";
 				});
 				// .then(res => console.log(res));
 			}
+		},
+		getUserName() {
+			if (auth.getUser()) {
+				console.log(auth.getUser().sub);
+				return auth.getUser().sub;
+			} else return "";
 		},
 		handleNewPost() {
 			this.addPost();

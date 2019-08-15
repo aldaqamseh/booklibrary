@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-		<div class="row justify-content-start">
+		<div class="row copy-row justify-content-start">
 			<div class="col col-12">
 				<h1>
 					Welcome to <strong>bkwrm</strong>, your new place for
@@ -18,7 +18,8 @@
 					to be.
 				</h1>
 			</div>
-
+		</div>
+		<div class="row icon-row justify-content-center">
 			<div class="col col-4">
 				<p class="text-center">
 					<img id="info" src="~@/assets/img/info.svg" />
@@ -76,7 +77,7 @@
 					to have you be a part of our community, so what are you
 					waiting for?
 				</p>
-				<p class="text-center">
+				<p class="text-center mt-5">
 					<button class="btn btn-primary">
 						<a href="register">Join today!</a>
 					</button>
@@ -137,6 +138,14 @@ export default {
 .col-4 {
 	text-align: left;
 	padding: 25px;
+}
+.icon-row {
+	width: 95%;
+	margin: auto;
+}
+.copy-row {
+	width: 80%;
+	margin: auto;
 }
 
 #info {

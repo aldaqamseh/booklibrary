@@ -1,13 +1,26 @@
 <template>
-	<div class="register-box">
-		<h2>Find your next great read with <strong>bkwrm.</strong></h2>
-		<h3>
-			See what others are raving about, even curate your own personal
-			reading list!
-		</h3>
+	<div class="register-box d-flex align-items-center px-5">
+		<div class="row justify-content-between align-items-center">
+			<div class="col">
+				<div class="box-content">
+					<h2>
+						Find your next great read with
+						<strong>bkwrm.</strong>
+					</h2>
+					<h3 class="mt-5">
+						See what others are raving about, even curate your
+						own personal reading list!
+					</h3>
 
-		<div class="register-now-button">
-			<h2><a href="/register"> Register now for free! </a></h2>
+					<div class="register-now-button mt-5">
+						<h2>
+							<a href="/register">
+								Register now for free!
+							</a>
+						</h2>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -29,16 +42,14 @@ export default {};
 }
 
 .register-now-button {
-	width: 450px;
+	width: 90%;
 	height: 60px;
-	margin: 10px;
+	margin: auto;
 	padding: 10px;
 
 	background: cornflowerblue;
 
 	border-radius: 10px;
-
-	margin-top: 250px;
 
 	text-align: center;
 	vertical-align: center;
