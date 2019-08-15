@@ -57,7 +57,8 @@
 				>
 					<div class="card-title m-0 post-title">
 						<h5 class="mt-1 d-md-inline">{{ post.title }}</h5>
-						<p class="m-0 d-md-inline float-md-right">
+						<br>
+						<p class="m-0 d-md-inline float-md-left">
 							<i class="fas fa-user mr-1"></i>
 							{{ post.user }}
 							<span class="ml-5"

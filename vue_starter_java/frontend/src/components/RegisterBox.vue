@@ -30,13 +30,15 @@ export default {};
 </script>
 
 <style>
+
 .register-box {
 	width: 500px;
 	height: 500px;
 	margin: 10px;
 	padding: 10px;
 
-	background: #eff0f3;
+	background-color: rgba(255,255,255,.9);
+	
 
 	border-radius: 25px;
 }
@@ -46,7 +48,7 @@ export default {};
 	height: 60px;
 	margin: auto;
 	padding: 10px;
-
+	
 	background: cornflowerblue;
 
 	border-radius: 10px;
@@ -62,4 +64,8 @@ export default {};
 	text-emphasis: none;
 	text-decoration: none;
 }
+
+
+
+
 </style>
