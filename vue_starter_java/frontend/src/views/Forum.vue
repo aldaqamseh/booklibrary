@@ -45,7 +45,7 @@
 				</form>
 			</div>
 
-			<div v-for="post in posts.slice()" :key="post.id">
+			<div v-for="post in posts.slice().reverse()" :key="post.id">
 				<router-link
 					:to="{
 						params: { postId: post.id },
