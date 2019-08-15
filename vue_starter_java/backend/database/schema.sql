@@ -96,7 +96,7 @@ CREATE TABLE user_books
 (
   user_id integer REFERENCES users (user_id) NOT NULL,
   book_id integer REFERENCES books (book_id) NOT NULL,
-  completed BOOLEAN
+  completed BOOLEAN DEFAULT false
 );
 
 
