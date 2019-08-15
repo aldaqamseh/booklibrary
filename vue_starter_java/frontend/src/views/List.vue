@@ -12,10 +12,11 @@
 		<br>
 			<a href="/register"><button class="btn btn-primary">
 						Join today!
-					</button></a> or 
-					<a href="/login"><button class="btn btn-primary">
-						Login
 					</button></a>
+					<br> 
+					<p><a href="/login">
+						Already have an account?
+					</a></p>
 
 		</div>
 	
